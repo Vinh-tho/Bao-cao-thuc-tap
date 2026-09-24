@@ -17,5 +17,5 @@ Trong chương này, chúng ta sẽ tạo hàm **AWS Lambda Matchmaker** (`Fight
 
 ### Danh sách các bài học chi tiết:
 
-* **[5.3.1. Khởi tạo hàm AWS Lambda Matchmaker](5.3.1-lambda-matchmaker/)**
-* **[5.3.2. Cấu hình Amazon API Gateway REST API](5.3.2-api-gateway/)**
+- **[5.3.1. Khởi tạo hàm AWS Lambda Matchmaker](5.5.1-create-lambda/)**
+- **[5.3.2. Cấu hình Amazon API Gateway REST API](5.5.2-s3-event-trigger/)**

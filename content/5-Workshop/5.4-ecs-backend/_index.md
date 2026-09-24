@@ -17,7 +17,7 @@ In this section, we will create a sample **Amazon EC2 (Ubuntu 24.04 LTS)** Game 
 
 ### Detailed Modules:
 
-* **[5.4.1. Sample EC2 Game Server & Baking AMI](5.4.1-ec2-ami/)**
-* **[5.4.2. Launch Template & Auto Scaling Group Warm Pool](5.4.2-spot-launch-template/)**
-* **[5.4.3. Amazon S3 Bucket & Static Website Hosting](5.4.3-s3-website/)**
-* **[5.4.4. GitHub OIDC & AWS CodeDeploy GitOps Pipeline](5.4.4-github-codedeploy/)**
+- **[5.4.1. Sample EC2 Game Server & Baking AMI](5.4.1-docker-ecr/)**
+- **[5.4.2. Launch Template & Auto Scaling Group Warm Pool](5.4.2-ec2-asg/)**
+- **[5.4.3. Amazon S3 Bucket & Static Website Hosting](5.4.3-ecs-cluster-cp/)**
+- **[5.4.4. GitHub OIDC & AWS CodeDeploy GitOps Pipeline](5.4.4-alb-config/)**

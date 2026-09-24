@@ -1,181 +1,309 @@
 ---
 title: "Bản đề xuất"
-date: 2026-07-21
+date: 2026-09-24
 weight: 2
 chapter: false
-pre: " <b> 2. </b> "
+pre: "<b> 2. </b>"
 ---
 
-# Serverless & Event-Driven Game Backend trên AWS
-## Kiến trúc Backend tối ưu chi phí và mở rộng linh hoạt cho Game Live-Service
+# Hệ thống Web E-shop Mở rộng linh hoạt và Tối ưu trên AWS
+
+## Kiến trúc Container trên nền EC2 & Event-Driven cho Nền tảng Thương mại Điện tử
 
 ### 1. Tóm tắt điều hành
-Đề xuất này trình bày giải pháp kiến trúc **Backend cho Game Live-Service** chạy trên hạ tầng đám mây AWS. Thay vì duy trì một cụm máy chủ game (Game Server) hoạt động 24/7 gây lãng phí chi phí lớn trong những khoảng thời gian không có người chơi, hệ thống áp dụng nguyên tắc **chỉ bật tài nguyên tính toán (Compute) khi thực sự cần thiết**: bao gồm luồng đăng nhập, ghép trận (Matchmaking), và trong suốt thời gian diễn ra trận đấu thực tế.
 
-Toàn bộ phần **Metagame** (xác thực người chơi, phân phối tài nguyên game, ghép trận, lưu trữ kết quả) được xây dựng hoàn toàn dựa trên kiến trúc **Serverless**. Phần phiên chơi game thực tế (Live Game Session) yêu cầu máy chủ vật lý được quản lý trong fleet **EC2 Spot (kiến trúc Graviton ARM64)** và chỉ được kích hoạt (spin up) tự động theo yêu cầu của luồng ghép trận. Toàn bộ quy trình triển khai và cập nhật mã nguồn được tự động hóa qua mô hình **GitOps (CI/CD Pipeline)**, đảm bảo không có sự can thiệp thủ công lên môi trường Production.
+Đề xuất này trình bày giải pháp kiến trúc tổng thể triển khai dự án **Web E-shop** trên hạ tầng đám mây AWS.
+
+**Kiến trúc chủ đạo:** Hệ thống được thiết kế theo mô hình kết hợp giữa **Static Hosting**, **Container hóa trên nền EC2** và **Serverless**: Frontend và tài nguyên tĩnh được lưu trữ trên **Amazon S3**; Backend được đóng gói bằng **Docker** và triển khai trên **Amazon ECS chạy trên các EC2 instance** (EC2 Auto Scaling Group kết hợp ECS Capacity Provider); các tác vụ xử lý nền được thực hiện bằng **AWS Lambda**. Toàn bộ hệ thống được đặt trong **VPC**, phân tách rõ **Public Subnet** (ALB) và **Private Subnet** (EC2/ECS Backend), đồng thời được giám sát bởi **CloudWatch & CloudTrail**.
+
+Thay vì chạy toàn bộ ứng dụng trên một máy chủ truyền thống (Monolithic), dự án sử dụng kiến trúc phân tách Frontend/Backend, container hóa Backend và tự động hóa tác vụ phụ trợ (xử lý ảnh sản phẩm) bằng Lambda để giảm tải cho máy chủ chính.
 
 ---
 
 ### 2. Tuyên bố vấn đề
 
-#### Vấn đề hiện tại
-*   **Chi phí lãng phí lớn (Idle Cost)**: Các hệ thống Game Server truyền thống phải duy trì các máy chủ ảo EC2/Virtual Machine chạy liên tục 24/7 để sẵn sàng phục vụ người chơi, dẫn đến chi phí hạ tầng rất cao ngay cả khi số lượng người chơi giảm mạnh vào các khung giờ thấp điểm.
-*   **Chi phí băng thông & Egress cao**: Việc sử dụng NAT Gateway hoặc Load Balancer thường trực để định tuyến lưu lượng internet làm phát sinh chi phí duy trì và chi phí truyền dữ liệu (data transfer) không đáng có.
-*   **Phức tạp trong cập nhật & Phát hành (Deployment Overhead)**: Mỗi lần phát hành bản vá nhỏ (small patch) hoặc cập nhật game server bundle thường đòi hỏi phải đóng gói lại toàn bộ ảnh đĩa (Rebake AMI), làm chậm chu kỳ phát hành tính năng và tiềm ẩn rủi ro gián đoạn dịch vụ đang chạy.
-*   **Nguy cơ bảo mật mạng**: Việc mở sẵn các cổng mạng (standing security group rules) trên máy chủ game tạo ra nguy cơ bị tấn công DDoS hoặc thâm nhập trái phép từ bên ngoài.
+#### Vấn đề của các hệ thống E-shop truyền thống
+
+- **Không chịu được tải đột biến (Traffic Spikes):** Trong các dịp Flash Sale hoặc khuyến mãi lớn, lượng truy cập tăng đột biến dễ làm sập máy chủ web nếu cấu hình cố định, dẫn đến mất doanh thu và trải nghiệm xấu cho khách hàng.
+- **Chi phí duy trì không tối ưu:** Phải thuê máy chủ cấu hình dư thừa để phòng hờ những lúc cao điểm, gây lãng phí tài nguyên vào những ngày bình thường hoặc ban đêm khi ít khách mua hàng.
+- **Hiệu suất tải trang tĩnh kém:** Việc bắt máy chủ (Backend) phải xử lý và trả về cả các file giao diện (HTML/CSS/JS) và hình ảnh sản phẩm làm giảm tốc độ xử lý các giao dịch cốt lõi (như giỏ hàng, thanh toán).
+- **Khó khăn trong việc cập nhật (Deployment):** Việc cập nhật tính năng mới trên kiến trúc máy chủ cố định thường phức tạp và tiềm ẩn rủi ro gián đoạn dịch vụ.
 
 #### Giải pháp đề xuất
-Hệ thống được thiết kế theo nguyên tắc cốt lõi: **Serverless cho mọi thành phần trừ phiên chơi game thực tế**. Phần phiên chơi game nằm sau ranh giới mạng riêng (Network Boundary) thuộc VPC, tách biệt hoàn toàn khỏi luồng matchmaking và xác thực.
 
-Kiến trúc chia làm 4 luồng xử lý độc lập, mỗi luồng có cơ chế kích hoạt (Trigger) và ranh giới tin cậy (Trust Boundary) riêng:
-1.  **Flow C (GitOps Deployment Loop)**: Quản lý CI/CD tự động hóa, build artifact, cập nhật Lambda Version Alias, đẩy asset/patch/server bundle lên S3 và cập nhật Launch Template cho fleet EC2 Spot mà không làm gián đoạn các trận đấu đang diễn ra.
-2.  **Flow A (Player Auth & Asset Distribution)**: Xác thực người chơi qua Amazon Cognito User Pool và phân phối quyền truy cập tải asset/patch từ S3 bằng Cognito Identity Pool (Temporary IAM Credentials scoped theo prefix).
-3.  **Flow R (Synchronous Matchmaking & EC2 Control Plane)**: Luồng ghép trận đồng bộ qua CloudFront + WAF, API Gateway và Matchmaker Lambda (trong Private Subnet). Lambda gọi EC2 Control Plane qua VPC Interface Endpoint để yêu cầu warm instance từ ASG Spot fleet, mở Security Group rule theo từng người chơi/trận đấu và trả về IP/Port để client kết nối trực tiếp qua Internet Gateway.
-4.  **Flow E (Asynchronous Post-Match Processing & Analytics)**: Luồng bất đồng bộ xử lý kết quả sau trận đấu thông qua DynamoDB Streams và Async Lambda, tách biệt hoàn toàn để không ảnh hưởng đến độ trễ ghép trận.
+Hệ thống được tái cấu trúc thành các thành phần độc lập (Decoupled Architecture), áp dụng các dịch vụ cốt lõi của AWS:
 
-#### Lợi ích và Hoàn vốn đầu tư (ROI)
-*   **Tối ưu chi phí tối đa (lên đến 70 - 80%)**: Nhờ kết hợp EC2 Spot Instance trên vi xử lý Graviton ARM64 (rẻ hơn 20% so với x86) và cơ chế chỉ bật EC2 khi có trận đấu. Loại bỏ hoàn toàn chi phí duy trì NAT Gateway và Load Balancer thường trực.
-*   **Tăng cường độ an toàn bảo mật**: Mọi request đều được xác thực JWT trước khi chạm vào mã ứng dụng. Cổng game server chỉ mở Security Group rule động cho đúng IP người chơi trong thời gian diễn ra trận đấu và thu hồi ngay sau khi kết thúc.
-*   **Chu kỳ phát hành linh hoạt (Zero-Downtime Rollout)**: Nhờ lưu trữ tập trung server bundle trên S3, khi có bản vá nhỏ, EC2 UserData tự động pull bản mới nhất lúc khởi động mà không cần rebake lại AMI.
+1. **Frontend trên Amazon S3:** Giao diện người dùng (Web Client) và hình ảnh sản phẩm được lưu trữ dưới dạng tài nguyên tĩnh trên **Amazon S3**, giúp tải trang nhanh, có khả năng mở rộng và chi phí thấp.
+2. **Backend Containerization trên nền EC2:** Backend API (xử lý logic giỏ hàng, thanh toán, quản lý sản phẩm) được đóng gói bằng **Docker**, chạy trên **Amazon ECS với EC2 launch type**. Các EC2 instance làm nền cho ECS được quản lý bởi **EC2 Auto Scaling Group**, kết hợp **ECS Capacity Provider** để đảm bảo đủ tài nguyên chạy Task. Phía trước là **Application Load Balancer (ALB)** phân phối request tới các Task thông qua Target Group.
+3. **Background Processing với Lambda:** Khi Admin upload ảnh sản phẩm lên S3, sự kiện này kích hoạt **AWS Lambda** tự động xử lý (resize) ảnh — một ví dụ điển hình của kiến trúc Event-driven Serverless.
+4. **Bảo mật & Giám sát:** Toàn bộ Backend (EC2 + ECS) được đặt trong **Private Subnet** của **VPC**, không mở trực tiếp ra Internet — chỉ nhận lưu lượng đã qua ALB ở Public Subnet. Mọi hoạt động được ghi log bởi **CloudTrail** và giám sát bằng **CloudWatch**.
+
+#### Lợi ích kỳ vọng
+
+- **Khả năng mở rộng linh hoạt khi lưu lượng truy cập tăng:** ECS Service Auto Scaling điều chỉnh số lượng Task; khi năng lực EC2 không đủ, ECS Capacity Provider phối hợp với EC2 Auto Scaling Group để bổ sung EC2 instance.
+- **Có khả năng tối ưu chi phí:** S3 và Lambda áp dụng mô hình tính phí theo mức sử dụng thực tế; EC2 Auto Scaling Group cho phép điều chỉnh số lượng instance theo nhu cầu thay vì duy trì cố định một số lượng lớn máy chủ.
+- **Bảo mật dữ liệu khách hàng:** Cách ly máy chủ xử lý dữ liệu khỏi Internet công cộng, giới hạn quyền truy cập thông qua Security Groups và IAM.
 
 ---
 
 ### 3. Kiến trúc giải pháp
 
-#### Sơ đồ kiến trúc tổng thể
-![Serverless & Event-Driven Game Backend Architecture](/images/2-Proposal/serverless_game_backend_architecture.png)
+#### 3.1. Hiện trạng vs. Kiến trúc mục tiêu
 
-#### Chi tiết 4 luồng xử lý chính trong kiến trúc:
+Vì hệ thống hiện tại **chưa được kết nối lên AWS**, phần này làm rõ ranh giới giữa hiện trạng và mục tiêu đề xuất.
 
-##### 1. Flow C — GitOps Deployment Loop (Quản lý triển khai)
-*   **C1 - C2**: Lập trình viên push mã nguồn và IaC (Infrastructure as Code) lên Git Repository. GitHub Actions kích hoạt pipeline xây dựng các gói phần mềm (Artifacts).
-*   **C3**: Pipeline gọi AWS CodeDeploy để thực hiện chuyển lưu lượng (Traffic Shift) sang phiên bản Lambda Alias mới và cập nhật AMI/Launch Template cho fleet EC2.
-*   **C4**: Đồng thời, pipeline upload các bản build client, patch và server bundle lên Amazon S3. Bucket này đóng vai trò là nguồn lưu trữ tập trung cho cả client và game server. Nếu có lỗi phát sinh, hệ thống thực hiện rollback tự động mà không làm ảnh hưởng đến luồng ghép trận đang chạy.
+**Hiện trạng:**
 
-##### 2. Flow A — Player Auth & Security (Xác thực & Phân phối Asset)
-*   **A1 - A2**: Người chơi đăng nhập qua ứng dụng client, Amazon Cognito User Pool xác thực và trả về JWT Token.
-*   **A3 - A4**: Client mang JWT đổi lấy IAM Temporary Credentials tại Amazon Cognito Identity Pool. Các credential này được phân quyền (scoped) theo prefix cụ thể trên S3, cho phép client tải trực tiếp các gói asset, patch và launcher file cần thiết.
-*   **A5**: JWT Token được gửi kèm trong header của các request ở Flow R để API Gateway Cognito Authorizer kiểm tra trước khi cho phép gọi tới Matchmaker Lambda.
+```text
+Web E-shop
+    │
+    ▼
+ Backend
+    │
+    ▼
+ Database
+```
 
-##### 3. Flow R — Request & Matchmaking (Luồng ghép trận đồng bộ)
-*   **R1 - R2**: Client gửi yêu cầu ghép trận qua Amazon CloudFront (gắn AWS WAF) tới Amazon API Gateway.
-*   **R3 - R4**: Sau khi xác thực JWT thành công, Matchmaker Lambda nằm trong Private Subnet ghi trạng thái trận đấu (Match State) vào Amazon DynamoDB qua VPC Gateway Endpoint.
-*   **G1 - G2**: Matchmaker Lambda gọi EC2 Control Plane qua VPC Interface Endpoint riêng để yêu cầu warm instance từ Auto Scaling Group (ASG) Spot fleet, đồng thời mở một Security Group rule động cho IP của người chơi trong phòng.
-*   **G3 - G4**: EC2 Spot instance được khởi tạo trong Public Subnet. UserData script lúc boot sử dụng IAM Instance Profile để gọi S3 (Flow G4) tải server binary, config và patch mới nhất.
-*   **R5**: Lambda trả về địa chỉ IP công khai và Port của phòng game cho client. Client kết nối trực tiếp UDP/TCP tới Game Instance qua Internet Gateway mà không thông qua bất kỳ proxy hay load balancer trung gian nào.
+**Kiến trúc mục tiêu (đề xuất triển khai trên AWS):**
 
-##### 4. Flow E — Asynchronous Processing (Xử lý bất đồng bộ sau trận)
-*   **E1 - E3**: Khi trận đấu kết thúc, kết quả được ghi vào DynamoDB Single Table. DynamoDB Stream tự động kích hoạt Async Lambda nền để thu thập log post-match, xử lý dữ liệu và đẩy sang hệ thống phân tích (Analytics Store). Luồng này hoàn toàn bất đồng bộ, không ảnh hưởng tới độ trễ của luồng ghép trận.
+```text
+                         INTERNET
+                             │
+              ┌──────────────┴──────────────┐
+              │                             │
+              ▼                             ▼
+        Amazon S3                    Application Load
+   Frontend + Media                     Balancer
+                                            │
+                                            ▼
+                                  ┌──────────────────┐
+                                  │   PUBLIC SUBNET  │
+                                  │       ALB        │
+                                  └────────┬─────────┘
+                                           │
+                                           ▼
+                                  ┌──────────────────┐
+                                  │  PRIVATE SUBNET  │
+                                  │                  │
+                                  │   ECS Cluster    │
+                                  │       │          │
+                                  │   EC2 Instances  │
+                                  │       │          │
+                                  │  Docker Backend  │
+                                  │                  │
+                                  │    Database      │
+                                  └──────────────────┘
+                                           ▲
+                                           │
+                              EC2 Auto Scaling Group
+                                           ▲
+                                           │
+                                  ECS Capacity Provider
 
-#### Dịch vụ AWS sử dụng
--   **Amazon Cognito**: Quản lý đăng nhập (User Pool) và cấp phát IAM temporary credentials (Identity Pool).
--   **Amazon API Gateway & CloudFront + AWS WAF**: Điểm tiếp nhận request ghép trận, bảo vệ hạ tầng biên chống tấn công DDoS và ứng dụng web.
--   **AWS Lambda**: Thực hiện logic ghép trận (Matchmaker), triển khai phiên bản (Alias Versioning) và xử lý dữ liệu sau trận (Async Lambda).
--   **Amazon EC2 Spot Fleet (Graviton ARM64)**: Chạy máy chủ game phiên thực tế với chi phí tối ưu nhất.
--   **Amazon DynamoDB**: Lưu trữ trạng thái ghép trận (Single Table Design) và phát sự kiện qua DynamoDB Streams.
--   **Amazon S3**: Data Lake lưu trữ tập trung client build, patch file và game server bundle.
--   **VPC Endpoints**: Gateway Endpoint (cho DynamoDB) và Interface Endpoint (cho EC2 API) giúp Matchmaker Lambda trong Private Subnet giao tiếp hoàn toàn nội bộ với các dịch vụ AWS.
--   **AWS CodeDeploy & GitHub Actions**: Pipeline GitOps triển khai tự động hóa.
--   **AWS KMS & Amazon CloudWatch**: Mã hóa dữ liệu lưu trữ và giám sát toàn bộ hạ tầng.
+        Amazon S3 (Media)
+              │
+              │ Event Notification
+              ▼
+         AWS Lambda
+              │
+              ▼
+       Image Processing
+              │
+              ▼
+        Amazon S3 (Media)
+
+
+     CloudWatch ─────── Monitoring / Logs / Alarms
+     CloudTrail ─────── AWS API Audit
+     IAM ────────────── Access Control
+```
+
+#### 3.2. Sơ đồ kiến trúc tổng thể
+
+![Sơ đồ kiến trúc E-shop](/images/2-Proposal/eshop_architecture.png)
+
+#### 3.3. Phân chia các luồng xử lý chính (4 Flows)
+
+##### Flow F — Frontend & Trải nghiệm khách hàng
+
+```text
+F1: User truy cập E-shop
+        ↓
+F2: Amazon S3 cung cấp các tài nguyên Frontend tĩnh
+    (HTML / CSS / JavaScript / hình ảnh)
+        ↓
+F3: Browser gọi Backend API thông qua Application Load Balancer
+        ↓
+F4: Backend xử lý nghiệp vụ và trả dữ liệu về Client
+```
+
+##### Flow B — Backend API & Xử lý giao dịch (Core Business)
+
+```text
+B1: Client gửi API Request
+        ↓
+B2: Application Load Balancer (ALB) tiếp nhận
+        ↓
+B3: ALB phân phối Request tới ECS Service thông qua Target Group
+        ↓
+B4: ECS Service chuyển Request tới Docker Container đang chạy trên EC2
+        ↓
+B5: Backend xử lý logic nghiệp vụ
+        ↓
+B6: Ghi/đọc Database hoặc S3
+```
+
+**Cơ chế mở rộng (Auto Scaling) đi kèm:**
+
+```text
+Traffic tăng
+    ↓
+ECS Service Auto Scaling
+    ↓
+Tăng số lượng ECS Task
+    ↓
+Nếu EC2 không đủ capacity
+    ↓
+ECS Capacity Provider
+    ↓
+EC2 Auto Scaling Group
+    ↓
+Tạo thêm EC2 instance
+```
+
+> **Lưu ý:** ALB chịu trách nhiệm phân phối request; ECS Service Auto Scaling điều chỉnh số lượng Task/Container; EC2 Auto Scaling Group chỉ điều chỉnh số lượng EC2 instance làm nền cho ECS.
+
+##### Flow E — Tác vụ nền theo sự kiện (Event-driven Serverless)
+
+```text
+E1: Admin upload ảnh sản phẩm lên S3
+        ↓
+E2: S3 Event Notification
+        ↓
+E3: AWS Lambda được kích hoạt
+        ↓
+E4: Resize ảnh (Thumbnail / Medium / Large)
+        ↓
+E5: Lưu kết quả vào S3
+```
+
+##### Flow S — Bảo mật & Giám sát
+
+```text
+S1: EC2 / ECS / Lambda phát sinh log & metric
+        ↓
+S2: CloudWatch thu thập Log, Metrics
+        ↓
+S3: Dashboard / Alarm (cảnh báo qua email khi lỗi HTTP 500 tăng cao)
+
+AWS API Calls
+      ↓
+  CloudTrail
+      ↓
+  Audit Log
+```
+
+- **IAM:** Áp dụng nguyên tắc quyền tối thiểu — ví dụ ECS Task Role chỉ được đọc/ghi vào S3 Bucket ảnh sản phẩm, EC2 instance role không được cấp quyền quản trị không cần thiết.
 
 ---
 
 ### 4. Triển khai kỹ thuật
 
 #### Các giai đoạn triển khai
-1.  **Giai đoạn 1: Nghiên cứu & Thiết kế kiến trúc (Tháng 1)**
-    *   Phân tích yêu cầu về độ trễ, lưu lượng băng thông và thiết kế mô hình Single Table DynamoDB.
-    *   Xây dựng mô hình phân vùng mạng VPC (Public Subnet cho EC2 Game Fleet, Private Subnet cho Matchmaker Lambda và VPC Endpoints).
-2.  **Giai đoạn 2: Xây dựng hạ tầng bằng mã IaC & GitOps Pipeline (Tháng 1 - Tháng 2)**
-    *   Đóng gói hạ tầng AWS bằng Terraform / AWS CDK.
-    *   Thiết lập GitHub Actions pipeline cho Flow C: tự động build, test và đẩy artifact lên S3 cũng như cấu hình CodeDeploy.
-3.  **Giai đoạn 3: Triển khai luồng Auth & Matchmaking (Tháng 2)**
-    *   Cấu hình Amazon Cognito User Pool & Identity Pool (Flow A).
-    *   Phát triển Matchmaker Lambda, cấu hình API Gateway Cognito Authorizer và thiết lập CloudFront + WAF (Flow R).
-4.  **Giai đoạn 4: Cấu hình Fleet EC2 Spot & VPC Endpoints (Tháng 2 - Tháng 3)**
-    *   Tạo Launch Template cho EC2 Spot Fleet trên kiến trúc Graviton ARM64 với UserData tự động pull server bundle từ S3.
-    *   Thiết lập VPC Gateway Endpoint cho DynamoDB và VPC Interface Endpoint cho EC2 API.
-    *   Phát triển cơ chế cấp phát và thu hồi Security Group rule động cho người chơi.
-5.  **Giai đoạn 5: Xử lý Asynchronous Analytics & Kiểm thử toàn diện (Tháng 3)**
-    *   Kích hoạt DynamoDB Streams và phát triển Async Lambda xử lý dữ liệu sau trận (Flow E).
-    *   Tiến hành kiểm thử tải (Load Testing), giả lập kịch bản người chơi tăng vọt và kiểm thử gián đoạn Spot Instance.
 
-#### Yêu cầu kỹ thuật & Bảo mật
--   **Xác thực đa lớp**: Mọi request matchmaking đều yêu cầu JWT hợp lệ trước khi chạm tới ứng dụng.
--   **Bảo mật cổng động (Dynamic Port Security)**: Không mở sẵn cổng mạng công khai. Security Group rule chỉ được cấp phát theo IP người chơi trong thời gian diễn ra trận đấu và được thu hồi tự động ngay khi phiên chơi kết thúc.
--   **Giao tiếp nội bộ qua VPC Endpoint**: Matchmaker Lambda đặt hoàn toàn trong Private Subnet, kết nối DynamoDB và EC2 API qua đường ống riêng của AWS, không route dữ liệu ra Internet.
--   **Mã hóa dữ liệu**: Mã hóa dữ liệu lưu trữ (Data at rest) bằng AWS KMS và mã hóa dữ liệu truyền tải (Data in transit) bằng TLS 1.3.
+1. **Giai đoạn 1: Xây dựng Nền tảng Mạng (Networking) & Bảo mật**
+   - Tạo **VPC** riêng biệt cho dự án.
+   - Chia mạng thành Public Subnets (dành cho ALB) và Private Subnets (dành cho EC2/ECS Backend và Database).
+   - Cấu hình **Internet Gateway (IGW)**, NAT Gateway và định tuyến (Route Tables).
+   - Tạo các **IAM Roles** và Security Groups theo nguyên tắc quyền tối thiểu.
+
+2. **Giai đoạn 2: Lưu trữ Frontend và Tài sản số (Storage)**
+   - Cấu hình **Amazon S3** để lưu trữ web tĩnh.
+   - Tạo S3 Bucket thứ hai để lưu trữ Media (hình ảnh, video sản phẩm).
+
+3. **Giai đoạn 3: Container hóa và Triển khai Backend trên nền EC2**
+   - Viết `Dockerfile` đóng gói mã nguồn Backend.
+   - Tạo **Launch Template** và **EC2 Auto Scaling Group** làm nền tảng chạy container.
+   - Tạo **ECS Cluster (EC2 launch type)**, Task Definitions và cấu hình **ECS Capacity Provider** gắn với Auto Scaling Group.
+   - Cấu hình **Application Load Balancer (ALB)** và Target Group kết nối tới ECS Service.
+   - Thiết lập **ECS Service Auto Scaling** dựa trên chỉ số CPU/traffic.
+
+4. **Giai đoạn 4: Tích hợp Serverless và Tự động hóa**
+   - Viết code **AWS Lambda** (Node.js/Python) để xử lý ảnh sản phẩm.
+   - Thiết lập S3 Event Notification để tự động kích hoạt Lambda khi có file mới.
+
+5. **Giai đoạn 5: Giám sát Hệ thống (Monitoring)**
+   - Đẩy log từ EC2/ECS lên **CloudWatch Logs**.
+   - Cài đặt CloudWatch Alarms cảnh báo lỗi hoặc khi tài nguyên (CPU) sắp cạn kiệt.
+   - Bật **CloudTrail** để kiểm vết hạ tầng.
 
 ---
 
 ### 5. Lộ trình & Mốc triển khai
 
-```
+```text
 +-----------------------------------------------------------------------------------+
-| Tháng 1: Nghiên cứu & Thiết kế hạ tầng IaC                                        |
-|   - Thiết kế mô hình VPC, Subnet, Security Groups                                 |
-|   - Định nghĩa bài toán Single Table DynamoDB & kiến trúc Serverless               |
+| Tuần 1: Thiết lập Kiến trúc mạng & Lưu trữ tĩnh                                   |
+|   - Tạo VPC, Public/Private Subnets, Internet Gateway, Security Groups.           |
+|   - Thiết lập S3 Hosting cho Frontend và S3 cho Media Storage.                     |
+|   - Tạo các IAM Policy cần thiết.                                                  |
 +-----------------------------------------------------------------------------------+
-                                  |
-                                  v
+                                      |
+                                      v
 +-----------------------------------------------------------------------------------+
-| Tháng 2: Triển khai Auth, Matchmaking & Fleet EC2 Spot                            |
-|   - Cấu hình Cognito User Pool / Identity Pool & S3 Scoped Credentials            |
-|   - Phát triển API Gateway, Matchmaker Lambda & VPC Endpoints                     |
-|   - Xây dựng Launch Template cho EC2 Spot Fleet (Graviton ARM64)                  |
+| Tuần 2-3: EC2, Docker, ECS & Cân bằng tải (Core Backend)                           |
+|   - Tạo Launch Template & EC2 Auto Scaling Group.                                  |
+|   - Build Docker Image cho Backend.                                                |
+|   - Thiết lập ECS Cluster (EC2 launch type) & ECS Capacity Provider.               |
+|   - Cấu hình Application Load Balancer (ALB), Target Group.                        |
+|   - Thiết lập ECS Service Auto Scaling và EC2 Auto Scaling Group.                  |
 +-----------------------------------------------------------------------------------+
-                                  |
-                                  v
+                                      |
+                                      v
 +-----------------------------------------------------------------------------------+
-| Tháng 3: Tự động hóa GitOps, Async Processing & Kiểm thử                          |
-|   - Xây dựng GitHub Actions + CodeDeploy Pipeline                                 |
-|   - Triển khai DynamoDB Streams + Async Lambda thu thập Analytics                 |
-|   - Kiểm thử tải (Load test), tối ưu chi phí & đóng gói báo cáo                   |
+| Tuần 4: Serverless, Tích hợp hoàn thiện & Giám sát                                 |
+|   - Viết và triển khai hàm AWS Lambda xử lý ảnh sản phẩm.                          |
+|   - Kết nối Event Trigger từ S3 tới Lambda.                                        |
+|   - Xây dựng CloudWatch Dashboard, cấu hình Alarms.                                |
+|   - Kiểm thử toàn hệ thống (Load testing giả lập Flash Sale).                      |
 +-----------------------------------------------------------------------------------+
 ```
 
 ---
 
-### 6. Ước tính ngân sách
+### 6. Ước tính ngân sách (Kiến trúc tiêu chuẩn)
 
-Nhờ thiết kế loại bỏ NAT Gateway, loại bỏ Load Balancer thường trực và tận dụng EC2 Spot trên nền tảng Graviton ARM64, chi phí hạ tầng được giảm thiểu tối đa:
+Kiến trúc kết hợp giữa **EC2/ECS và Serverless** mang lại độ ổn định cao với chi phí linh hoạt:
 
-| Dịch vụ AWS | Cấu hình / Quy mô ước tính | Chi phí ước tính / Tháng (USD) |
-| :--- | :--- | :--- |
-| **AWS Lambda** (Matchmaker & Async) | 1,000,000 requests/tháng, 512MB RAM | ~$0.20 |
-| **Amazon API Gateway** | 1,000,000 HTTP requests/tháng | ~$1.00 |
-| **Amazon DynamoDB** | On-Demand Mode (Write/Read capacity units) | ~$2.50 |
-| **Amazon Cognito** | < 10,000 MAU (Monthly Active Users) | **Miễn phí** (Free Tier) |
-| **Amazon S3** | 20GB lưu trữ Asset, Client Build, Patch & Server Bundle | ~$0.46 |
-| **Amazon CloudFront & AWS WAF** | 50GB Egress, WAF Basic Rules | ~$3.50 |
-| **Amazon EC2 Spot Fleet** (Graviton ARM64) | `c6g.large` Spot Instance (~0.02 USD/giờ), chạy trung bình 100 giờ trận đấu/tháng | ~$2.00 |
-| **VPC Endpoints** | Gateway Endpoint (Miễn phí) + Interface Endpoint | ~$7.20 |
-| **Tổng chi phí ước tính** | **Hạ tầng Serverless & Event-Driven Game Backend** | **~$16.86 USD / Tháng** |
+| Dịch vụ AWS                   | Mục đích sử dụng / Quy mô ước tính             | Phân bổ chi phí / Tính chất                                                                         |
+| ----------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| **Amazon S3**                 | Lưu trữ tĩnh Frontend và hình ảnh sản phẩm     | Rất thấp (Pay per GB)                                                                               |
+| **Amazon VPC**                | VPC, Subnet, IGW, Security Groups, NAT Gateway | VPC cơ bản không tính phí; NAT Gateway và một số thành phần mạng liên quan có thể phát sinh chi phí |
+| **Application Load Balancer** | Phân phối luồng truy cập vào Backend           | Chi phí cố định hàng giờ + lượng data xử lý                                                         |
+| **Amazon EC2 + Amazon ECS**   | EC2 instance làm nền, chạy Docker container    | Chi phí theo loại instance và số giờ chạy                                                           |
+| **AWS Lambda**                | Resize ảnh sản phẩm khi có sự kiện upload      | Trả tiền theo số lần gọi                                                                            |
+| **CloudWatch / CloudTrail**   | Lưu trữ Log và Cảnh báo                        | Chủ yếu theo dung lượng Log lưu trữ                                                                 |
 
-> [!TIP]
-> **Điểm tối ưu chi phí vượt trội**:
-> 1. Không dùng NAT Gateway (tiết kiệm ~32 USD/tháng).
-> 2. Không dùng Application Load Balancer thường trực (tiết kiệm ~20 USD/tháng).
-> 3. EC2 Spot Graviton ARM64 giảm 70-80% so với EC2 On-Demand x86.
-> 4. Server bundle lưu tập trung trên S3 giúp giữ AMI mỏng, không tốn chi phí lưu trữ snapshot AMI lớn.
+> **Lưu ý:** Chi phí ước tính tham khảo, phụ thuộc vào Region, cấu hình tài nguyên (loại EC2 instance, số lượng), thời gian chạy và lưu lượng sử dụng thực tế.
 
 ---
 
 ### 7. Đánh giá rủi ro
 
-#### Ma trận rủi ro & Chiến lược giảm thiểu
-
-| Rủi ro tiềm ẩn | Mức độ ảnh hưởng | Xác suất | Chiến lược giảm thiểu |
-| :--- | :---: | :---: | :--- |
-| **Thu hồi EC2 Spot Instance** (Spot Interruption) | Cao | Trung bình | Sử dụng Auto Scaling Group với nhiều Spot pools (Multi-AZ / Multi-Instance types). Khi nhận thông báo thu hồi trước 2 phút, ASG tự động bổ sung instance mới. |
-| **Lượng truy cập tăng vọt** (Traffic Spike) | Trung bình | Trung bình | Các thành phần Metagame (Cognito, API Gateway, Lambda, DynamoDB) là Serverless thuần túy, tự động mở rộng (auto-scale) tức thì theo lượng request. |
-| **Rủi ro rò rỉ hoặc tấn công mạng** | Cao | Thấp | Kiểm tra JWT token tại API Gateway. Thu hồi Security Group rule ngay khi hết trận. Matchmaker Lambda và kết nối DB nằm hoàn toàn trong Private Subnet qua VPC Endpoints. |
-| **Lỗi bản build trong quá trình Cập nhật** | Trung bình | Thấp | GitOps Pipeline hỗ trợ rollback tự động phiên bản Lambda Alias và Launch Template mà không làm gián đoạn các luồng đang chạy. |
+| Rủi ro tiềm ẩn                                 | Mức độ     | Chiến lược giảm thiểu                                                                                                                           |
+| ---------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Khách hàng ồ ạt truy cập (Flash Sale)**      | Cao        | ALB kết hợp ECS Service Auto Scaling và EC2 Auto Scaling Group có thể tự động điều chỉnh số lượng Task/EC2 instance dựa trên chỉ số tải.        |
+| **Lỗi Container / Mã nguồn bị Crash**          | Trung bình | ECS có thể phát hiện task/container không khỏe thông qua Health Check và khởi động task thay thế, giúp duy trì khả năng phục vụ của hệ thống.   |
+| **Nguy cơ tấn công trực tiếp vào DB/Backend**  | Cao        | Backend (EC2/ECS) chạy trong Private Subnet, chỉ nhận lưu lượng đã qua ALB ở Public Subnet. Database cũng không được mở trực tiếp cho Internet. |
+| **Lỗi hoặc mất dữ liệu Log**                   | Trung bình | Sử dụng CloudWatch Logs để tập trung log và CloudTrail để theo dõi hoạt động API trên AWS.                                                      |
+| **Chi phí tăng đột biến (do EC2 scale nhiều)** | Trung bình | Thiết lập CloudWatch monitoring, giới hạn số lượng instance tối đa trong Auto Scaling Group và cảnh báo chi phí (AWS Budgets).                  |
 
 ---
 
 ### 8. Kết quả kỳ vọng
 
-*   **Cải tiến kỹ thuật đột phá**: Xây dựng thành công hệ thống Game Backend kiến trúc Serverless & Event-Driven có khả năng mở rộng quy mô tức thì, độ trễ ghép trận cực thấp, đáp ứng tiêu chuẩn vận hành sản xuất (Production-Ready).
-*   **Tối ưu hóa chi phí triệt để**: Chứng minh mô hình chỉ chi trả cho thời gian dùng thực tế (Pay-as-you-go), giúp tiết kiệm hơn 75% chi phí vận hành so với mô hình server 24/7 truyền thống.
-*   **Giá trị dài hạn**: Cung cấp một **Mẫu kiến trúc chuẩn (Architectural Blueprint)** cho các dự án phát triển Game Live-Service trên AWS, có thể tái sử dụng và mở rộng cho nhiều thể loại game khác nhau trong tương lai.
+1. **Triển khai thành công Web E-shop trên AWS:** Đưa hệ thống Web E-shop hiện tại lên môi trường AWS và kết nối các thành phần Frontend, Backend và lưu trữ theo kiến trúc được đề xuất.
+2. **Vận dụng kiến thức AWS:** Áp dụng các kiến thức về **EC2, S3, IAM, VPC, Lambda, CloudWatch, CloudTrail, ELB, Auto Scaling, ECS và Docker** vào một hệ thống thực tế.
+3. **Khả năng mở rộng:** Backend có khả năng mở rộng số lượng ECS Task khi lưu lượng truy cập tăng thông qua ECS Service Auto Scaling; khi capacity của EC2 không đủ, ECS Capacity Provider phối hợp với EC2 Auto Scaling Group để bổ sung EC2 instance.
+4. **Tự động hóa:** AWS Lambda xử lý tác vụ nền (xử lý ảnh sản phẩm) theo sự kiện từ S3, giảm tải cho Backend chính.
+5. **Nền tảng cho mở rộng tương lai:** Kiến trúc cho phép bổ sung sau này các thành phần như Amazon CloudFront, Amazon RDS/Aurora, Amazon SES, Amazon SQS hoặc quy trình CI/CD mà không cần thay đổi toàn bộ hệ thống.

@@ -17,5 +17,5 @@ In this section, we will create the **AWS Lambda Matchmaker** function (`Fightin
 
 ### Detailed Modules:
 
-* **[5.3.1. Provisioning AWS Lambda Matchmaker](5.3.1-lambda-matchmaker/)**
-* **[5.3.2. Provisioning Amazon API Gateway REST API](5.3.2-api-gateway/)**
+- **[5.3.1. Provisioning AWS Lambda Matchmaker](5.5.1-create-lambda/)**
+- **[5.3.2. Provisioning Amazon API Gateway REST API](5.5.2-s3-event-trigger/)**

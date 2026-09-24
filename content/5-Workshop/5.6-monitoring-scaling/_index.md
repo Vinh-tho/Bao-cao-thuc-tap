@@ -17,5 +17,5 @@ In this section, we will enable **DynamoDB Streams** on the DynamoDB tables and 
 
 ### Detailed Modules:
 
-* **[5.5.1. Enabling DynamoDB Streams](5.5.1-dynamodb-streams/)**
-* **[5.5.2. Creating & Connecting MatchAnalytic Lambda](5.5.2-match-analytic-lambda/)**
+- **[5.5.1. Enabling DynamoDB Streams](5.6.1-cloudwatch-alarms/)**
+- **[5.5.2. Creating & Connecting MatchAnalytic Lambda](5.6.2-service-autoscaling/)**

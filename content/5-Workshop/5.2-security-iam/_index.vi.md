@@ -17,6 +17,6 @@ Trong chương này, chúng ta sẽ cấu hình **Amazon Cognito User Pool & Ide
 
 ### Danh sách các bài học chi tiết:
 
-* **[5.2.1. Khởi tạo Amazon Cognito User Pool](5.2.1-cognito-user-pool/)**
-* **[5.2.2. Khởi tạo Amazon Cognito Identity Pool](5.2.2-cognito-identity-pool/)**
-* **[5.2.3. Khởi tạo các bảng Amazon DynamoDB](5.2.3-dynamodb-tables/)**
+- **[5.2.1. Khởi tạo Amazon Cognito User Pool](5.2.1-iam-roles/)**
+- **[5.2.2. Khởi tạo Amazon Cognito Identity Pool](5.2.2-security-groups/)**
+- **[5.2.3. Khởi tạo các bảng Amazon DynamoDB](5.2.3-dynamodb-tables/)**

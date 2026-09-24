@@ -17,8 +17,8 @@ aliases:
 
 ### Danh sách bài dọn dẹp chi tiết:
 
-* **[5.6.1. Dọn dẹp Amazon Cognito](5.6.1-cognito-cleanup/)**
-* **[5.6.2. Dọn dẹp Amazon DynamoDB](5.6.2-dynamodb-cleanup/)**
-* **[5.6.3. Dọn dẹp AWS Lambda Functions](5.6.3-lambda-cleanup/)**
-* **[5.6.4. Dọn dẹp Amazon API Gateway](5.6.4-api-gateway-cleanup/)**
-* **[5.6.5. Dọn dẹp CloudFront & AWS WAF](5.6.5-cloudfront-waf-cleanup/)**
+- **[5.6.1. Dọn dẹp Amazon Cognito](5.7.1-alb-asg-cleanup/)**
+- **[5.6.2. Dọn dẹp Amazon DynamoDB](5.7.2-ecs-ecr-cleanup/)**
+- **[5.6.3. Dọn dẹp AWS Lambda Functions](5.7.3-lambda-s3-cleanup/)**
+- **[5.6.4. Dọn dẹp Amazon API Gateway](5.7.4-vpc-nat-cleanup/)**
+- **[5.6.5. Dọn dẹp CloudFront & AWS WAF](5.7.5-cloudfront-waf-cleanup/)**

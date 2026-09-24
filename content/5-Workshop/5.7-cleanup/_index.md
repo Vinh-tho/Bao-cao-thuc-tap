@@ -17,8 +17,8 @@ To prevent unnecessary continuous charges on your AWS account after completing t
 
 ### Detailed Cleanup Modules:
 
-* **[5.6.1. Cleaning up Amazon Cognito](5.6.1-cognito-cleanup/)**
-* **[5.6.2. Cleaning up Amazon DynamoDB](5.6.2-dynamodb-cleanup/)**
-* **[5.6.3. Cleaning up AWS Lambda Functions](5.6.3-lambda-cleanup/)**
-* **[5.6.4. Cleaning up Amazon API Gateway](5.6.4-api-gateway-cleanup/)**
-* **[5.6.5. Cleaning up CloudFront & AWS WAF](5.6.5-cloudfront-waf-cleanup/)**
+- **[5.6.1. Cleaning up Amazon Cognito](5.7.1-alb-asg-cleanup/)**
+- **[5.6.2. Cleaning up Amazon DynamoDB](5.7.2-ecs-ecr-cleanup/)**
+- **[5.6.3. Cleaning up AWS Lambda Functions](5.7.3-lambda-s3-cleanup/)**
+- **[5.6.4. Cleaning up Amazon API Gateway](5.7.4-vpc-nat-cleanup/)**
+- **[5.6.5. Cleaning up CloudFront & AWS WAF](5.7.5-cloudfront-waf-cleanup/)**

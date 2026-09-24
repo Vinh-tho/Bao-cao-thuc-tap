@@ -1,44 +1,52 @@
 ---
 title: "Workshop"
-date: 2026-07-21
+date: 2026-09-24
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
 
-# Step-by-Step Guide: Building a Serverless & Event-Driven Game Backend on AWS
+# Comprehensive Guide: Deploying a Web E-shop with ECS & Serverless Architecture on AWS
 
 #### Workshop Overview
 
-The Workshop modules are structured under main chapters **5.1** through **5.6** and sub-modules **5.x.y** below:
+The Workshop content is structured into main chapters from **5.1** to **5.7**, along with detailed practical exercises **5.x.y** below. It adheres to a hybrid architecture that combines **Static Hosting (S3)**, **Container Backend (EC2/ECS)**, and **Event-Driven Serverless (Lambda)**:
 
 > [!NOTE]
-> * **Live Web Demo Link**: [http://fighting-game-assets-508768431157.s3-website-ap-southeast-1.amazonaws.com/](http://fighting-game-assets-508768431157.s3-website-ap-southeast-1.amazonaws.com/)
-> * **Source Code Repository**: [https://github.com/Nothingtoread/fighting-game/tree/main](https://github.com/Nothingtoread/fighting-game/tree/main)
+> * **Web Demo Link**: [http://eshop-frontend-hosting-demo.s3-website-ap-southeast-1.amazonaws.com/](#) *(Example Link)*
+> * **Source Code Link**: [https://github.com/YourOrganization/aws-eshop-workshop](#) *(Example Link)*
 
 ---
 
-#### Agenda:
+#### List of Workshop Chapters:
 
-1. [5.1. Prerequisites & Region Setup](5.1-prerequiste/)
-2. [5.2. Amazon Cognito & DynamoDB Setup](5.2-cognito-dynamodb/)
-   * [5.2.1. Provisioning Amazon Cognito User Pool](5.2-cognito-dynamodb/5.2.1-cognito-user-pool/)
-   * [5.2.2. Provisioning Amazon Cognito Identity Pool](5.2-cognito-dynamodb/5.2.2-cognito-identity-pool/)
-   * [5.2.3. Provisioning Amazon DynamoDB Tables](5.2-cognito-dynamodb/5.2.3-dynamodb-tables/)
-3. [5.3. Lambda Matchmaker & API Gateway REST API Deployment](5.3-matchmaker-api/)
-   * [5.3.1. Provisioning AWS Lambda Matchmaker](5.3-matchmaker-api/5.3.1-lambda-matchmaker/)
-   * [5.3.2. Provisioning Amazon API Gateway REST API](5.3-matchmaker-api/5.3.2-api-gateway/)
-4. [5.4. EC2 Spot Fleet, Launch Template & GitOps CodeDeploy Setup](5.4-ec2-fleet-gitops/)
-   * [5.4.1. Sample EC2 Game Server & Baking AMI](5.4-ec2-fleet-gitops/5.4.1-ec2-ami/)
-   * [5.4.2. Launch Template & Auto Scaling Group Warm Pool](5.4-ec2-fleet-gitops/5.4.2-spot-launch-template/)
-   * [5.4.3. Amazon S3 Bucket & Static Website Hosting](5.4-ec2-fleet-gitops/5.4.3-s3-website/)
-   * [5.4.4. GitHub OIDC & AWS CodeDeploy GitOps Pipeline](5.4-ec2-fleet-gitops/5.4.4-github-codedeploy/)
-5. [5.5. Asynchronous Analytics with DynamoDB Streams & Lambda](5.5-async-analytics/)
-   * [5.5.1. Enabling DynamoDB Streams](5.5-async-analytics/5.5.1-dynamodb-streams/)
-   * [5.5.2. Creating & Connecting MatchAnalytic Lambda](5.5-async-analytics/5.5.2-match-analytic-lambda/)
-6. [5.6. Resource Cleanup](5.6-cleanup/)
-   * [5.6.1. Cleaning up Amazon Cognito](5.6-cleanup/5.6.1-cognito-cleanup/)
-   * [5.6.2. Cleaning up Amazon DynamoDB](5.6-cleanup/5.6.2-dynamodb-cleanup/)
-   * [5.6.3. Cleaning up AWS Lambda Functions](5.6-cleanup/5.6.3-lambda-cleanup/)
-   * [5.6.4. Cleaning up Amazon API Gateway](5.6-cleanup/5.6.4-api-gateway-cleanup/)
-   * [5.6.5. Cleaning up CloudFront & AWS WAF](5.6-cleanup/5.6.5-cloudfront-waf-cleanup/)
+1. [5.1. Building the Networking Foundation with Amazon VPC](5.1-vpc-networking/)
+   * [5.1.1. Creating a VPC, Public Subnets, and Private Subnets](5.1-vpc-networking/5.1.1-create-vpc-subnets/)
+   * [5.1.2. Configuring Internet Gateway (IGW) and NAT Gateway](5.1-vpc-networking/5.1.2-igw-nat-gateway/)
+   * [5.1.3. Configuring Route Tables for Network Traffic](5.1-vpc-networking/5.1.3-route-tables/)
+2. [5.2. Setting Up Basic Security (IAM & Security Groups)](5.2-security-iam/)
+   * [5.2.1. Assigning IAM Roles for EC2, ECS Tasks, and Lambda](5.2-security-iam/5.2.1-iam-roles/)
+   * [5.2.2. Creating Security Groups for ALB and ECS Backend](5.2-security-iam/5.2.2-security-groups/)
+3. [5.3. Deploying Frontend & Media Storage with Amazon S3](5.3-s3-hosting-media/)
+   * [5.3.1. Creating an S3 Bucket for Frontend & Configuring Static Website Hosting](5.3-s3-hosting-media/5.3.1-s3-frontend-hosting/)
+   * [5.3.2. Creating an S3 Bucket for Media Storage (Product Images)](5.3-s3-hosting-media/5.3.2-s3-media-storage/)
+   * [5.3.3. Uploading Frontend Source Code and Static Assets to S3](5.3-s3-hosting-media/5.3.3-deploy-frontend/)
+4. [5.4. Building the Backend Container with Docker, Amazon EC2, & ECS](5.4-ecs-backend/)
+   * [5.4.1. Packaging the Backend (Dockerfile) & Pushing the Image to Amazon ECR](5.4-ecs-backend/5.4.1-docker-ecr/)
+   * [5.4.2. Creating an EC2 Launch Template & EC2 Auto Scaling Group](5.4-ecs-backend/5.4.2-ec2-asg/)
+   * [5.4.3. Initializing an ECS Cluster (EC2 Launch Type) & ECS Capacity Provider](5.4-ecs-backend/5.4.3-ecs-cluster-cp/)
+   * [5.4.4. Configuring the Application Load Balancer (ALB) & Target Group](5.4-ecs-backend/5.4.4-alb-config/)
+   * [5.4.5. Defining the ECS Task, Creating a Service, & Connecting the ALB](5.4-ecs-backend/5.4.5-ecs-service/)
+5. [5.5. Processing Background Tasks with Event-Driven AWS Lambda](5.5-serverless-lambda/)
+   * [5.5.1. Writing Code & Creating an AWS Lambda Function for Image Resizing](5.5-serverless-lambda/5.5.1-create-lambda/)
+   * [5.5.2. Setting Up S3 Event Notifications to Trigger Lambda](5.5-serverless-lambda/5.5.2-s3-event-trigger/)
+   * [5.5.3. Testing the Image Upload and Auto-Resize Workflow](5.5-serverless-lambda/5.5.3-test-workflow/)
+6. [5.6. Monitoring & Auto Scaling](5.6-monitoring-scaling/)
+   * [5.6.1. Setting Up CloudWatch Logs & Alarms](5.6-monitoring-scaling/5.6.1-cloudwatch-alarms/)
+   * [5.6.2. Configuring ECS Service Auto Scaling Based on Load (Traffic/CPU)](5.6-monitoring-scaling/5.6.2-service-autoscaling/)
+   * [5.6.3. Enabling AWS CloudTrail for API Auditing](5.6-monitoring-scaling/5.6.3-cloudtrail-audit/)
+7. [5.7. Resource Cleanup](5.7-cleanup/)
+   * [5.7.1. Cleaning Up Application Load Balancer & Auto Scaling Group](5.7-cleanup/5.7.1-alb-asg-cleanup/)
+   * [5.7.2. Cleaning Up ECS Cluster, Task Definitions, & Amazon ECR](5.7-cleanup/5.7.2-ecs-ecr-cleanup/)
+   * [5.7.3. Cleaning Up AWS Lambda & Amazon S3 Buckets](5.7-cleanup/5.7.3-lambda-s3-cleanup/)
+   * [5.7.4. Cleaning Up VPC, NAT Gateway, & Elastic IPs (To Avoid Extra Charges)](5.7-cleanup/5.7.4-vpc-nat-cleanup/)

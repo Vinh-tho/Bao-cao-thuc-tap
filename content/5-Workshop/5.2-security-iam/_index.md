@@ -17,6 +17,6 @@ In this section, we will configure an **Amazon Cognito User Pool & Identity Pool
 
 ### Detailed Modules:
 
-* **[5.2.1. Provisioning Amazon Cognito User Pool](5.2.1-cognito-user-pool/)**
-* **[5.2.2. Provisioning Amazon Cognito Identity Pool](5.2.2-cognito-identity-pool/)**
-* **[5.2.3. Provisioning Amazon DynamoDB Tables](5.2.3-dynamodb-tables/)**
+- **[5.2.1. Provisioning Amazon Cognito User Pool](5.2.1-iam-roles/)**
+- **[5.2.2. Provisioning Amazon Cognito Identity Pool](5.2.2-security-groups/)**
+- **[5.2.3. Provisioning Amazon DynamoDB Tables](5.2.3-dynamodb-tables/)**

@@ -17,5 +17,5 @@ Trong chương này, chúng ta sẽ cấu hình **DynamoDB Streams** trên bản
 
 ### Danh sách các bài học chi tiết:
 
-* **[5.5.1. Kích hoạt DynamoDB Streams](5.5.1-dynamodb-streams/)**
-* **[5.5.2. Tạo & Kết nối MatchAnalytic Lambda](5.5.2-match-analytic-lambda/)**
+- **[5.5.1. Kích hoạt DynamoDB Streams](5.6.1-cloudwatch-alarms/)**
+- **[5.5.2. Tạo & Kết nối MatchAnalytic Lambda](5.6.2-service-autoscaling/)**
