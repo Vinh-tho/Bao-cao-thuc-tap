@@ -1,36 +1,56 @@
 ---
-title: "Provisioning Cognito User Pool"
-date: 2026-07-21
+title: "Assigning IAM Roles"
+date: 2026-09-24
 weight: 1
 chapter: false
 pre: " <b> 5.2.1. </b> "
 ---
 
-# 5.2.1. Provisioning Amazon Cognito User Pool
+# 5.2.1. Assigning IAM Roles for EC2, ECS Tasks, and Lambda
 
-1. In the AWS Console search bar, type **Cognito** and select **Amazon Cognito**.
+In AWS architecture, services do not automatically have permission to access one another. We need to create **IAM Roles** to authorize EC2 instances to communicate with ECS, ECS Tasks to pull Docker Images from ECR, and Lambda functions to process files on S3.
 
-![Search Cognito](/images/5-Workshop/img_A/image3.png)
+### Step 1: Create a Role for EC2 Instances (ECS Container Instance)
 
-![Amazon Cognito Console](/images/5-Workshop/img_A/image4.png)
+This role allows EC2 instances to automatically register to the ECS Cluster and send logs to the system.
 
-2. Select **Single-page application (SPA)** and set the application name to `FightingGame`.
+1. In the search bar on the AWS Console, type **IAM** and select the **IAM** service.
+2. In the left navigation pane, choose **Roles** and click **Create role**.
+3. Under *Trusted entity type*, select **AWS service**. Under *Use case*, select **EC2** and click **Next**.
 
-![Configure SPA Application](/images/5-Workshop/img_A/image7.png)
+![Select Trusted Entity for EC2](/images/5-Workshop/5.2.1/iam_ec2_entity.png)
 
-3. Under **Username**, check **Enable Self-registration** to allow players to register.
-4. Under **Required attributes for sign-up**, select **email**.
+4. In the permissions policies search box, type `AmazonEC2ContainerServiceforEC2Role`. Check the box next to this policy and click **Next**.
 
-![Configure Registration Attributes](/images/5-Workshop/img_A/image8.png)
+![Select Policy for EC2 ECS](/images/5-Workshop/5.2.1/iam_ec2_policy.png)
 
-5. Click **Create user directory**. Once created:
-   * **User pool ID**: `ap-southeast-1_phYoaMUPC`
-   * Under **App clients**, select `FightingGame` to view the **Client ID** (e.g., `73ipqvvo7h3u0j3elfqlj23jo3`).
+5. On the *Name, review, and create* step, name the Role `Eshop-EC2-Instance-Role`. Click **Create role**.
 
-![View User Pool ID](/images/5-Workshop/img_A/image11.png)
+![Create EC2 Role](/images/5-Workshop/5.2.1/iam_ec2_create.png)
 
-![View App Client ID](/images/5-Workshop/img_A/image12.png)
+### Step 2: Create a Role for ECS Task Execution
 
-6. Click **Edit** under App client `FightingGame`, enable `ALLOW_USER_PASSWORD_AUTH`, and click **Save changes**.
+This role allows the Containers (Tasks) within ECS to pull images from Amazon ECR and push logs to CloudWatch.
 
-![Enable ALLOW_USER_PASSWORD_AUTH](/images/5-Workshop/img_A/image14.png)
+1. Similarly, click **Create role** in the IAM console.
+2. Select **AWS service**, scroll down to find and select **Elastic Container Service**. Under the detailed *Use case*, choose **Elastic Container Service Task**, then click **Next**.
+
+![Select Trusted Entity for ECS Task](/images/5-Workshop/5.2.1/iam_ecs_entity.png)
+
+3. Search for and check the policy `AmazonECSTaskExecutionRolePolicy`. Click **Next**.
+4. Name the Role `Eshop-ECS-Task-Execution-Role`. Click **Create role**.
+
+![Create ECS Task Role](/images/5-Workshop/5.2.1/iam_ecs_create.png)
+
+### Step 3: Create a Role for the AWS Lambda Function
+
+This role grants the Lambda function permissions to read/write product images from S3 and write execution logs.
+
+1. Click **Create role**.
+2. Select **AWS service**, under *Use case* select **Lambda** and click **Next**.
+3. Search for and check the following 2 policies:
+   - `AWSLambdaBasicExecutionRole` (to write CloudWatch logs).
+   - `AmazonS3FullAccess` (to retrieve and save resized images).
+4. Click **Next**, name the Role `Eshop-Lambda-Image-Role`, and click **Create role**.
+
+![Create Lambda Role](/images/5-Workshop/5.2.1/iam_lambda_create.png)

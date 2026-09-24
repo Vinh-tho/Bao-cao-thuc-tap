@@ -1,51 +1,60 @@
 ---
-title: "GitHub OIDC & CodeDeploy GitOps"
-date: 2026-07-21
-weight: 4
+title: "Định nghĩa ECS Task & Service"
+date: 2026-09-24
+weight: 5
 chapter: false
-pre: " <b> 5.4.4. </b> "
+pre: " <b> 5.4.5. </b> "
 ---
 
-# 5.4.4. GitHub OIDC & AWS CodeDeploy GitOps Pipeline
+# 5.4.5. Định nghĩa ECS Task, Khởi tạo Service & Kết nối ALB
 
-1. **Thêm GitHub Provider vào AWS IAM (No long-lived access keys)**:
-   * Vào **IAM** -> **Identity providers** -> chọn **Add provider**.
-   * Chọn **OpenID Connect**, nhập Provider URL: `https://token.actions.githubusercontent.com` và Audience: `sts.amazonaws.com`.
+Sau khi đã có hạ tầng máy chủ (ECS Cluster) và cửa ngõ giao tiếp (Load Balancer), bước cuối cùng là định nghĩa cách chạy Container của bạn (Task Definition) và ra lệnh cho hệ thống duy trì nó chạy liên tục (Service).
 
-![Thêm GitHub OIDC Provider](/images/5-Workshop/img_B/image7.png)
+### Bước 1: Tạo Task Definition (Bản thiết kế Container)
 
-2. **Cài đặt AWS CodeDeploy Agent trên EC2 Game Server**:
-   Thực thi kịch bản cài đặt CodeDeploy Agent trên Ubuntu 24.04 LTS:
+1. Truy cập dịch vụ **ECS**, ở menu bên trái chọn **Task definitions** và nhấn **Create new task definition**.
+2. **Task definition family**: Đặt tên là `Eshop-Backend-Task`.
+3. Tại phần **Infrastructure requirements**:
+   - **Launch type**: Chọn **Amazon EC2 instances**.
+   - **Network mode**: Chọn **bridge** (Điều này rất quan trọng để ECS có thể tự động gán port ngẫu nhiên (Dynamic Port Mapping) trên EC2 tránh xung đột).
+   - **Task size**: Memory = `512`, CPU = `0.5 vCPU`.
+   - **Task role & Task execution role**: Chọn `Eshop-ECS-Task-Execution-Role` (Đã tạo ở bài 5.2.1).
+4. Tại phần **Container - 1**:
+   - **Name**: `eshop-backend-container`
+   - **Image URI**: Dán đường dẫn URI của Image bạn đã đẩy lên ECR ở bài 5.4.1 (ví dụ: `123456789.dkr.ecr.ap-southeast-1.amazonaws.com/eshop-backend:latest`).
+   - **Port mappings**: 
+     - **Container port**: `80` (Hoặc port mà code Backend của bạn đang lắng nghe, ví dụ 8080/3000).
+     - **Host port**: Để trống hoặc nhập `0` (Để kích hoạt Dynamic Port Mapping).
+     - **Protocol**: `TCP`.
+5. Cuộn xuống cuối và nhấn **Create**.
 
-```bash
-# 1. Install prerequisites
-sudo apt-get update && sudo apt-get install -y ruby-full ruby-webrick wget gdebi-core
+![Tạo ECS Task Definition](/images/5-Workshop/5.4.5/create_task_definition.png)
 
-# 2. Download raw .deb package directly
-cd /tmp
-wget https://aws-codedeploy-ap-southeast-1.s3.ap-southeast-1.amazonaws.com/releases/codedeploy-agent_1.8.1-26_all.deb
+### Bước 2: Khởi tạo ECS Service và Kết nối Load Balancer
 
-# 3. Unpack, fix Ruby dependency declaration, and repack
-dpkg-deb -R codedeploy-agent_1.8.1-26_all.deb /tmp/codedeploy-extracted
-sed -i "s/ruby3.2/ruby3.3/g" /tmp/codedeploy-extracted/DEBIAN/control
-dpkg-deb -b /tmp/codedeploy-extracted /tmp/codedeploy-agent_fixed.deb
+1. Quay lại menu **Clusters**, nhấp vào `Eshop-ECS-Cluster`.
+2. Tại tab **Services**, nhấn nút **Create**.
+3. **Environment**:
+   - Compute options: Chọn **Capacity provider strategy**.
+   - Use custom strategy: Chọn Capacity Provider của bạn (ví dụ: `Eshop-ECS-ASG`).
+4. **Deployment configuration**:
+   - Application type: **Service**.
+   - Family: Chọn `Eshop-Backend-Task` (vừa tạo ở Bước 1).
+   - Service name: `Eshop-Backend-Service`.
+   - Desired tasks (Số lượng Container muốn chạy): `2`.
+5. **Networking**: Kéo qua phần này vì chúng ta dùng `bridge` mode.
+6. **Load balancing**: 
+   - Load balancer type: Chọn **Application Load Balancer**.
+   - Load balancer name: Chọn `Eshop-ALB`.
+   - Tại mục *Container to load balance*, chọn container `eshop-backend-container`.
+   - Target group: Chọn **Use an existing target group** và chọn `Eshop-Backend-TG`.
+7. Kéo xuống dưới cùng và nhấn **Create**.
 
-# 4. Install patched package and start service
-sudo dpkg -i /tmp/codedeploy-agent_fixed.deb
-sudo systemctl enable codedeploy-agent
-sudo systemctl start codedeploy-agent
-sudo systemctl status codedeploy-agent
-```
+![Khởi tạo ECS Service](/images/5-Workshop/5.4.5/create_ecs_service.png)
 
-![Cài đặt thành công CodeDeploy Agent](/images/5-Workshop/img_B/image8.png)
+### Bước 3: Kiểm tra kết quả
 
-3. **Khởi tạo CodeDeploy Application & Deployment Group**:
-   * Truy cập **AWS CodeDeploy** -> **Applications** -> chọn **Create application**.
-   * Application name: `FightingGameServerApp`, Compute platform: **EC2/On-premises**.
-   * Tạo **Deployment group**, chọn IAM Role cho CodeDeploy và gán với EC2 Spot Fleet.
-
-![Khởi tạo CodeDeploy Deployment Group](/images/5-Workshop/img_B/image9.png)
-
-4. Khi lập trình viên push mã nguồn lên GitHub, GitHub Actions tự động kích hoạt CodeDeploy Job triển khai bản build mới lên Fleet máy chủ game thành công.
-
-![CodeDeploy Job triển khai thành công](/images/5-Workshop/img_B/image10.png)
+1. Quá trình triển khai Service có thể mất 1-2 phút. Bạn có thể theo dõi tiến trình ở tab **Deployments** và **Tasks** trong Cluster.
+2. Khi trạng thái các Task chuyển sang **Running**, hãy quay lại lấy **DNS Name** của ALB (mà bạn đã lưu ở bài 5.4.4).
+3. Mở trình duyệt mới, dán đường dẫn DNS của ALB vào và nhấn Enter. 
+   - Nếu bạn thấy phản hồi từ API Backend của mình (ví dụ: chuỗi JSON `{"status": "ok", "message": "Backend is running!"}`), **XIN CHÚC MỪNG!** Hệ thống Backend Container của bạn đã hoạt động hoàn hảo và sẵn sàng nhận tải!

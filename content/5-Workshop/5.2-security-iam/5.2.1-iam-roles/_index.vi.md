@@ -1,36 +1,56 @@
 ---
-title: "Khởi tạo Cognito User Pool"
-date: 2026-07-21
+title: "Phân quyền IAM Roles"
+date: 2026-09-24
 weight: 1
 chapter: false
 pre: " <b> 5.2.1. </b> "
 ---
 
-# 5.2.1. Khởi tạo Amazon Cognito User Pool
+# 5.2.1. Phân quyền IAM Roles cho EC2, ECS Task và Lambda
 
-1. Tại thanh tìm kiếm trên AWS Console, gõ **Cognito** và chọn **Amazon Cognito**.
+Trong kiến trúc AWS, các dịch vụ không tự động có quyền truy cập lẫn nhau. Chúng ta cần tạo các **IAM Roles** (Vai trò) để cấp quyền cho máy chủ EC2 giao tiếp với ECS, cho ECS Task tải Docker Image từ ECR, và cho hàm Lambda xử lý file trên S3.
 
-![Tìm kiếm Cognito](/images/5-Workshop/img_A/image3.png)
+### Bước 1: Tạo Role cho EC2 Instance (ECS Container Instance)
 
-![Trang Amazon Cognito](/images/5-Workshop/img_A/image4.png)
+Role này giúp các máy chủ EC2 tự động đăng ký vào ECS Cluster và gửi log lên hệ thống.
 
-2. Chọn **Single-page application (SPA)** và đổi tên ứng dụng thành `FightingGame`.
+1. Tại thanh tìm kiếm trên AWS Console, gõ **IAM** và chọn dịch vụ **IAM**.
+2. Ở menu bên trái, chọn **Roles** và nhấn **Create role**.
+3. Tại mục *Trusted entity type*, chọn **AWS service**. Tại mục *Use case*, chọn **EC2** và nhấn **Next**.
 
-![Cấu hình ứng dụng SPA](/images/5-Workshop/img_A/image7.png)
+![Chọn Trusted Entity cho EC2](/images/5-Workshop/5.2.1/iam_ec2_entity.png)
 
-3. Tại mục **Username**, tích chọn **Enable Self-registration** để cho phép người dùng tự tạo tài khoản.
-4. Tại mục **Required attributes for sign-up**, chọn **email** (Email thích hợp cho mô hình demo và phục hồi mật khẩu).
+4. Tại ô tìm kiếm chính sách (Permissions policies), gõ `AmazonEC2ContainerServiceforEC2Role`. Tích chọn chính sách này và nhấn **Next**.
 
-![Cấu hình thuộc tính đăng ký](/images/5-Workshop/img_A/image8.png)
+![Chọn Policy cho EC2 ECS](/images/5-Workshop/5.2.1/iam_ec2_policy.png)
 
-5. Chọn **Create user directory**. Sau khi khởi tạo thành công:
-   * **User pool ID**: `ap-southeast-1_phYoaMUPC`
-   * Trong **App clients**, chọn `FightingGame` để xem **Client ID** (Ví dụ: `73ipqvvo7h3u0j3elfqlj23jo3`).
+5. Ở bước *Name, review, and create*, đặt tên Role là `Eshop-EC2-Instance-Role`. Nhấn **Create role**.
 
-![Thông tin User Pool ID](/images/5-Workshop/img_A/image11.png)
+![Tạo EC2 Role](/images/5-Workshop/5.2.1/iam_ec2_create.png)
 
-![Xem App Client ID](/images/5-Workshop/img_A/image12.png)
+### Bước 2: Tạo Role cho ECS Task Execution
 
-6. Nhấn **Edit** tại App client `FightingGame` và tích chọn phương thức xác thực: `ALLOW_USER_PASSWORD_AUTH`. Sau đó chọn **Save changes**.
+Role này cho phép các Container (Task) trong ECS có quyền kéo (pull) Image từ Amazon ECR và đẩy log lên CloudWatch.
 
-![Cấu hình ALLOW_USER_PASSWORD_AUTH](/images/5-Workshop/img_A/image14.png)
+1. Tương tự, nhấn **Create role** trong giao diện IAM.
+2. Chọn **AWS service**, kéo xuống tìm và chọn **Elastic Container Service**. Ở phần *Use case* chi tiết, chọn **Elastic Container Service Task**, rồi nhấn **Next**.
+
+![Chọn Trusted Entity cho ECS Task](/images/5-Workshop/5.2.1/iam_ecs_entity.png)
+
+3. Tìm và tích chọn chính sách `AmazonECSTaskExecutionRolePolicy`. Nhấn **Next**.
+4. Đặt tên Role là `Eshop-ECS-Task-Execution-Role`. Nhấn **Create role**.
+
+![Tạo ECS Task Role](/images/5-Workshop/5.2.1/iam_ecs_create.png)
+
+### Bước 3: Tạo Role cho hàm AWS Lambda
+
+Role này cung cấp quyền cho hàm Lambda đọc/ghi ảnh sản phẩm từ S3 và ghi log chạy hàm.
+
+1. Nhấn **Create role**.
+2. Chọn **AWS service**, tại *Use case* chọn **Lambda** và nhấn **Next**.
+3. Tìm và tích chọn 2 chính sách sau:
+   - `AWSLambdaBasicExecutionRole` (để ghi log CloudWatch).
+   - `AmazonS3FullAccess` (để lấy và lưu ảnh đã resize).
+4. Nhấn **Next**, đặt tên Role là `Eshop-Lambda-Image-Role` và nhấn **Create role**.
+
+![Tạo Lambda Role](/images/5-Workshop/5.2.1/iam_lambda_create.png)

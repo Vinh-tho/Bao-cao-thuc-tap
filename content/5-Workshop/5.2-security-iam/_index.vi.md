@@ -1,22 +1,18 @@
 ---
-title: "Khởi tạo Cognito & DynamoDB"
-date: 2026-07-21
+title: "Thiết lập Bảo mật Cơ bản (IAM & SG)"
+date: 2026-09-24
 weight: 2
 chapter: false
 pre: " <b> 5.2. </b> "
-aliases:
-  - /5-workshop/5.1-serverless-game-backend/5.1.2-cognito-dynamodb/
-  - /5-workshop/5.1-Serverless-Game-Backend/5.1.2-cognito-dynamodb/
 ---
 
-# 5.2. Khởi tạo Amazon Cognito & DynamoDB Tables
+# 5.2. Thiết lập Bảo mật Cơ bản (IAM & Security Groups)
 
-Trong chương này, chúng ta sẽ cấu hình **Amazon Cognito User Pool & Identity Pool** để xử lý xác thực người chơi và cấp phát quyền tải asset/patch từ S3. Sau đó, chúng ta sẽ tạo 2 bảng **Amazon DynamoDB** để phục vụ hàng đợi ghép trận (`MatchmakingQueue`) và các trận đấu đang hoạt động (`ActiveMatches`).
+Trong chương này, chúng ta sẽ cấu hình các lớp bảo mật nền tảng cho hệ thống Web E-shop theo nguyên tắc quyền tối thiểu (Least Privilege) của AWS. Cụ thể, chúng ta sẽ tạo các **IAM Roles** cho EC2, ECS Task và Lambda để chúng có quyền gọi các dịch vụ AWS khác (như S3, ECR, CloudWatch). Đồng thời, chúng ta thiết lập các **Security Groups** đóng vai trò như tường lửa ảo để kiểm soát chặt chẽ luồng truy cập mạng giữa Load Balancer ở Public Subnet và Backend Container ở Private Subnet.
 
 ---
 
-### Danh sách các bài học chi tiết:
+### Danh sách các bài thực hành chi tiết:
 
-- **[5.2.1. Khởi tạo Amazon Cognito User Pool](5.2.1-iam-roles/)**
-- **[5.2.2. Khởi tạo Amazon Cognito Identity Pool](5.2.2-security-groups/)**
-- **[5.2.3. Khởi tạo các bảng Amazon DynamoDB](5.2.3-dynamodb-tables/)**
+- **[5.2.1. Phân quyền IAM Roles cho EC2, ECS Task và Lambda](5.2.1-iam-roles/)**
+- **[5.2.2. Khởi tạo Security Groups cho ALB và ECS Backend](5.2.2-security-groups/)**

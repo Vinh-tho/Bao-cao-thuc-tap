@@ -1,22 +1,18 @@
 ---
-title: "Amazon Cognito & DynamoDB Setup"
-date: 2026-07-21
+title: "Basic Security Setup (IAM & SG)"
+date: 2026-09-24
 weight: 2
 chapter: false
 pre: " <b> 5.2. </b> "
-aliases:
-  - /5-workshop/5.1-serverless-game-backend/5.1.2-cognito-dynamodb/
-  - /5-workshop/5.1-Serverless-Game-Backend/5.1.2-cognito-dynamodb/
 ---
 
-# 5.2. Amazon Cognito & DynamoDB Setup
+# 5.2. Setting Up Basic Security (IAM & Security Groups)
 
-In this section, we will configure an **Amazon Cognito User Pool & Identity Pool** to handle player authentication and authorize S3 asset downloads. Then, we will create two **Amazon DynamoDB** tables: one for the matchmaking queue (`MatchmakingQueue`) and another for live matches (`ActiveMatches`).
+In this chapter, we will configure the foundational security layers for the Web E-shop system following the AWS principle of least privilege. Specifically, we will create **IAM Roles** for EC2, ECS Tasks, and Lambda to grant them the necessary permissions to interact with other AWS services (such as S3, ECR, and CloudWatch). Additionally, we will set up **Security Groups** to act as virtual firewalls, strictly controlling the network traffic flow between the Load Balancer in the Public Subnet and the Backend Containers in the Private Subnet.
 
 ---
 
-### Detailed Modules:
+### List of detailed practical exercises:
 
-- **[5.2.1. Provisioning Amazon Cognito User Pool](5.2.1-iam-roles/)**
-- **[5.2.2. Provisioning Amazon Cognito Identity Pool](5.2.2-security-groups/)**
-- **[5.2.3. Provisioning Amazon DynamoDB Tables](5.2.3-dynamodb-tables/)**
+- **[5.2.1. Assigning IAM Roles for EC2, ECS Tasks, and Lambda](5.2.1-iam-roles/)**
+- **[5.2.2. Creating Security Groups for ALB and ECS Backend](5.2.2-security-groups/)**

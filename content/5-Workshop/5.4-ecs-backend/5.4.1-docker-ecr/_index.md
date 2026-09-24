@@ -1,30 +1,56 @@
 ---
-title: "Sample EC2 Server & Baking AMI"
-date: 2026-07-21
+title: "Build & Push Image to ECR"
+date: 2026-09-24
 weight: 1
 chapter: false
 pre: " <b> 5.4.1. </b> "
 ---
 
-# 5.4.1. Sample EC2 Game Server & Baking AMI
+# 5.4.1. Packaging the Backend (Dockerfile) & Pushing the Image to Amazon ECR
 
-1. Navigate to **Amazon EC2** and click **Launch instance**.
-2. Configure settings:
-   * **Name**: `FightingGameServer`
-   * **AMI**: Ubuntu Server 24.04 LTS (64-bit ARM / x86)
-   * **Instance type**: `t3.small` or `t3.medium`
-   * **Key pair**: Select or create a key pair
-   * **Storage**: 8 GB gp3
-   * **Security Group**: Allow SSH (Port 22) and Game Server Ports (Port 3000/UDP/TCP).
+To run our Backend application (handling cart, payments, etc.) on the ECS cluster, we need to package the source code into a **Docker Image** and store it on **Amazon ECR (Elastic Container Registry)** — AWS's secure container image registry.
 
-![Launch EC2 FightingGameServer](/images/5-Workshop/img_A/image88.png)
+*(Note: To complete this exercise, your local machine must have **Docker Desktop** and the **AWS CLI** configured).*
 
-3. Click **Launch instance**. Configure Node.js Game Server software on the instance.
+### Step 1: Create a Repository on Amazon ECR
 
-![Configure Node.js Game Server](/images/5-Workshop/img_A/image91.png)
+1. Access the AWS Console, search for **ECR**, and select **Elastic Container Registry**.
+2. In the left menu, select **Repositories**, then click **Create repository**.
+3. Under **Visibility settings**, choose **Private** (Only internal AWS services can pull this Image).
+4. For **Repository name**, enter `eshop-backend`.
+5. Scroll to the bottom and click **Create repository**.
 
-4. **Bake Custom AMI**:
-   * Select instance `FightingGameServer`, navigate to **Actions** -> **Image and templates** -> **Create image**.
-   * Name the image `FightingGameServerAMI` and click **Create image**.
+![Create ECR Repository](/images/5-Workshop/5.4.1/create_ecr_repo.png)
 
-![Bake AMI from Instance](/images/5-Workshop/img_B/image2.png)
+### Step 2: View Push Commands
+
+1. In the Repositories list, check the box next to the newly created `eshop-backend`.
+2. Click the **View push commands** button in the top right corner. AWS will provide 4 ready-to-use commands for your Terminal/Command Prompt.
+
+![View Push Commands](/images/5-Workshop/5.4.1/view_push_commands.png)
+
+### Step 3: Build and Push the Image to ECR
+
+Open your Terminal (or CMD/PowerShell) in the E-shop's Backend source code directory (where the `Dockerfile` is located). Run the 4 commands provided by AWS in Step 2 sequentially:
+
+1. **Authenticate Docker to your Amazon ECR registry:**
+   ```bash
+   aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.ap-southeast-1.amazonaws.com
+   ```
+
+2. **Build your Docker Image from source:**
+   ```bash
+   docker build -t eshop-backend .
+   ```
+
+3. **Tag your newly built Image:**
+   ```bash
+   docker tag eshop-backend:latest <AWS_ACCOUNT_ID>[.dkr.ecr.ap-southeast-1.amazonaws.com/eshop-backend:latest](https://.dkr.ecr.ap-southeast-1.amazonaws.com/eshop-backend:latest)
+   ```
+
+4. **Push the Image to Amazon ECR:**
+   ```bash
+   docker push <AWS_ACCOUNT_ID>[.dkr.ecr.ap-southeast-1.amazonaws.com/eshop-backend:latest](https://.dkr.ecr.ap-southeast-1.amazonaws.com/eshop-backend:latest)
+   ```
+
+Once the Push command reaches 100%, return to the ECR interface on the AWS Console and click on the `eshop-backend` repository name. You will see the Image tagged `latest` securely stored in the registry, fully ready for the ECS system to pull and deploy!

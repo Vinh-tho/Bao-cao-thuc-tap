@@ -1,57 +1,41 @@
 ---
-title: "API Gateway REST API"
-date: 2026-07-21
+title: "Thiết lập S3 Event Trigger"
+date: 2026-09-24
 weight: 2
 chapter: false
-pre: " <b> 5.3.2. </b> "
+pre: " <b> 5.5.2. </b> "
 ---
 
-# 5.3.2. Cấu hình Amazon API Gateway REST API
+# 5.5.2. Thiết lập S3 Event Notification kích hoạt Lambda
 
-1. Truy cập dịch vụ **Amazon API Gateway** và chọn **Create API**.
-2. Chọn **REST API** và nhấn **Build**.
+Hàm Lambda `Eshop-Image-Resizer` của chúng ta đã sẵn sàng, nhưng hiện tại nó đang "ngủ". Chúng ta cần thiết lập một hệ thống báo động trên **S3 Media Bucket** để mỗi khi có file mới được tải lên, S3 sẽ tự động đánh thức và truyền dữ liệu cho Lambda xử lý.
 
-![Tạo REST API](/images/5-Workshop/img_A/image55.png)
+### Bước 1: Truy cập cấu hình Event của S3 Bucket
 
-3. Điền thông tin API Name: `FightingGameAPI`, Endpoint Type: **Regional** và chọn **Create API**.
+1. Mở AWS Console, truy cập dịch vụ **S3**.
+2. Nhấp vào tên Bucket lưu trữ Media mà bạn đã tạo ở bài 5.3.2 (ví dụ: `eshop-media-nguyenvana`).
+3. Chuyển sang tab **Properties** (Thuộc tính).
+4. Cuộn xuống tìm mục **Event notifications** (Thông báo sự kiện) và nhấn nút **Create event notification**.
 
-![Tạo REST API thành công](/images/5-Workshop/img_A/image58.png)
+### Bước 2: Cấu hình Sự kiện (Event)
 
-4. **Tạo Resource `/join`**:
-   * Nhấn **Create resource**, nhập Resource Name: `join`.
-   * Tạo method **POST** tại resource `/join`, chọn **Lambda Function** và liên kết với hàm `FightingGameMatchmaker`.
+1. **Event name**: Nhập `Trigger-Image-Resize`.
+2. **Prefix** (Tùy chọn): Bạn có thể để trống.
+3. **Suffix** (Tùy chọn): Nhập `.jpg` hoặc `.png` nếu bạn chỉ muốn kích hoạt hàm khi upload các file ảnh cụ thể. Ở đây chúng ta có thể để trống để nhận mọi file.
+4. Tại mục **Event types**, tick chọn ô **All object create events** (Kích hoạt khi có bất kỳ file nào được tạo mới/upload lên Bucket).
 
-![Tạo Resource /join](/images/5-Workshop/img_A/image60.png)
+![Cấu hình Event Types trên S3](/images/5-Workshop/5.5.2/s3_event_types.png)
 
-![Liên kết Method POST với Lambda](/images/5-Workshop/img_A/image65.png)
+### Bước 3: Chỉ định Đích đến (Destination)
 
-5. **Tạo Resource `/check`**:
-   * Chọn đường dẫn gốc `/`, chọn **Create resource**, nhập Resource Name: `check`.
-   * Tạo method **GET** tại resource `/check`, liên kết với hàm `FightingGameMatchmaker`.
+1. Cuộn xuống dưới cùng tới mục **Destination**.
+2. Chọn **Lambda function**.
+3. Tại ô *Specify Lambda function*, chọn **Choose from your Lambda functions**.
+4. Chọn hàm `Eshop-Image-Resizer` (mà bạn đã tạo ở bài 5.5.1) từ danh sách xổ xuống.
+5. Nhấn **Save changes**.
 
-![Tạo Method GET /check thành công](/images/5-Workshop/img_A/image70.png)
+![Chọn đích đến là Lambda](/images/5-Workshop/5.5.2/s3_event_destination.png)
 
-6. **Tạo Cognito Authorizer**:
-   * Trên thanh điều hướng bên trái, chọn **Authorizers** -> chọn **Create authorizer**.
-   * Đặt tên: `FightinggameCognitoAuthorizer`, chọn Type: **Cognito**, chọn User Pool `ap-southeast-1_phYoaMUPC` đã tạo ở Bước 5.2.1, nhập Token Source: `Authorization`. Nhấn **Create authorizer**.
+> **Lưu ý:** Khi bạn thao tác lưu cấu hình này trên Console, AWS S3 sẽ tự động thêm một *Resource-based policy* vào hàm Lambda của bạn để cho phép S3 có quyền gọi (invoke) hàm đó.
 
-![Tạo Cognito Authorizer](/images/5-Workshop/img_A/image71.png)
-
-7. **Gắn Authorizer vào các Method**:
-   * Chọn Method **POST** tại `/join`, nhấn **Edit**, mục **Authorization** chọn `FightinggameCognitoAuthorizer` và bấm **Save**.
-   * Thực hiện tương tự cho Method **GET** tại `/check`.
-
-![Gắn Cognito Authorizer vào API](/images/5-Workshop/img_A/image74.png)
-
-8. **Bật CORS (Enable CORS)**:
-   * Chọn resource `/join`, chọn **Enable CORS**, tích chọn **Default 4xx, 5xx** và **POST**.
-   * Thực hiện tương tự cho resource `/check` với method **GET**. Chọn **Save**.
-
-![Bật CORS thành công](/images/5-Workshop/img_A/image81.png)
-
-9. **Deploy API**:
-   * Chọn đường dẫn gốc `/` của cây Resource, chọn **Deploy API**.
-   * Stage name: `prod`. Nhấn **Deploy**.
-   * Lưu lại địa chỉ **Invoke URL** (Ví dụ: `https://6whg1d5qca.execute-api.ap-southeast-1.amazonaws.com/prod`).
-
-![Deploy API thành công](/images/5-Workshop/img_A/image85.png)
+Xong! Bây giờ S3 và Lambda đã được "trói" chặt vào nhau thành một luồng Event-Driven hoàn chỉnh.

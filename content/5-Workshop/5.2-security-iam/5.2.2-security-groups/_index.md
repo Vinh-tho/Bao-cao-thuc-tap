@@ -1,30 +1,53 @@
 ---
-title: "Provisioning Cognito Identity Pool"
-date: 2026-07-21
+title: "Creating Security Groups"
+date: 2026-09-24
 weight: 2
 chapter: false
 pre: " <b> 5.2.2. </b> "
 ---
 
-# 5.2.2. Provisioning Amazon Cognito Identity Pool
+# 5.2.2. Creating Security Groups for ALB and ECS Backend
 
-1. Return to the main Cognito console, navigate to **Identity pools**, and click **Create identity pool**.
+A **Security Group (SG)** acts as a virtual firewall at the instance level to control inbound and outbound network traffic. To adhere to maximum security principles, we will create 2 SGs:
+1. **ALB Security Group**: Open to the Internet to serve web traffic.
+2. **Backend Security Group**: Completely hidden from the Internet, allowing inbound traffic *only* from the ALB SG.
 
-![Create Identity Pool](/images/5-Workshop/img_A/image17.png)
+### Step 1: Create a Security Group for the Application Load Balancer (ALB)
 
-2. Select **Authenticated access** and choose **Amazon Cognito user pool** as the provider. Click **Next**.
+1. In the AWS Console, go to the **VPC** (or EC2) service, look at the left navigation pane, scroll down to *Security*, and select **Security Groups**.
+2. Click the **Create security group** button.
+3. Fill in the basic details:
+   - **Security group name**: `Eshop-ALB-SG`
+   - **Description**: `Allow HTTP and HTTPS traffic from Internet to ALB`
+   - **VPC**: Click the `X` to remove the default VPC, then select our `Eshop-VPC`.
 
-![Configure Authenticated Access](/images/5-Workshop/img_A/image19.png)
+![Configure ALB Security Group details](/images/5-Workshop/5.2.2/create_alb_sg_info.png)
 
-3. Under **Configure permissions**, choose **Create a new IAM Role**, set the IAM role name to `FightingGameAuthenticatedRole`, and click **Next**.
+4. Under **Inbound rules**, click **Add rule** twice to open web ports:
+   - Rule 1: Type = `HTTP`, Source = `Anywhere-IPv4` (`0.0.0.0/0`)
+   - Rule 2: Type = `HTTPS`, Source = `Anywhere-IPv4` (`0.0.0.0/0`)
+5. Leave the **Outbound rules** as default (Allow All traffic) and click the **Create security group** button at the bottom.
 
-![Create IAM Role](/images/5-Workshop/img_A/image20.png)
+![Add Inbound rules for ALB](/images/5-Workshop/5.2.2/create_alb_sg_rules.png)
 
-4. Enter your **User pool ID** and **App Client ID** to connect the Identity Provider. Click **Next**.
+### Step 2: Create a Security Group for the Backend (EC2 / ECS Task)
 
-![Connect Identity Provider](/images/5-Workshop/img_A/image21.png)
+Now we create the SG for the Backend. The critical point here is that the Backend will NOT open ports to the public Internet (`0.0.0.0/0`). Instead, it will use the ALB's SG as the Source.
 
-5. Set the Identity Pool Name to `FightingGameIdentityPool` and click **Create identity pool**.
-   * **Identity pool ID**: `ap-southeast-1:a5d743b9-e4a4-45d2-9cb1-9d214cee574c`
+1. Return to the Security Groups list and click **Create security group** again.
+2. Fill in the basic details:
+   - **Security group name**: `Eshop-Backend-SG`
+   - **Description**: `Allow traffic only from ALB`
+   - **VPC**: Select `Eshop-VPC`.
 
-![View Identity Pool ID](/images/5-Workshop/img_A/image24.png)
+![Configure Backend Security Group details](/images/5-Workshop/5.2.2/create_backend_sg_info.png)
+
+3. Under **Inbound rules**, click **Add rule**:
+   - Type = `All TCP` (to support ECS Dynamic Port Mapping on EC2).
+   - Source = Select `Custom`, then type `sg-` in the search box and select `Eshop-ALB-SG` from the dropdown list.
+
+![Add Inbound rule for Backend from ALB SG](/images/5-Workshop/5.2.2/create_backend_sg_rules.png)
+
+4. Click **Create security group**.
+
+> **Security Note:** With this setup, even if someone discovers the internal IP of the EC2/Container, they cannot access it directly. The request must pass through the Load Balancer (ALB) gateway.

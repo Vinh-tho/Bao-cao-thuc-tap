@@ -1,24 +1,22 @@
 ---
-title: "Dọn dẹp tài nguyên"
-date: 2026-07-21
-weight: 6
+title: "Dọn dẹp Tài nguyên"
+date: 2026-09-24
+weight: 7
 chapter: false
-pre: " <b> 5.6. </b> "
-aliases:
-  - /5-workshop/5.1-serverless-game-backend/5.1.6-cleanup/
-  - /5-workshop/5.1-Serverless-Game-Backend/5.1.6-cleanup/
+pre: " <b> 5.7. </b> "
 ---
 
-# 5.6. Dọn dẹp Tài nguyên (Resource Cleanup)
+# 5.7. Dọn dẹp tài nguyên (Cleanup)
 
-Để tránh phát sinh chi phí duy trì không mong muốn trên tài khoản AWS sau khi hoàn thành bài thực hành, bạn cần thực hiện dọn dẹp và xóa toàn bộ các dịch vụ đã khởi tạo theo các bước hướng dẫn chi tiết trong các bài học dưới đây:
+Chúc mừng bạn đã hoàn thành trọn vẹn dự án Web E-shop trên AWS! Để tránh phát sinh chi phí không mong muốn (đặc biệt là các dịch vụ tính phí theo giờ như NAT Gateway hay Load Balancer), việc dọn dẹp hệ thống là bước bắt buộc.
+
+Hãy thực hiện xóa tài nguyên lần lượt theo đúng thứ tự các bài dưới đây để tránh gặp lỗi ràng buộc (Dependency error).
 
 ---
 
-### Danh sách bài dọn dẹp chi tiết:
+### Danh sách các bài thực hành dọn dẹp:
 
-- **[5.6.1. Dọn dẹp Amazon Cognito](5.7.1-alb-asg-cleanup/)**
-- **[5.6.2. Dọn dẹp Amazon DynamoDB](5.7.2-ecs-ecr-cleanup/)**
-- **[5.6.3. Dọn dẹp AWS Lambda Functions](5.7.3-lambda-s3-cleanup/)**
-- **[5.6.4. Dọn dẹp Amazon API Gateway](5.7.4-vpc-nat-cleanup/)**
-- **[5.6.5. Dọn dẹp CloudFront & AWS WAF](5.7.5-cloudfront-waf-cleanup/)**
+- **[5.7.1. Dọn dẹp Application Load Balancer & Auto Scaling Group](5.7.1-alb-asg-cleanup/)**
+- **[5.7.2. Dọn dẹp ECS Cluster, Task Definitions & Amazon ECR](5.7.2-ecs-ecr-cleanup/)**
+- **[5.7.3. Dọn dẹp AWS Lambda & Amazon S3 Buckets](5.7.3-lambda-s3-cleanup/)**
+- **[5.7.4. Dọn dẹp VPC, NAT Gateway & Elastic IP (Tránh phí phát sinh)](5.7.4-vpc-nat-cleanup/)**

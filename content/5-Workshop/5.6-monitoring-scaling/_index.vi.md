@@ -1,21 +1,21 @@
 ---
-title: "Asynchronous Analytics"
-date: 2026-07-21
-weight: 5
+title: "Giám sát & Tự động mở rộng"
+date: 2026-09-24
+weight: 6
 chapter: false
-pre: " <b> 5.5. </b> "
-aliases:
-  - /5-workshop/5.1-serverless-game-backend/5.1.5-async-analytics/
-  - /5-workshop/5.1-Serverless-Game-Backend/5.1.5-async-analytics/
+pre: " <b> 5.6. </b> "
 ---
 
-# 5.5. Xử lý Asynchronous Analytics với DynamoDB Streams & Lambda
+# 5.6. Giám sát & Tự động mở rộng (Monitoring & Auto Scaling)
 
-Trong chương này, chúng ta sẽ cấu hình **DynamoDB Streams** trên bảng DynamoDB và viết hàm **MatchAnalytic Lambda** để thu thập log, xử lý thống kê và phân tích kết quả sau trận đấu một cách hoàn toàn bất đồng bộ (Asynchronous Event Processing), không gây bất kỳ độ trễ nào cho luồng ghép trận.
+Trong vận hành thực tế, việc thiết lập xong hệ thống mới chỉ là bước khởi đầu. Khi sự kiện Flash Sale diễn ra, E-shop của bạn sẽ phải đối mặt với lượng truy cập khổng lồ. 
+
+Trong chương này, chúng ta sẽ thiết lập **ECS Service Auto Scaling** để hệ thống tự động nhân bản thêm các Container Backend khi tải lượng CPU tăng cao, đồng thời thu nhỏ lại khi hết khách để tiết kiệm tiền. Ngoài ra, chúng ta sẽ dùng **Amazon CloudWatch** để theo dõi sức khỏe hệ thống, cài đặt cảnh báo (Alarm) qua email, và dùng **AWS CloudTrail** để ghi lại nhật ký (Audit) mọi thao tác thay đổi hạ tầng nhằm đảm bảo bảo mật.
 
 ---
 
-### Danh sách các bài học chi tiết:
+### Danh sách các bài thực hành chi tiết:
 
-- **[5.5.1. Kích hoạt DynamoDB Streams](5.6.1-cloudwatch-alarms/)**
-- **[5.5.2. Tạo & Kết nối MatchAnalytic Lambda](5.6.2-service-autoscaling/)**
+- **[5.6.1. Thiết lập CloudWatch Logs & Cảnh báo Alarms](5.6.1-cloudwatch-alarms/)**
+- **[5.6.2. Cấu hình ECS Service Auto Scaling theo tải (Traffic/CPU)](5.6.2-service-autoscaling/)**
+- **[5.6.3. Kích hoạt AWS CloudTrail để kiểm vết API](5.6.3-cloudtrail-audit/)**

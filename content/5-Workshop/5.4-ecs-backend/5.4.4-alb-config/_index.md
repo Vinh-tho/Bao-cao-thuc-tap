@@ -1,51 +1,60 @@
 ---
-title: "GitHub OIDC & CodeDeploy GitOps"
-date: 2026-07-21
-weight: 4
+title: "Define ECS Task & Service"
+date: 2026-09-24
+weight: 5
 chapter: false
-pre: " <b> 5.4.4. </b> "
+pre: " <b> 5.4.5. </b> "
 ---
 
-# 5.4.4. GitHub OIDC & AWS CodeDeploy GitOps Pipeline
+# 5.4.5. Defining the ECS Task, Creating a Service, & Connecting the ALB
 
-1. **Add GitHub Provider to AWS IAM (No long-lived access keys)**:
-   * Navigate to **IAM** -> **Identity providers** -> **Add provider**.
-   * Select **OpenID Connect**, enter Provider URL: `https://token.actions.githubusercontent.com` and Audience: `sts.amazonaws.com`.
+With the server infrastructure (ECS Cluster) and the gateway (Load Balancer) in place, the final step is to define how your Container should run (Task Definition) and instruct the system to keep it running continuously (Service).
 
-![Add GitHub OIDC Provider](/images/5-Workshop/img_B/image7.png)
+### Step 1: Create a Task Definition (Container Blueprint)
 
-2. **Install AWS CodeDeploy Agent on EC2 Game Server**:
-   Execute the CodeDeploy installation script on Ubuntu 24.04 LTS:
+1. Navigate to the **ECS** service, select **Task definitions** from the left menu, and click **Create new task definition**.
+2. **Task definition family**: Name it `Eshop-Backend-Task`.
+3. Under **Infrastructure requirements**:
+   - **Launch type**: Select **Amazon EC2 instances**.
+   - **Network mode**: Select **bridge** (This is crucial for ECS to automatically assign random ports (Dynamic Port Mapping) on the EC2 instances to avoid conflicts).
+   - **Task size**: Memory = `512`, CPU = `0.5 vCPU`.
+   - **Task role & Task execution role**: Select `Eshop-ECS-Task-Execution-Role` (Created in section 5.2.1).
+4. Under **Container - 1**:
+   - **Name**: `eshop-backend-container`
+   - **Image URI**: Paste the URI of the Image you pushed to ECR in section 5.4.1 (e.g., `123456789.dkr.ecr.ap-southeast-1.amazonaws.com/eshop-backend:latest`).
+   - **Port mappings**:
+     - **Container port**: `80` (Or the port your Backend code is listening on, e.g., 8080/3000).
+     - **Host port**: Leave blank or enter `0` (To enable Dynamic Port Mapping).
+     - **Protocol**: `TCP`.
+5. Scroll to the bottom and click **Create**.
 
-```bash
-# 1. Install prerequisites
-sudo apt-get update && sudo apt-get install -y ruby-full ruby-webrick wget gdebi-core
+![Create ECS Task Definition](/images/5-Workshop/5.4.5/create_task_definition.png)
 
-# 2. Download raw .deb package directly
-cd /tmp
-wget https://aws-codedeploy-ap-southeast-1.s3.ap-southeast-1.amazonaws.com/releases/codedeploy-agent_1.8.1-26_all.deb
+### Step 2: Create the ECS Service and Connect the Load Balancer
 
-# 3. Unpack, fix Ruby dependency declaration, and repack
-dpkg-deb -R codedeploy-agent_1.8.1-26_all.deb /tmp/codedeploy-extracted
-sed -i "s/ruby3.2/ruby3.3/g" /tmp/codedeploy-extracted/DEBIAN/control
-dpkg-deb -b /tmp/codedeploy-extracted /tmp/codedeploy-agent_fixed.deb
+1. Return to the **Clusters** menu and click on `Eshop-ECS-Cluster`.
+2. In the **Services** tab, click the **Create** button.
+3. **Environment**:
+   - Compute options: Select **Capacity provider strategy**.
+   - Use custom strategy: Choose your Capacity Provider (e.g., `Eshop-ECS-ASG`).
+4. **Deployment configuration**:
+   - Application type: **Service**.
+   - Family: Select `Eshop-Backend-Task` (created in Step 1).
+   - Service name: `Eshop-Backend-Service`.
+   - Desired tasks (Number of Containers to run): `2`.
+5. **Networking**: Skip this section since we are using `bridge` mode.
+6. **Load balancing**:
+   - Load balancer type: Select **Application Load Balancer**.
+   - Load balancer name: Select `Eshop-ALB`.
+   - Under *Container to load balance*, select the `eshop-backend-container`.
+   - Target group: Select **Use an existing target group** and choose `Eshop-Backend-TG`.
+7. Scroll to the bottom and click **Create**.
 
-# 4. Install patched package and start service
-sudo dpkg -i /tmp/codedeploy-agent_fixed.deb
-sudo systemctl enable codedeploy-agent
-sudo systemctl start codedeploy-agent
-sudo systemctl status codedeploy-agent
-```
+![Create ECS Service](/images/5-Workshop/5.4.5/create_ecs_service.png)
 
-![CodeDeploy Agent Installation Success](/images/5-Workshop/img_B/image8.png)
+### Step 3: Verify the Results
 
-3. **Provision CodeDeploy Application & Deployment Group**:
-   * Navigate to **AWS CodeDeploy** -> **Applications** -> **Create application**.
-   * Application name: `FightingGameServerApp`, Compute platform: **EC2/On-premises**.
-   * Create **Deployment group**, attach CodeDeploy IAM role, and map to the EC2 Spot Fleet.
-
-![Create CodeDeploy Deployment Group](/images/5-Workshop/img_B/image9.png)
-
-4. Pushing code to GitHub triggers GitHub Actions to execute CodeDeploy jobs, deploying new builds to the game fleet with zero downtime.
-
-![Successful CodeDeploy Job](/images/5-Workshop/img_B/image10.png)
+1. The Service deployment process may take 1-2 minutes. You can monitor the progress in the **Deployments** and **Tasks** tabs within your Cluster.
+2. Once the tasks' statuses change to **Running**, retrieve the **DNS Name** of your ALB (which you saved in section 5.4.4).
+3. Open a new browser tab, paste the ALB's DNS URL, and press Enter.
+   - If you see a response from your Backend API (e.g., a JSON string `{"status": "ok", "message": "Backend is running!"}`), **CONGRATULATIONS!** Your Backend Container system is running perfectly and ready to handle traffic!
