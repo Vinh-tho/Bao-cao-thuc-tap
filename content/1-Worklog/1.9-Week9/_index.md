@@ -1,27 +1,27 @@
 ---
 title: "Week 9 Worklog"
-date: 2026-06-21
-weight: 9
+date: 2026-09-28
+weight: 09
 chapter: false
-pre: " <b> 1.9. </b> "
+pre: " <b> 1.09. </b> "
 ---
 
-### Week 9 Objectives:
-* Research AWS CloudFormation and Infrastructure as Code (IaC) architectures.
-* Learn to write infrastructure templates in YAML/JSON formatting.
-* Practice creating and managing AWS resources using CloudFormation Stacks.
-* Modify and update active cloud infrastructure using CloudFormation templates.
+### Week 09 Objectives:
+* Discover Docker fundamentals and Amazon Elastic Container Service (ECS).
+* Understand the concepts of Containers and Container Orchestration.
+* Practice writing Dockerfiles and building Docker Images.
+* Deploy containerized applications on AWS ECS and verify execution status.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | Learn about AWS CloudFormation and Infrastructure as Code (IaC) | 21/06/2026 | 23/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Practice writing CloudFormation Templates in YAML format | 23/06/2026 | 24/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Deploy Stacks using templates to provision EC2, Security Groups, and S3 | 25/06/2026 | 25/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Practice updating and deleting resources using CloudFormation templates | 26/06/2026 | 26/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Learn about AWS ECS and basic Docker commands | 17/09/2026 | 19/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Research Container and Container Orchestration concepts | 19/09/2026 | 20/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Write Dockerfiles and build custom Docker Images | 21/09/2026 | 22/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Deploy and verify containers running inside AWS ECS clusters | 22/09/2026 | 22/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Week 9 Achievements:
-* Understood how IaC helps standardise and accelerate infrastructure deployment.
-* Written declarative templates defining secure and repeatable cloud resources.
-* Provisioned multi-tier environments consistently by deploying CloudFormation Stacks.
-* Managed infrastructure drift and performed safe updates via stack change sets.
+### Week 09 Achievements:
+* Mastered Docker containerization to package software consistently.
+* Wrote Dockerfiles and built portable application images.
+* Pushed container images to repository registry and created Task Definitions.
+* Provisioned and verified container execution using AWS ECS Fargate serverless compute.

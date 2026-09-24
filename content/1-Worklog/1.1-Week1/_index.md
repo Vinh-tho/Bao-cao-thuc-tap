@@ -12,8 +12,8 @@ pre: " <b> 1.1. </b> "
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | Search for information and prepare internship application | 28/04/2026 | 28/04/2026 | |
-| 3 | Contact companies and find suitable internship positions | 28/04/2026 | 30/04/2026 | |
+| 2 | Search for information and prepare internship application | 28/07/2026 | 28/07/2026 | |
+| 3 | Contact companies and find suitable internship positions | 28/07/2026 | 30/07/2026 | |
 
 ### Week 1 Achievements:
 * Currently searching and preparing applications for internship positions.

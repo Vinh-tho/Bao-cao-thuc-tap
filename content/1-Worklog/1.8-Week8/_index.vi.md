@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 8"
-date: 2026-06-14
+date: 2026-09-14
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
@@ -15,10 +15,10 @@ pre: " <b> 1.8. </b> "
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | Tìm hiểu Elastic Load Balancer (ELB) và Auto Scaling | 14/06/2026 | 16/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Thực hành tạo Load Balancer (ALB) cho các máy ảo EC2 | 16/06/2026 | 17/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Cấu hình Launch Template và Auto Scaling Group | 18/06/2026 | 19/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Chạy thử nghiệm giả lập tải, kiểm tra khả năng tự co giãn và cân bằng tải | 19/06/2026 | 19/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Tìm hiểu Elastic Load Balancer (ELB) và Auto Scaling | 10/09/2026 | 12/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Thực hành tạo Load Balancer (ALB) cho các máy ảo EC2 | 12/09/2026 | 13/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Cấu hình Launch Template và Auto Scaling Group | 14/09/2026 | 15/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Chạy thử nghiệm giả lập tải, kiểm tra khả năng tự co giãn và cân bằng tải | 15/09/2026 | 15/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 8:
 * Hiểu nguyên lý hoạt động của ELB (ALB, NLB) và Auto Scaling Group.

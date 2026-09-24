@@ -15,10 +15,10 @@ pre: " <b> 1.8. </b> "
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | Learn about Elastic Load Balancer (ELB) and Auto Scaling | 14/06/2026 | 16/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Practice creating an Application Load Balancer (ALB) for EC2 instances | 16/06/2026 | 17/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Configure Launch Templates and Auto Scaling Groups (ASG) | 18/06/2026 | 19/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Perform load simulation tests to verify auto-scaling and traffic balancing | 19/06/2026 | 19/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Learn about Elastic Load Balancer (ELB) and Auto Scaling | 10/09/2026 | 12/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Practice creating an Application Load Balancer (ALB) for EC2 instances | 12/09/2026 | 13/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Configure Launch Templates and Auto Scaling Groups (ASG) | 14/09/2026 | 15/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Perform load simulation tests to verify auto-scaling and traffic balancing | 15/09/2026 | 15/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 8 Achievements:
 * Gained solid understanding of ELB architectures and Auto Scaling mechanisms.

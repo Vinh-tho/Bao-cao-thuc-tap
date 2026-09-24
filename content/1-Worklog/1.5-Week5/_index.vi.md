@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 5"
-date: 2026-05-24
+date: 2026-08-24
 weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
@@ -14,10 +14,10 @@ pre: " <b> 1.5. </b> "
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | Tìm hiểu AWS RDS và DynamoDB | 24/05/2026 | 26/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Thực hành tạo và cấu hình Database trên AWS (RDS MySQL/PostgreSQL) | 26/05/2026 | 27/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Kết nối EC2 instance với RDS và kiểm tra kết nối hoạt động | 28/05/2026 | 28/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Tìm hiểu cơ chế sao lưu (backup) và snapshot dữ liệu trên AWS | 29/05/2026 | 29/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Tìm hiểu AWS RDS và DynamoDB | 20/08/2026 | 22/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Thực hành tạo và cấu hình Database trên AWS (RDS MySQL/PostgreSQL) | 22/08/2026 | 23/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Kết nối EC2 instance với RDS và kiểm tra kết nối hoạt động | 24/08/2026 | 24/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Tìm hiểu cơ chế sao lưu (backup) và snapshot dữ liệu trên AWS | 25/08/2026 | 25/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 5:
 * Phân biệt được đặc điểm và trường hợp sử dụng của AWS RDS và DynamoDB.

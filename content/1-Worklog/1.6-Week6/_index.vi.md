@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 6"
-date: 2026-05-31
+date: 2026-08-31
 weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
@@ -15,10 +15,10 @@ pre: " <b> 1.6. </b> "
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | Tìm hiểu AWS Lambda và mô hình Serverless | 31/05/2026 | 02/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Thực hành viết mã và tạo Lambda Function bằng Python | 02/06/2026 | 03/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Cấu hình kết nối Lambda với S3 (triggers) và API Gateway (endpoints) | 04/06/2026 | 05/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Kiểm tra hoạt động hệ thống và xem giám sát log bằng CloudWatch | 05/06/2026 | 05/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Tìm hiểu AWS Lambda và mô hình Serverless | 27/08/2026 | 29/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Thực hành viết mã và tạo Lambda Function bằng Python | 29/08/2026 | 30/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Cấu hình kết nối Lambda với S3 (triggers) và API Gateway (endpoints) | 31/08/2026 | 01/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Kiểm tra hoạt động hệ thống và xem giám sát log bằng CloudWatch | 01/09/2026 | 01/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 6:
 * Hiểu cơ chế hoạt động, thanh toán và lợi ích của mô hình Serverless trên AWS.

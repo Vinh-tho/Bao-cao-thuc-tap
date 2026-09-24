@@ -10,23 +10,23 @@ chapter: false
 
 
 ### Student Information:
-&emsp; **Full Name:** Nguyen Quang Vinh
+&emsp; **Full Name:** Nguyễn Quang Vinh
 
-&emsp; **Phone Number:** 0913998757 
+&emsp; **Phone Number:** 0867265091 
 
-&emsp; **Email:** doanminhquan969@gmail.com
+&emsp; **Email:** nguyenvinh1242004@gmail.com
 
-&emsp; **University:** Ho Chi Minh City University of Technology (HUTECH)
+&emsp; **University:** Hanoi University of Civil Engineering (HUCE)
 
-&emsp; **Major:** Cybersecurity
+&emsp; **Major:** Computer science
 
-&emsp; **Class:** 22DTHE4
+&emsp; **Class:** 67CS
 
 &emsp; **Internship Company:** Amazon Web Services Viet Nam Company Limited
 
 &emsp; **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
 
-&emsp; **Internship Duration:** From 05-05-2026 to 30-07-2026
+&emsp; **Internship Duration:** From 01-08-2026 to 27-09-2026
 
 ![Your profile picture](/images/avatar.png)
 

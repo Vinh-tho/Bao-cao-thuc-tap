@@ -1,6 +1,6 @@
 ---
 title: "Worklog Tuần 7"
-date: 2026-06-07
+date: 2026-09-07
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
@@ -15,10 +15,10 @@ pre: " <b> 1.7. </b> "
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | Tìm hiểu về AWS CloudWatch (giám sát) và CloudTrail (kiểm vết hoạt động) | 07/06/2026 | 09/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Thực hành cấu hình Dashboard theo dõi EC2 và Lambda bằng CloudWatch | 09/06/2026 | 10/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Nghiên cứu về Log Groups, Custom Metrics và CloudWatch Alarms | 11/06/2026 | 11/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Thực hành tạo Alarm và cấu hình cảnh báo qua email (SNS) khi CPU quá 80% | 12/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Tìm hiểu về AWS CloudWatch (giám sát) và CloudTrail (kiểm vết hoạt động) | 03/09/2026 | 05/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Thực hành cấu hình Dashboard theo dõi EC2 và Lambda bằng CloudWatch | 05/09/2026 | 06/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Nghiên cứu về Log Groups, Custom Metrics và CloudWatch Alarms | 07/09/2026 | 07/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Thực hành tạo Alarm và cấu hình cảnh báo qua email (SNS) khi CPU quá 80% | 08/09/2026 | 08/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 7:
 * Hiểu rõ sự khác nhau giữa CloudWatch (giám sát hiệu suất) và CloudTrail (ghi log bảo mật/lịch sử API).

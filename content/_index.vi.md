@@ -6,28 +6,28 @@ chapter: false
 ---
 
 # Báo cáo thực tập
+
 ### Thông tin sinh viên:
-&emsp; **Họ và tên:** Đoàn Minh Quân
 
-&emsp; **Số điện thoại:** 0913998757
+&emsp; **Họ và tên:** Nguyễn Quang Vinh
 
-&emsp; **Email:** doanminhquan969@gmail.com
+&emsp; **Số điện thoại:** 0867265091
 
-&emsp; **Trường:** Đại học Công nghệ Thành phố Hồ Chí Minh (HUTECH)
+&emsp; **Email:** nguyenvinh1242004@gmail.com
 
-&emsp; **Ngành:** An Ninh Mạng
+&emsp; **Trường:** Trường Đại Học Xây Dựng Hà Nội (HUCE)
 
-&emsp; **Lớp:** 22DTHE4
+&emsp; **Ngành:** Khoa học máy tính
+
+&emsp; **Lớp:** 67CS
 
 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Viet Nam
 
 &emsp; **Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey
 
-&emsp; **Thời gian thực tập:** Từ ngày 05-05-2026 đến ngày 30-07-2026
+&emsp; **Thời gian thực tập:** Từ ngày 01-08-2026 đến ngày 27-09-2026
 
 ![Ảnh đại diện của bạn](/images/avatar.png)
-
-
 
 ### Nội dung báo cáo
 

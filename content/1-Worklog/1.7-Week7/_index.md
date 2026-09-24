@@ -15,10 +15,10 @@ pre: " <b> 1.7. </b> "
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | Research AWS CloudWatch and CloudTrail fundamentals | 07/06/2026 | 09/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Configure resource dashboards for EC2 and Lambda | 09/06/2026 | 10/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Study logs, system metrics, and AWS alarms | 11/06/2026 | 11/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Practice creating Alarms and notifications using AWS SNS | 12/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Research AWS CloudWatch and CloudTrail fundamentals | 03/09/2026 | 05/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Configure resource dashboards for EC2 and Lambda | 05/09/2026 | 06/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Study logs, system metrics, and AWS alarms | 07/09/2026 | 07/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Practice creating Alarms and notifications using AWS SNS | 08/09/2026 | 08/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 7 Achievements:
 * Distinguished key purposes of CloudWatch (metrics/performance) and CloudTrail (audit log).

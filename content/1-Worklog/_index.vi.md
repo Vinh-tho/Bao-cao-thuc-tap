@@ -7,7 +7,7 @@ pre: " <b> 1. </b> "
 ---
 
 
-Dưới đây là nhật ký công việc chi tiết của tôi qua 12 tuần thực hiện chương trình thực tập First Cloud AI Journey:
+Dưới đây là nhật ký công việc chi tiết của tôi qua 10 tuần thực hiện chương trình thực tập First Cloud AI Journey:
 
 **Tuần 1:** [Tìm kiếm nơi thực tập](1.1-week1/)
 
@@ -25,10 +25,6 @@ Dưới đây là nhật ký công việc chi tiết của tôi qua 12 tuần th
 
 **Tuần 8:** [Tìm hiểu Elastic Load Balancer (ELB) và Auto Scaling](1.8-week8/)
 
-**Tuần 9:** [Tìm hiểu AWS CloudFormation và Infrastructure as Code (IaC)](1.9-week9/)
+**Tuần 9:** [Tìm hiểu AWS ECS và Docker cơ bản](1.9-week9/)
 
-**Tuần 10:** [Tìm hiểu AWS ECS và Docker cơ bản](1.10-week10/)
-
-**Tuần 11:** [Tìm hiểu AWS DevOps cơ bản và quy trình CI/CD](1.11-week11/)
-
-**Tuần 12:** [Thực hiện dự án tổng hợp trên AWS và tổng kết đánh giá](1.12-week12/)
+**Tuần 10:** [Thực hiện dự án tổng hợp trên AWS và tổng kết đánh giá](1.10-week10/)

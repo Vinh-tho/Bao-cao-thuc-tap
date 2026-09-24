@@ -14,10 +14,10 @@ pre: " <b> 1.5. </b> "
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | Learn about AWS RDS and DynamoDB databases | 24/05/2026 | 26/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Practice creating and configuring relational databases on AWS RDS | 26/05/2026 | 27/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Connect EC2 instance to RDS database and verify connectivity | 28/05/2026 | 28/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Research database backup procedures and snapshotting on AWS | 29/05/2026 | 29/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Learn about AWS RDS and DynamoDB databases | 20/08/2026 | 22/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Practice creating and configuring relational databases on AWS RDS | 22/08/2026 | 23/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Connect EC2 instance to RDS database and verify connectivity | 24/08/2026 | 24/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Research database backup procedures and snapshotting on AWS | 25/08/2026 | 25/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 5 Achievements:
 * Gained clear differentiation of the use cases for AWS RDS and DynamoDB.

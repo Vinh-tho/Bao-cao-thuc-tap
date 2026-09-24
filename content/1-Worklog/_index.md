@@ -7,7 +7,7 @@ pre: " <b> 1. </b> "
 ---
 
 
-Below is my detailed worklog across the 12 weeks of the First Cloud AI Journey internship program:
+Below is my detailed worklog across the 10 weeks of the First Cloud AI Journey internship program:
 
 **Week 1:** [Looking for an internship place](1.1-week1/)
 
@@ -25,10 +25,6 @@ Below is my detailed worklog across the 12 weeks of the First Cloud AI Journey i
 
 **Week 8:** [Learn about Elastic Load Balancer (ELB) and Auto Scaling](1.8-week8/)
 
-**Week 9:** [Learn about AWS CloudFormation and Infrastructure as Code (IaC)](1.9-week9/)
+**Week 9:** [Learn about AWS ECS and Docker basics](1.9-week9/)
 
-**Week 10:** [Learn about AWS ECS and Docker basics](1.10-week10/)
-
-**Week 11:** [Learn about AWS DevOps basics and CI/CD process](1.11-week11/)
-
-**Week 12:** [Implement a comprehensive project on AWS and evaluation](1.12-week12/)
+**Week 10:** [Implement a comprehensive project on AWS and evaluation](1.10-week10/)

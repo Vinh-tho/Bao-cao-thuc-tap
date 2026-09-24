@@ -15,10 +15,10 @@ pre: " <b> 1.6. </b> "
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | Learn about AWS Lambda and Serverless architecture | 31/05/2026 | 02/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Develop and run Python-based AWS Lambda Functions | 02/06/2026 | 03/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Connect Lambda triggers to S3 and build API Gateway REST routes | 04/06/2026 | 05/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Verify Lambda code execution and analyze logs in CloudWatch Logs | 05/06/2026 | 05/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | Learn about AWS Lambda and Serverless architecture | 27/08/2026 | 29/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | Develop and run Python-based AWS Lambda Functions | 29/08/2026 | 30/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | Connect Lambda triggers to S3 and build API Gateway REST routes | 31/08/2026 | 01/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Verify Lambda code execution and analyze logs in CloudWatch Logs | 01/09/2026 | 01/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 6 Achievements:
 * Gained strong comprehension of event-driven and Serverless models.
