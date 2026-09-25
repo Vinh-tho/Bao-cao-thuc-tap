@@ -22,7 +22,7 @@ To ensure consistency throughout the workshop, we will uniformly use the Region 
 1. Access the [AWS Management Console](https://console.aws.amazon.com/) and log in to your account.
 2. In the top right corner of the navigation bar, select the **Asia Pacific (Singapore) - ap-southeast-1** Region.
 
-![Switch Region to Singapore](/images/5-Workshop/img_A/image1.png)
+![Switch Region to Singapore](/images/5-Workshop/5.1/chuyen%20vung.png)
 
 ---
 
