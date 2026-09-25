@@ -18,7 +18,7 @@ Trong bài thực hành này, chúng ta sẽ tạo một Virtual Private Cloud (
    - **IPv4 CIDR block**: Chọn `IPv4 CIDR manual input` và nhập `10.0.0.0/16`.
 4. Cuộn xuống cuối trang và nhấn **Create VPC**.
 
-![Khởi tạo VPC trên giao diện AWS](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181154.png)
+![Khởi tạo VPC trên giao diện AWS](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot_2026-09-25_181154.png)
 ![Khởi tạo VPC trên giao diện AWS](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181241.png)
 ![Khởi tạo VPC trên giao diện AWS](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181332.png)
 
