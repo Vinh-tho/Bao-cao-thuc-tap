@@ -19,7 +19,7 @@ Bucket này sẽ đóng vai trò như một Web Server tĩnh trả về giao di�
    - **AWS Region**: Chọn `ap-southeast-1 (Singapore)`.
 4. Tại mục **Object Ownership**, chọn `ACLs disabled (recommended)`.
 
-![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3.1/create_frontend_bucket.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181154.png)
 
 ### Bước 2: Cho phép truy cập công cộng (Public Access)
 

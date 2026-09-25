@@ -19,9 +19,9 @@ This Route Table allows resources (like the Load Balancer) to connect directly t
    - **VPC**: Select `Eshop-VPC`
 4. Click **Create route table**.
 
-![Tạo Public Route Table](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191413.png)
-![Tạo Public Route Table](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191439.png)
-![Tạo Public Route Table](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191514.png)
+![Tạo Public Route Table](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191413.png)
+![Tạo Public Route Table](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191439.png)
+![Tạo Public Route Table](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191514.png)
 
 5. Once created, in the details page of `Eshop-Public-RT`, go to the **Routes** tab at the bottom and click **Edit routes**.
 6. Click **Add route**:
@@ -29,16 +29,16 @@ This Route Table allows resources (like the Load Balancer) to connect directly t
    - **Target**: Select **Internet Gateway**, then choose `Eshop-IGW` created in the previous section.
 7. Click **Save changes**.
 
-![Thêm Route ra Internet Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191714.png)
-![Thêm Route ra Internet Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191812.png)
-![Thêm Route ra Internet Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191828.png)
+![Thêm Route ra Internet Gateway](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191714.png)
+![Thêm Route ra Internet Gateway](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191812.png)
+![Thêm Route ra Internet Gateway](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191828.png)
 
 8. Switch to the **Subnet associations** tab and click **Edit subnet associations**.
 9. Check the boxes for your 2 Public Subnets (`Eshop-Public-Subnet-1` and `Eshop-Public-Subnet-2`), then click **Save associations**.
 
-![Liên kết Public Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191854.png)
-![Liên kết Public Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191918.png)
-![Liên kết Public Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191936.png)
+![Liên kết Public Subnets](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191854.png)
+![Liên kết Public Subnets](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191918.png)
+![Liên kết Public Subnets](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20191936.png)
 
 ### Step 2: Create and Configure the Private Route Table
 
@@ -50,8 +50,8 @@ This Route Table ensures the Backend (EC2/ECS) remains isolated from the public 
    - **VPC**: Select `Eshop-VPC`
 3. Click **Create route table**.
 
-![Tạo Private Route Table](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192654.png)
-![Tạo Private Route Table](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192703.png)
+![Tạo Private Route Table](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192654.png)
+![Tạo Private Route Table](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192703.png)
 
 4. Open the details for `Eshop-Private-RT`, go to the **Routes** tab, and click **Edit routes**.
 5. Click **Add route**:
@@ -59,15 +59,15 @@ This Route Table ensures the Backend (EC2/ECS) remains isolated from the public 
    - **Target**: Select **NAT Gateway**, then choose `Eshop-NAT-GW`.
 6. Click **Save changes**.
 
-![Thêm Route ra NAT Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192718.png)
-![Thêm Route ra NAT Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192752.png)
-![Thêm Route ra NAT Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192810.png)
+![Thêm Route ra NAT Gateway](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192718.png)
+![Thêm Route ra NAT Gateway](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192752.png)
+![Thêm Route ra NAT Gateway](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192810.png)
 
 7. Switch to the **Subnet associations** tab and click **Edit subnet associations**.
 8. Check the boxes for your 2 Private Subnets (`Eshop-Private-Subnet-1` and `Eshop-Private-Subnet-2`), then click **Save associations**.
 
-![Liên kết Private Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192837.png)
-![Liên kết Private Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192854.png)
-![Liên kết Private Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192909.png)
+![Liên kết Private Subnets](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192837.png)
+![Liên kết Private Subnets](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192854.png)
+![Liên kết Private Subnets](/images/5-Workshop/5.1/5.1.3/Screenshot%202026-09-25%20192909.png)
 
 *🎉 **Congratulations!** You have successfully set up the fundamental networking infrastructure (VPC, Subnets, Gateways, Route Tables) in a highly secure and AWS Best Practice compliant manner for the E-shop project.*

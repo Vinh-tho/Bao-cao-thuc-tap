@@ -14,16 +14,16 @@ pre: " <b> 5.1.2. </b> "
 2. Nhấn nút **Create internet gateway**.
 3. Tại mục *Name tag*, nhập `Eshop-IGW` và nhấn nút **Create internet gateway**.
 
-![Tạo Internet Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20185758.png)
-![Tạo Internet Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20185838.png)
-![Tạo Internet Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20185900.png)
+![Tạo Internet Gateway](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20185758.png)
+![Tạo Internet Gateway](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20185838.png)
+![Tạo Internet Gateway](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20185900.png)
 
 4. Sau khi tạo xong, trạng thái của IGW sẽ là *Detached* (chưa gắn vào đâu). Nhấn nút **Actions** ở góc trên bên phải và chọn **Attach to VPC**.
 5. Chọn `Eshop-VPC` (đã tạo ở bài 5.1.1) từ danh sách xổ xuống và nhấn **Attach internet gateway**.
 
-![Gắn Internet Gateway vào VPC](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20185954.png)
-![Gắn Internet Gateway vào VPC](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190013.png)
-![Gắn Internet Gateway vào VPC](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190042.png)
+![Gắn Internet Gateway vào VPC](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20185954.png)
+![Gắn Internet Gateway vào VPC](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190013.png)
+![Gắn Internet Gateway vào VPC](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190042.png)
 
 ### Bước 2: Khởi tạo NAT Gateway
 
@@ -37,8 +37,8 @@ NAT Gateway bắt buộc phải được đặt ở **Public Subnet** và cần 
 3. Tại mục **Elastic IP allocation ID**, nhấn nút **Allocate Elastic IP** để AWS tự động cấp phát một địa chỉ IP công cộng tĩnh cho NAT Gateway này.
 4. Kéo xuống dưới cùng và nhấn **Create NAT gateway**.
 
-![Khởi tạo NAT Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190518.png)
-![Khởi tạo NAT Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190720.png)
-![Khởi tạo NAT Gateway](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190803.png)
+![Khởi tạo NAT Gateway](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190518.png)
+![Khởi tạo NAT Gateway](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190720.png)
+![Khởi tạo NAT Gateway](/images/5-Workshop/5.1/5.1.2/Screenshot%202026-09-25%20190803.png)
 
 *(Lưu ý: Quá trình tạo NAT Gateway có thể mất vài phút. Trạng thái sẽ chuyển từ `Pending` sang `Available` khi quá trình hoàn tất. Bạn có thể sang bài tiếp theo trong lúc chờ đợi).*
