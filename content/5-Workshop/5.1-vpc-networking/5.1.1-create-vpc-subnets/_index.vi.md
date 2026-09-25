@@ -18,7 +18,9 @@ Trong bài thực hành này, chúng ta sẽ tạo một Virtual Private Cloud (
    - **IPv4 CIDR block**: Chọn `IPv4 CIDR manual input` và nhập `10.0.0.0/16`.
 4. Cuộn xuống cuối trang và nhấn **Create VPC**.
 
-![Khởi tạo VPC trên giao diện AWS](/images/5-Workshop/5.1.1/create_vpc.png)
+![Khởi tạo VPC trên giao diện AWS](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181154.png)
+![Khởi tạo VPC trên giao diện AWS](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181241.png)
+![Khởi tạo VPC trên giao diện AWS](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181332.png)
 
 ### Bước 2: Tạo các Subnets (Mạng con)
 
@@ -31,21 +33,25 @@ Chúng ta sẽ tạo tổng cộng 4 Subnets (2 Public và 2 Private) trải dà
    - **Availability Zone**: `ap-southeast-1a`
    - **IPv4 CIDR block**: `10.0.1.0/24`
 
-![Tạo Public Subnet 1](/images/5-Workshop/5.1.1/create_public_subnet_1.png)
+![Tạo Public Subnet 1](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20182923.png)
+![Tạo Public Subnet 1](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20183054.png)
+![Tạo Public Subnet 1](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20183104.png)
 
 4. Nhấn vào nút **Add new subnet** để tiếp tục tạo **Public Subnet 2** ở một AZ khác:
    - **Subnet name**: `Eshop-Public-Subnet-2`
    - **Availability Zone**: `ap-southeast-1b`
    - **IPv4 CIDR block**: `10.0.2.0/24`
 
-![Tạo Public Subnet 2](/images/5-Workshop/5.1.1/create_public_subnet_2.png)
+![Tạo Public Subnet 2](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20183149.png)
 
-5. Tiếp tục nhấn **Add new subnet** để tạo 2 Private Subnets tương tự:
+1. Tiếp tục nhấn **Add new subnet** để tạo 2 Private Subnets tương tự:
    - **Private Subnet 1**: Name = `Eshop-Private-Subnet-1`, AZ = `ap-southeast-1a`, CIDR = `10.0.3.0/24`.
    - **Private Subnet 2**: Name = `Eshop-Private-Subnet-2`, AZ = `ap-southeast-1b`, CIDR = `10.0.4.0/24`.
-6. Sau khi điền đủ 4 Subnets, cuộn xuống và nhấn **Create subnet**.
+2. Sau khi điền đủ 4 Subnets, cuộn xuống và nhấn **Create subnet**.
 
-![Tạo các Private Subnets](/images/5-Workshop/5.1.1/create_private_subnets.png)
+![Tạo các Private Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20183252.png)
+![Tạo các Private Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20183318.png)
+![Tạo các Private Subnets](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20183405.png)
 
 ### Bước 3: Bật tự động cấp phát IP công cộng cho Public Subnet
 
@@ -56,6 +62,8 @@ Chúng ta sẽ tạo tổng cộng 4 Subnets (2 Public và 2 Private) trải dà
 3. Tại mục *Auto-assign IP settings*, tick chọn ô **Enable auto-assign public IPv4 address**.
 4. Nhấn **Save**.
 
-![Bật Auto-assign public IP](/images/5-Workshop/5.1.1/enable_auto_assign_ip.png)
+![Bật Auto-assign public IP](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20184711.png)
+![Bật Auto-assign public IP](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20184734.png)
+![Bật Auto-assign public IP](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20184829.png)
 
 *(Lưu ý: Lặp lại Bước 3 cho cả `Eshop-Public-Subnet-2`)*.

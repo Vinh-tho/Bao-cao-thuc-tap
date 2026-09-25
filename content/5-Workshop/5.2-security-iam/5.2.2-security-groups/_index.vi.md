@@ -21,14 +21,17 @@ pre: " <b> 5.2.2. </b> "
    - **Description**: `Allow HTTP and HTTPS traffic from Internet to ALB`
    - **VPC**: Nhấn dấu `X` để xóa VPC mặc định, sau đó chọn `Eshop-VPC` của chúng ta.
 
-![Cấu hình thông tin ALB Security Group](/images/5-Workshop/5.2.2/create_alb_sg_info.png)
+![Cấu hình thông tin ALB Security Group](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20210249.png)
+![Cấu hình thông tin ALB Security Group](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20210335.png)
 
 4. Tại mục **Inbound rules**, nhấn **Add rule** 2 lần để thêm các cổng kết nối web:
    - Rule 1: Type = `HTTP`, Source = `Anywhere-IPv4` (`0.0.0.0/0`)
    - Rule 2: Type = `HTTPS`, Source = `Anywhere-IPv4` (`0.0.0.0/0`)
 5. Giữ nguyên **Outbound rules** (cho phép All traffic) và nhấn nút **Create security group** ở cuối trang.
 
-![Thêm Inbound rules cho ALB](/images/5-Workshop/5.2.2/create_alb_sg_rules.png)
+![Thêm Inbound rules cho ALB](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20210441.png)
+![Thêm Inbound rules cho ALB](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20210507.png)
+![Thêm Inbound rules cho ALB](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20210519.png)
 
 ### Bước 2: Tạo Security Group cho Backend (EC2 / ECS Task)
 
@@ -40,13 +43,16 @@ Bây giờ chúng ta tạo SG cho Backend. Điểm quan trọng nhất ở đây
    - **Description**: `Allow traffic only from ALB`
    - **VPC**: Chọn `Eshop-VPC`.
 
-![Cấu hình thông tin Backend Security Group](/images/5-Workshop/5.2.2/create_backend_sg_info.png)
+![Cấu hình thông tin Backend Security Group](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20211010.png)
+![Cấu hình thông tin Backend Security Group](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20211035.png)
 
 3. Tại mục **Inbound rules**, nhấn **Add rule**:
    - Type = `All TCP` (để hỗ trợ Dynamic Port Mapping của ECS trên EC2).
    - Source = Chọn `Custom`, sau đó gõ chữ `sg-` vào ô tìm kiếm và chọn `Eshop-ALB-SG` từ danh sách xổ xuống.
 
-![Thêm Inbound rule cho Backend từ ALB SG](/images/5-Workshop/5.2.2/create_backend_sg_rules.png)
+![Thêm Inbound rule cho Backend từ ALB SG](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20211159.png)
+![Thêm Inbound rule cho Backend từ ALB SG](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20211235.png)
+![Thêm Inbound rule cho Backend từ ALB SG](/Bao-cao-thuc-tap/images/5-Workshop/5.2/5.2.2/Screenshot%202026-09-25%20211250.png)
 
 4. Nhấn **Create security group**.
 
