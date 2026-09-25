@@ -18,7 +18,9 @@ In an E-shop system, product images must be uploaded quickly and displayed smoot
    - **AWS Region**: Select `ap-southeast-1 (Singapore)`.
 3. Under **Object Ownership**, select `ACLs disabled (recommended)`.
 
-![Create S3 Bucket for Media](/images/5-Workshop/5.3.2/create_media_bucket.png)
+![Khởi tạo S3 Bucket cho Media](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20225917.png)
+![Khởi tạo S3 Bucket cho Media](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230015.png)
+![Khởi tạo S3 Bucket cho Media](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230026.png)
 
 ### Step 2: Allow Public Access
 
@@ -29,7 +31,9 @@ Since product images need to be visible to customers on their browsers, we must 
 3. Check the acknowledgment box saying *"I acknowledge that the current settings might result in this bucket and the objects within becoming public."*
 4. Scroll to the bottom and click **Create bucket**.
 
-![Unblock Public Access for Media Bucket](/images/5-Workshop/5.3.2/unblock_public_access_media.png)
+![Mở quyền Public Access cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230049.png)
+![Mở quyền Public Access cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230105.png)
+![Mở quyền Public Access cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230125.png)
 
 ### Step 3: Configure Bucket Policy for Image Viewing
 
@@ -52,6 +56,12 @@ Since product images need to be visible to customers on their browsers, we must 
 }
 ```
 4. Click **Save changes**.
+
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003820.png)
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003836.png)
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003906.png)
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003922.png)
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003945.png)
 
 ### Step 4: Configure CORS (Cross-Origin Resource Sharing)
 
@@ -79,6 +89,9 @@ Because the Frontend UI (hosted in the Bucket from 5.3.1) will request images fr
 ```
 3. Click **Save changes**.
 
-![Configure CORS for Media Bucket](/images/5-Workshop/5.3.2/configure_cors_media.png)
+![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20004533.png)
+![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20004601.png)
+![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20004617.png)
+![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20004643.png)
 
 Now, your image repository is fully ready to serve the E-shop!

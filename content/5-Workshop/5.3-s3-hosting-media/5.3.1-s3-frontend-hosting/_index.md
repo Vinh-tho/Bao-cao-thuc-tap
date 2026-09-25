@@ -19,7 +19,10 @@ This bucket will act as a static Web Server delivering the UI to users when they
    - **AWS Region**: Select `ap-southeast-1 (Singapore)`.
 4. Under **Object Ownership**, select `ACLs disabled (recommended)`.
 
-![Create S3 Bucket for Frontend](/images/5-Workshop/5.3.1/create_frontend_bucket.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221141.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221231.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221743.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221805.png)
 
 ### Step 2: Allow Public Access
 
@@ -29,7 +32,9 @@ Since this is a customer-facing website, we need to allow public access.
 3. Check the acknowledgment box saying *"I acknowledge that the current settings might result in this bucket and the objects within becoming public."* to confirm.
 4. Scroll to the bottom and click **Create bucket**.
 
-![Turn off Block Public Access](/images/5-Workshop/5.3.1/unblock_public_access.png)
+![Tắt Block Public Access](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221957.png)
+![Tắt Block Public Access](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20222020.png)
+![Tắt Block Public Access](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20222034.png)
 
 ### Step 3: Enable Static Website Hosting
 
@@ -42,7 +47,12 @@ Since this is a customer-facing website, we need to allow public access.
    - **Error document**: `error.html`
 6. Click **Save changes**.
 
-![Enable Static Website Hosting](/images/5-Workshop/5.3.1/enable_static_hosting.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223242.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223316.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223334.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223358.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223406.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223426.png)
 
 ### Step 4: Add a Bucket Policy to Grant Read Permissions
 
@@ -65,3 +75,9 @@ Even though "Block Public Access" is off, you must write a Policy to explicitly 
         }
     ]
 }
+```
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223923.png)
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223946.png)
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20224038.png)
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20224143.png)
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20224157.png)

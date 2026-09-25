@@ -18,7 +18,9 @@ Trong hệ thống E-shop, hình ảnh sản phẩm cần được tải lên nh
    - **AWS Region**: Chọn `ap-southeast-1 (Singapore)`.
 3. Tại mục **Object Ownership**, chọn `ACLs disabled (recommended)`.
 
-![Khởi tạo S3 Bucket cho Media](/images/5-Workshop/5.3.2/create_media_bucket.png)
+![Khởi tạo S3 Bucket cho Media](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20225917.png)
+![Khởi tạo S3 Bucket cho Media](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230015.png)
+![Khởi tạo S3 Bucket cho Media](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230026.png)
 
 ### Bước 2: Cho phép truy cập công cộng (Public Access)
 
@@ -29,7 +31,9 @@ Vì hình ảnh sản phẩm cần được khách hàng nhìn thấy trên trì
 3. Tích vào ô xác nhận *"I acknowledge that the current settings might result in this bucket and the objects within becoming public."*
 4. Cuộn xuống dưới cùng và nhấn **Create bucket**.
 
-![Mở quyền Public Access cho Media Bucket](/images/5-Workshop/5.3.2/unblock_public_access_media.png)
+![Mở quyền Public Access cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230049.png)
+![Mở quyền Public Access cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230105.png)
+![Mở quyền Public Access cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-25%20230125.png)
 
 ### Bước 3: Cấu hình Bucket Policy để cho phép xem ảnh
 
@@ -52,6 +56,12 @@ Vì hình ảnh sản phẩm cần được khách hàng nhìn thấy trên trì
 }
 ```
 4. Nhấn **Save changes**. 
+
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003820.png)
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003836.png)
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003906.png)
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003922.png)
+![Cấu hình Bucket Policy để cho phép xem ảnh](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20003945.png)
 
 ### Bước 4: Cấu hình CORS (Cross-Origin Resource Sharing)
 
@@ -79,6 +89,9 @@ Vì giao diện Frontend (ở Bucket 5.3.1) sẽ gọi ảnh từ Bucket Media n
 ```
 3. Nhấn **Save changes**. 
 
-![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3.2/configure_cors_media.png)
+![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20004533.png)
+![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20004601.png)
+![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20004617.png)
+![Cấu hình CORS cho Media Bucket](/images/5-Workshop/5.3/5.3.2/Screenshot%202026-09-26%20004643.png)
 
 Bây giờ, kho lưu trữ hình ảnh của bạn đã sẵn sàng phục vụ cho E-shop!

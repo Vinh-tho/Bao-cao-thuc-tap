@@ -19,7 +19,10 @@ Bucket này sẽ đóng vai trò như một Web Server tĩnh trả về giao di�
    - **AWS Region**: Chọn `ap-southeast-1 (Singapore)`.
 4. Tại mục **Object Ownership**, chọn `ACLs disabled (recommended)`.
 
-![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181154.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221141.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221231.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221743.png)
+![Khởi tạo S3 Bucket cho Frontend](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221805.png)
 
 ### Bước 2: Cho phép truy cập công cộng (Public Access)
 
@@ -29,7 +32,9 @@ Vì đây là web hiển thị cho khách hàng, chúng ta cần mở quyền tr
 3. Tích vào ô xác nhận *"I acknowledge that the current settings might result in this bucket and the objects within becoming public."* để đồng ý mở khóa.
 4. Kéo xuống cuối cùng và nhấn **Create bucket**.
 
-![Tắt Block Public Access](/images/5-Workshop/5.3.1/unblock_public_access.png)
+![Tắt Block Public Access](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20221957.png)
+![Tắt Block Public Access](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20222020.png)
+![Tắt Block Public Access](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20222034.png)
 
 ### Bước 3: Bật tính năng Static Website Hosting
 
@@ -42,7 +47,12 @@ Vì đây là web hiển thị cho khách hàng, chúng ta cần mở quyền tr
    - **Error document**: `error.html`
 6. Nhấn **Save changes**.
 
-![Bật Static Website Hosting](/images/5-Workshop/5.3.1/enable_static_hosting.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223242.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223316.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223334.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223358.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223406.png)
+![Bật Static Website Hosting](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223426.png)
 
 ### Bước 4: Thêm Bucket Policy để cấp quyền đọc file
 
@@ -51,6 +61,7 @@ Dù đã tắt "Block Public Access", bạn vẫn phải viết luật (Policy) 
 1. Chuyển sang tab **Permissions**.
 2. Cuộn xuống mục **Bucket policy**, nhấn **Edit**.
 3. Dán đoạn JSON sau vào ô trống (Nhớ thay thế `tên-bucket-của-bạn` bằng tên Bucket thực tế):
+4. Nhấn **Save changes**.
 
 ```json
 {
@@ -65,3 +76,9 @@ Dù đã tắt "Block Public Access", bạn vẫn phải viết luật (Policy) 
         }
     ]
 }
+```
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223923.png)
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20223946.png)
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20224038.png)
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20224143.png)
+![Thêm Bucket Policy để cấp quyền đọc file](/images/5-Workshop/5.3/5.3.1/Screenshot%202026-09-25%20224157.png)

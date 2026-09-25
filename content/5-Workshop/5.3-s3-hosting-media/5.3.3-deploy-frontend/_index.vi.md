@@ -8,31 +8,43 @@ pre: " <b> 5.3.3. </b> "
 
 # 5.3.3. Tải mã nguồn Frontend và tài nguyên tĩnh lên S3
 
-Bây giờ các kho lưu trữ đã sẵn sàng, chúng ta sẽ tải mã nguồn giao diện web (HTML, CSS, JS) lên S3 Bucket dành cho Frontend để trang web chính thức hoạt động.
+Sau khi hoàn tất cấu hình các S3 Bucket, bước tiếp theo là tải mã nguồn giao diện web (đã được biên dịch sang định dạng HTML, CSS, JS tĩnh) lên Bucket Frontend để triển khai ứng dụng.
 
-### Bước 1: Chuẩn bị mã nguồn Frontend
+### Bước 1: Chuẩn bị và biên dịch (Build) mã nguồn Frontend
 
-Trong thực tế, bạn sẽ có một thư mục build chứa mã nguồn. Nếu bạn đang thực hành theo Workshop này, hãy tải mã nguồn mẫu tại kho lưu trữ GitHub của dự án:
+Mã nguồn tổng thể của dự án được lưu trữ và quản lý tập trung trên nền tảng GitHub tại địa chỉ:  
+`https://github.com/Vinh-tho/Eshop.git`
 
-1. Truy cập link: `[https://github.com/YourOrganization/aws-eshop-workshop](https://github.com/YourOrganization/aws-eshop-workshop)` *(Link minh họa)*.
-2. Tải mã nguồn về máy và giải nén. Bạn sẽ thấy một thư mục tên là `frontend-dist` chứa các file như `index.html`, `error.html`, `style.css` và thư mục `js/`.
+Quá trình triển khai bắt đầu từ việc tải (clone) mã nguồn về môi trường cục bộ. Sau khi di chuyển vào thư mục chứa mã nguồn Frontend (`eShop.Web`), tiến hành thực thi các lệnh cài đặt và biên dịch (`npm install` và `npm run build` hoặc `ng build`). 
+Hệ thống sẽ tự động tối ưu, đóng gói toàn bộ dự án và xuất ra các tài nguyên tĩnh tại thư mục `dist`. Thư mục này bao gồm các tệp tin cấu trúc và giao diện cần thiết như `index.html`, các tệp `.js`, `.css` và thư mục `assets`.
 
-### Bước 2: Tải file lên Frontend Bucket
+![Chuẩn bị và biên dịch (Build) mã nguồn Frontend](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20011303.png)
 
-1. Mở AWS Console, truy cập dịch vụ **S3** và click vào Bucket bạn đã tạo ở bài 5.3.1 (ví dụ: `eshop-frontend-nguyenvan-a`).
-2. Ở tab **Objects**, nhấn nút **Upload**.
-3. Nhấn nút **Add files** để tải lên các file riêng lẻ (`index.html`, `error.html`, `style.css`).
-4. Nhấn nút **Add folder** để tải lên toàn bộ thư mục `js/` (và các thư mục khác nếu có).
-5. Cuộn xuống dưới cùng và nhấn nút **Upload**. Chờ thanh tiến trình đạt 100%.
-6. Sau khi hoàn tất, nhấn **Close** để quay lại danh sách Objects.
+### Bước 2: Tải tài nguyên lên S3 Bucket
 
-![Upload mã nguồn lên S3](/images/5-Workshop/5.3.3/upload_frontend_files.png)
+1. Truy cập dịch vụ **S3** trên giao diện quản trị AWS Console và mở Bucket đã được khởi tạo cho Frontend (cụ thể là `eshop-frontend-eshop-web`).
+2. Tại tab **Objects**, chọn nút **Upload** để chuyển sang giao diện tải lên dữ liệu.
+3. Tại màn hình Upload, tiến hành đưa các tài nguyên tĩnh (vừa được biên dịch ở Bước 1) lên hệ thống. Người triển khai có thể sử dụng một trong hai phương pháp:
+   * **Phương pháp 1 (Kéo thả - Khuyến nghị):** Mở thư mục chứa mã nguồn biên dịch trên máy tính (đường dẫn cụ thể là `dist/e-shop.web/browser`). Bôi đen toàn bộ các tệp tin (bao gồm `index.html`, các tệp `.js`, `.css`...) và thư mục con, sau đó kéo và thả trực tiếp vào vùng *"Drag and drop files and folders..."* trên giao diện AWS.
+   * **Phương pháp 2 (Sử dụng nút chức năng):** Nhấn nút **Add files** để chọn và tải lên toàn bộ các tệp tin lẻ (`index.html`, các tệp `.js`, `.css`). Trường hợp có các thư mục con (ví dụ: `assets`), tiếp tục nhấn nút **Add folder** để tải lên.
+4. **Yêu cầu kỹ thuật:** Cần đảm bảo tệp `index.html` được tải lên nằm ngay tại vị trí thư mục gốc của Bucket (không bị bọc bên trong một thư mục khác) để tính năng Static Website Hosting có thể nhận diện và khởi chạy chính xác.
+5. Cuộn xuống cuối trang, nhấn nút **Upload** màu cam để bắt đầu tiến trình. Chờ đợi tiến trình hoàn tất 100%, sau đó nhấn **Close** để kiểm tra lại danh sách các đối tượng (Objects) đã xuất hiện trong Bucket.
 
-### Bước 3: Truy cập Web E-shop của bạn
+![Upload mã nguồn Frontend lên S3 Bucket](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20011816.png)
+![Upload mã nguồn Frontend lên S3 Bucket](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20011824.png)
+![Upload mã nguồn Frontend lên S3 Bucket](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20012427.png)
+![Upload mã nguồn Frontend lên S3 Bucket](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20012508.png)
+![Upload mã nguồn Frontend lên S3 Bucket](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20012549.png)
+![Upload mã nguồn Frontend lên S3 Bucket](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20012620.png)
+![Upload mã nguồn Frontend lên S3 Bucket](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20012637.png)
+![Upload mã nguồn Frontend lên S3 Bucket](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20012658.png)
 
-1. Tại trang chi tiết của Frontend Bucket, chuyển sang tab **Properties**.
-2. Cuộn xuống dưới cùng tới mục **Static website hosting**.
-3. Bạn sẽ thấy một đường link dưới dòng **Bucket website endpoint** (ví dụ: `[http://eshop-frontend-...s3-website-ap-southeast-1.amazonaws.com](http://eshop-frontend-...s3-website-ap-southeast-1.amazonaws.com)`).
-4. Click vào đường link đó. Trình duyệt sẽ mở ra và... **Bùm!** Giao diện Web E-shop của bạn đã chính thức chạy trên Internet.
+### Bước 3: Kiểm tra hoạt động của website
 
-![Truy cập S3 Website Endpoint](/images/5-Workshop/5.3.3/visit_s3_endpoint.png)
+1. Tại trang quản lý chi tiết của Bucket `eshop-frontend-eshop-web`, chuyển sang tab **Properties**.
+2. Di chuyển đến mục **Static website hosting** và truy cập vào đường dẫn được AWS cung cấp tại phần **Bucket website endpoint** (ví dụ: `http://eshop-frontend-eshop-web.s3-website-ap-southeast-1.amazonaws.com`).
+3. Trình duyệt sẽ điều hướng đến địa chỉ trên và hiển thị giao diện của hệ thống E-shop, xác nhận quá trình triển khai Frontend lên dịch vụ S3 đã thành công.
+
+![Truy cập S3 Website Endpoint](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20013206.png)
+![Truy cập S3 Website Endpoint](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20014405.png)
+![Truy cập S3 Website Endpoint](/images/5-Workshop/5.3/5.3.3/Screenshot%202026-09-26%20014423.png)
