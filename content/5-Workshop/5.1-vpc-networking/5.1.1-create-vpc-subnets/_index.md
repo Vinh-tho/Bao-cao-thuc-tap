@@ -18,7 +18,7 @@ In this lab, we will create a Virtual Private Cloud (VPC) to serve as the privat
    - **IPv4 CIDR block**: Select `IPv4 CIDR manual input` and enter `10.0.0.0/16`.
 4. Scroll to the bottom of the page and click **Create VPC**.
 
-![Create VPC on AWS Console](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181154.png)
+![Create VPC on AWS Console](/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181154.png)
 ![Create VPC on AWS Console](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181241.png)
 ![Create VPC on AWS Console](/Bao-cao-thuc-tap/images/5-Workshop/5.1/5.1.1/Screenshot%202026-09-25%20181332.png)
 
