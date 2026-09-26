@@ -1,40 +1,52 @@
 ---
-title: "Create ECS Cluster"
+title: "Creating the ECS Cluster"
 date: 2026-09-24
 weight: 3
 chapter: false
 pre: " <b> 5.4.3. </b> "
 ---
 
-# 5.4.3. Initializing an ECS Cluster (EC2 Launch Type) & ECS Capacity Provider
+# 5.4.3. Creating an ECS Cluster (EC2 Launch Type) & ECS Capacity Provider
 
-An **Amazon ECS Cluster** is a logical grouping used to manage Docker Containers. By connecting this Cluster to the Auto Scaling Group (ASG) created in section 5.4.2 via a **Capacity Provider**, ECS gains the authority to automatically request new EC2 instances when containers need more resources (RAM/CPU) to handle a massive influx of orders.
+An **Amazon ECS Cluster** is the logical environment used to manage and orchestrate Docker Containers. By integrating this Cluster with the Auto Scaling Group (ASG) (set up in section 5.4.2) through a **Capacity Provider**, the ECS service is granted the ability to automatically scale, requesting EC2 to provision additional servers whenever the Containers need more resources (RAM/CPU) to handle a sudden spike in traffic.
 
-### Step 1: Initialize the ECS Cluster
+### Step 1: Create the ECS Cluster
 
-1. Navigate to the **ECS (Elastic Container Service)** console on AWS.
-2. In the left menu, select **Clusters** and click the **Create cluster** button.
-3. Under **Cluster configuration**:
-   - **Cluster name**: `Eshop-ECS-Cluster`
-4. Under **Infrastructure**:
-   - AWS Fargate (Serverless) is selected by default. However, our architecture uses EC2 to optimize costs according to project requirements.
-   - Check the box for **Amazon EC2 instances**.
-5. As soon as you select EC2, the **Auto Scaling group (ASG)** section will appear.
-   - Select `Eshop-ECS-ASG` (the ASG we created in section 5.4.2) from the dropdown list.
-   - Selecting the ASG directly here allows AWS to automatically create a **Capacity Provider** for you.
-6. Scroll to the bottom and click **Create**.
+Since a newly created AWS account typically does not yet have the Service-Linked Roles for ECS initialized, creating the Cluster together with the Auto Scaling Group right from the start can cause an "Unable to assume the service linked role" error. Therefore, the process is split into two phases:
 
-![Initialize ECS Cluster connected to ASG](/images/5-Workshop/5.4.3/create_ecs_cluster.png)
+1. Access the **ECS (Elastic Container Service)** service on the AWS Console interface.
+2. In the left navigation menu, select **Clusters** and click **Create cluster**.
+3. In the **Cluster configuration** section: enter `Eshop-ECS-Cluster` as the **Cluster name**.
+4. In the **Infrastructure** section: keep the default **Fargate only** option so the system automatically generates the required security Roles.
+5. Click **Create** to complete the basic cluster creation.
 
-### Step 2: Verify the Capacity Provider and EC2 Instances
+![Creating ECS Cluster](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20064530.png)
+![Creating ECS Cluster](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20064602.png)
+![Creating ECS Cluster](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20070803.png)
+![Creating ECS Cluster](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20070815.png)
+![Creating ECS Cluster](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20070844.png)
 
-Once the Cluster is successfully created (which takes about 1-2 minutes), we need to confirm that ECS has recognized the EC2 instances as its "workers."
+### Step 2: Integrate the Auto Scaling Group (Capacity Provider)
 
-1. Click on the `Eshop-ECS-Cluster` name to enter its details page.
+1. Go to the detail page of the `Eshop-ECS-Cluster` you just created.
 2. Switch to the **Infrastructure** tab.
-3. Scroll down to the **Capacity providers** section. You should see a newly auto-created provider (usually sharing the name of the ASG, with an *Active* status).
-4. Scroll further down to the **Container instances** section. You should see **2 EC2 instances** with an *Active* status (These are the 2 servers provisioned by the ASG in section 5.4.2, which have successfully registered themselves into the ECS Cluster).
+3. In the **Capacity providers** section, click **Create**.
+4. Enter the following information:
+   - **Scaling type**: Select **EC2 Auto Scaling** to link with the manually created ASG.
+   - **Capacity provider name**: Enter `Eshop-ECS-CP`.
+   - **Auto Scaling group**: Select `Eshop-ECS-ASG` (the server group created in section 5.4.2).
+5. Click **Create** and wait for the status to change to *Active*. This action grants the ECS cluster permission to use the EC2 servers managed by the ASG.
 
-![Verify ECS Cluster infrastructure](/images/5-Workshop/5.4.3/verify_ecs_infrastructure.png)
+![Creating ECS Cluster linked with ASG](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20071101.png)
+![Creating ECS Cluster linked with ASG](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20071547.png)
+![Creating ECS Cluster linked with ASG](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20071619.png)
 
-Your Backend server cluster infrastructure is now ready! In the next section, we will set up the Load Balancer "Gateway" to direct customers into this cluster.
+
+### Step 3: Verify the EC2 Instance Infrastructure
+
+1. Still in the **Infrastructure** tab, scroll down to the **Container instances** section.
+2. The system should show **2 EC2 servers** running with an *Active* status. This confirms that the EC2 servers have successfully and automatically joined the ECS cluster through the User Data configuration script.
+
+![Checking ECS Cluster Infrastructure](/images/5-Workshop/5.4/5.4.3/Screenshot%202026-09-26%20071649.png)
+
+The Backend server cluster infrastructure has now been fully prepared. In the next section, the system will be integrated with a Load Balancer, which will be responsible for routing incoming user traffic to this server cluster.

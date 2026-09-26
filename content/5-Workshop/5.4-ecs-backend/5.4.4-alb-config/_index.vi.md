@@ -1,60 +1,63 @@
 ---
-title: "Định nghĩa ECS Task & Service"
-date: 2026-09-24
-weight: 5
+title: "Cấu hình ALB & Target Group"
+date: 2026-09-26
+weight: 4
 chapter: false
-pre: " <b> 5.4.5. </b> "
+pre: " <b> 5.4.4. </b> "
 ---
 
-# 5.4.5. Định nghĩa ECS Task, Khởi tạo Service & Kết nối ALB
+# 5.4.4. Cấu hình Application Load Balancer (ALB) & Target Group
 
-Sau khi đã có hạ tầng máy chủ (ECS Cluster) và cửa ngõ giao tiếp (Load Balancer), bước cuối cùng là định nghĩa cách chạy Container của bạn (Task Definition) và ra lệnh cho hệ thống duy trì nó chạy liên tục (Service).
+Application Load Balancer (ALB) đóng vai trò là cửa ngõ duy nhất tiếp nhận các luồng truy cập từ người dùng và phân phối đều tải trọng xuống các Container đang chạy trên cụm máy chủ ECS. Để ALB có thể phân phối luồng dữ liệu chính xác, một Target Group (Nhóm đích) cần được khởi tạo trước.
 
-### Bước 1: Tạo Task Definition (Bản thiết kế Container)
+### Bước 1: Khởi tạo Target Group (Nhóm đích)
 
-1. Truy cập dịch vụ **ECS**, ở menu bên trái chọn **Task definitions** và nhấn **Create new task definition**.
-2. **Task definition family**: Đặt tên là `Eshop-Backend-Task`.
-3. Tại phần **Infrastructure requirements**:
-   - **Launch type**: Chọn **Amazon EC2 instances**.
-   - **Network mode**: Chọn **bridge** (Điều này rất quan trọng để ECS có thể tự động gán port ngẫu nhiên (Dynamic Port Mapping) trên EC2 tránh xung đột).
-   - **Task size**: Memory = `512`, CPU = `0.5 vCPU`.
-   - **Task role & Task execution role**: Chọn `Eshop-ECS-Task-Execution-Role` (Đã tạo ở bài 5.2.1).
-4. Tại phần **Container - 1**:
-   - **Name**: `eshop-backend-container`
-   - **Image URI**: Dán đường dẫn URI của Image bạn đã đẩy lên ECR ở bài 5.4.1 (ví dụ: `123456789.dkr.ecr.ap-southeast-1.amazonaws.com/eshop-backend:latest`).
-   - **Port mappings**: 
-     - **Container port**: `80` (Hoặc port mà code Backend của bạn đang lắng nghe, ví dụ 8080/3000).
-     - **Host port**: Để trống hoặc nhập `0` (Để kích hoạt Dynamic Port Mapping).
-     - **Protocol**: `TCP`.
-5. Cuộn xuống cuối và nhấn **Create**.
+1. Truy cập dịch vụ **EC2**, cuộn xuống menu bên trái tìm phần **Load Balancing** và chọn **Target Groups**.
+2. Nhấn nút **Create target group**.
+3. Tại phần **Basic configuration**:
+   - **Choose a target type**: Chọn **Instances**. (Do sử dụng chế độ mạng `bridge` trên ECS, Amazon ECS sẽ tự động đăng ký các máy chủ EC2 vào nhóm này cùng với các port ngẫu nhiên).
+   - **Target group name**: Nhập `Eshop-Backend-TG`.
+   - **Protocol**: `HTTP`.
+   - **Port**: `80`.
+   - **VPC**: Chọn **`Eshop-VPC`** (mạng ảo của dự án).
+4. Tại phần **Health checks** (Kiểm tra sức khỏe):
+   - **Health check protocol**: `HTTP`.
+   - **Health check path**: `/` (Hoặc đường dẫn API health check của Backend nếu có).
+5. Nhấn **Next** để chuyển sang bước tiếp theo.
+6. Tại màn hình *Register targets*, bỏ qua việc chọn máy chủ (ECS Service sẽ tự động thực hiện việc đăng ký này ở phần 5.4.5).
+7. Cuộn xuống cuối trang và nhấn **Create target group**.
 
-![Tạo ECS Task Definition](/images/5-Workshop/5.4.5/create_task_definition.png)
+![Khởi tạo Target Group](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20092628.png)
+![Khởi tạo Target Group](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20093045.png)
+![Khởi tạo Target Group](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20093110.png)
+![Khởi tạo Target Group](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20093205.png)
 
-### Bước 2: Khởi tạo ECS Service và Kết nối Load Balancer
+### Bước 2: Khởi tạo Application Load Balancer (ALB)
 
-1. Quay lại menu **Clusters**, nhấp vào `Eshop-ECS-Cluster`.
-2. Tại tab **Services**, nhấn nút **Create**.
-3. **Environment**:
-   - Compute options: Chọn **Capacity provider strategy**.
-   - Use custom strategy: Chọn Capacity Provider của bạn (ví dụ: `Eshop-ECS-ASG`).
-4. **Deployment configuration**:
-   - Application type: **Service**.
-   - Family: Chọn `Eshop-Backend-Task` (vừa tạo ở Bước 1).
-   - Service name: `Eshop-Backend-Service`.
-   - Desired tasks (Số lượng Container muốn chạy): `2`.
-5. **Networking**: Kéo qua phần này vì chúng ta dùng `bridge` mode.
-6. **Load balancing**: 
-   - Load balancer type: Chọn **Application Load Balancer**.
-   - Load balancer name: Chọn `Eshop-ALB`.
-   - Tại mục *Container to load balance*, chọn container `eshop-backend-container`.
-   - Target group: Chọn **Use an existing target group** và chọn `Eshop-Backend-TG`.
-7. Kéo xuống dưới cùng và nhấn **Create**.
+1. Tại menu bên trái của màn hình EC2, chọn **Load Balancers**.
+2. Nhấn nút **Create load balancer**.
+3. Dưới mục *Application Load Balancer*, nhấn **Create**.
+4. Khai báo phần **Basic configuration**:
+   - **Load balancer name**: Nhập `Eshop-ALB`.
+   - **Scheme**: Chọn **Internet-facing** (Cho phép ALB tiếp nhận luồng truy cập từ Internet).
+   - **IP address type**: Chọn **IPv4**.
+5. Tại phần **Network mapping**:
+   - **VPC**: Chọn đúng **`Eshop-VPC`**.
+   - **Mappings**: Đánh dấu chọn vào ít nhất **2 Availability Zones (AZ)** và chọn các **Public Subnet** tương ứng để đảm bảo tính dự phòng (High Availability).
+6. Tại phần **Security groups**:
+   - Xóa bỏ nhóm bảo mật `default` mặc định của hệ thống.
+   - Chỉ định nhóm bảo mật **`Eshop-ALB-SG`** (nhóm này đã được cấu hình mở cổng `80` cho luồng truy cập từ bên ngoài).
+7. Tại phần **Listeners and routing**:
+   - **Protocol**: `HTTP`.
+   - **Port**: `80`.
+   - Tại mục **Default action** (Forward to): Mở danh sách thả xuống và chọn Target Group **`Eshop-Backend-TG`** đã khởi tạo ở Bước 1.
+8. Cuộn xuống cuối trang, kiểm tra lại mục *Summary* và nhấn **Create load balancer**.
 
-![Khởi tạo ECS Service](/images/5-Workshop/5.4.5/create_ecs_service.png)
+![Khởi tạo Application Load Balancer](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20093523.png)
+![Khởi tạo Application Load Balancer](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20093620.png)
+![Khởi tạo Application Load Balancer](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20093738.png)
+![Khởi tạo Application Load Balancer](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20094031.png)
+![Khởi tạo Application Load Balancer](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20094239.png)
+![Khởi tạo Application Load Balancer](/images/5-Workshop/5.4/5.4.4/Screenshot%202026-09-26%20094407.png)
 
-### Bước 3: Kiểm tra kết quả
-
-1. Quá trình triển khai Service có thể mất 1-2 phút. Bạn có thể theo dõi tiến trình ở tab **Deployments** và **Tasks** trong Cluster.
-2. Khi trạng thái các Task chuyển sang **Running**, hãy quay lại lấy **DNS Name** của ALB (mà bạn đã lưu ở bài 5.4.4).
-3. Mở trình duyệt mới, dán đường dẫn DNS của ALB vào và nhấn Enter. 
-   - Nếu bạn thấy phản hồi từ API Backend của mình (ví dụ: chuỗi JSON `{"status": "ok", "message": "Backend is running!"}`), **XIN CHÚC MỪNG!** Hệ thống Backend Container của bạn đã hoạt động hoàn hảo và sẵn sàng nhận tải!
+Quá trình khởi tạo ALB sẽ mất khoảng 2-3 phút. Trạng thái (State) của ALB ban đầu sẽ là *Provisioning*, sau khi chuyển sang **Active** là hoàn tất. Sau bước này, tiến trình triển khai sẽ tiếp tục với Phần 5.4.5 (Khởi tạo ECS Service).
