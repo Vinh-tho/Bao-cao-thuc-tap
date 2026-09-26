@@ -8,34 +8,35 @@ pre: " <b> 5.5.2. </b> "
 
 # 5.5.2. Thiết lập S3 Event Notification kích hoạt Lambda
 
-Hàm Lambda `Eshop-Image-Resizer` của chúng ta đã sẵn sàng, nhưng hiện tại nó đang "ngủ". Chúng ta cần thiết lập một hệ thống báo động trên **S3 Media Bucket** để mỗi khi có file mới được tải lên, S3 sẽ tự động đánh thức và truyền dữ liệu cho Lambda xử lý.
+Mục này trình bày quy trình thiết lập Event Notification trên Amazon S3. Cấu hình này nhằm mục đích tạo cơ chế kích hoạt (trigger) tự động theo mô hình hướng sự kiện (Event-Driven): mỗi khi có đối tượng hình ảnh mới được tải lên bucket, hệ thống S3 sẽ phát sinh sự kiện để gọi (invoke) hàm Lambda thực thi quy trình xử lý.
 
-### Bước 1: Truy cập cấu hình Event của S3 Bucket
+### Bước 1: Truy cập cấu hình sự kiện của S3 Bucket
 
-1. Mở AWS Console, truy cập dịch vụ **S3**.
-2. Nhấp vào tên Bucket lưu trữ Media mà bạn đã tạo ở bài 5.3.2 (ví dụ: `eshop-media-nguyenvana`).
-3. Chuyển sang tab **Properties** (Thuộc tính).
-4. Cuộn xuống tìm mục **Event notifications** (Thông báo sự kiện) và nhấn nút **Create event notification**.
+1. Truy cập dịch vụ **S3** trên giao diện AWS Console.
+2. Chọn Bucket lưu trữ tài nguyên có tên: `eshop-media-eshop-web`.
+3. Di chuyển đến thẻ **Properties** (Thuộc tính).
+4. Tại khu vực **Event notifications**, chọn **Create event notification**.
 
-### Bước 2: Cấu hình Sự kiện (Event)
+![Truy cập cấu hình sự kiện của S3 Bucket](/images/5-Workshop/5.5/5.5.2/Screenshot%202026-09-26%20223649.png)
 
-1. **Event name**: Nhập `Trigger-Image-Resize`.
-2. **Prefix** (Tùy chọn): Bạn có thể để trống.
-3. **Suffix** (Tùy chọn): Nhập `.jpg` hoặc `.png` nếu bạn chỉ muốn kích hoạt hàm khi upload các file ảnh cụ thể. Ở đây chúng ta có thể để trống để nhận mọi file.
-4. Tại mục **Event types**, tick chọn ô **All object create events** (Kích hoạt khi có bất kỳ file nào được tạo mới/upload lên Bucket).
+### Bước 2: Cấu hình điều kiện kích hoạt sự kiện
 
-![Cấu hình Event Types trên S3](/images/5-Workshop/5.5.2/s3_event_types.png)
+1. **Event name**: Nhập tên nhận diện, ví dụ `Trigger-Image-Resize`.
+2. **Prefix** (Tiền tố): Bỏ trống (áp dụng cho toàn bộ bucket).
+3. **Suffix** (Hậu tố): Bỏ trống (hoặc cấu hình cụ thể `.jpg`, `.png` nếu chỉ muốn giới hạn định dạng tệp tin kích hoạt).
+4. Tại mục **Event types**, tích chọn **All object create events** (Kích hoạt khi có bất kỳ đối tượng nào được tạo mới hoặc tải lên).
 
-### Bước 3: Chỉ định Đích đến (Destination)
+![Cấu hình Event Types trên S3](/images/5-Workshop/5.5/5.5.2/Screenshot%202026-09-26%20223803.png)
 
-1. Cuộn xuống dưới cùng tới mục **Destination**.
-2. Chọn **Lambda function**.
-3. Tại ô *Specify Lambda function*, chọn **Choose from your Lambda functions**.
-4. Chọn hàm `Eshop-Image-Resizer` (mà bạn đã tạo ở bài 5.5.1) từ danh sách xổ xuống.
-5. Nhấn **Save changes**.
+### Bước 3: Cấu hình đích đến (Destination)
 
-![Chọn đích đến là Lambda](/images/5-Workshop/5.5.2/s3_event_destination.png)
+1. Di chuyển xuống khu vực **Destination** ở cuối trang.
+2. Lựa chọn loại đích đến là **Lambda function**.
+3. Tại mục *Specify Lambda function*, chọn tùy chọn **Choose from your Lambda functions**.
+4. Chọn hàm `Eshop-Image-Resizer` (đã khởi tạo tại mục 5.5.1) từ danh sách thả xuống.
+5. Nhấn **Save changes** để hoàn tất và áp dụng cấu hình.
 
-> **Lưu ý:** Khi bạn thao tác lưu cấu hình này trên Console, AWS S3 sẽ tự động thêm một *Resource-based policy* vào hàm Lambda của bạn để cho phép S3 có quyền gọi (invoke) hàm đó.
+![Chọn đích đến là Lambda](/images/5-Workshop/5.5/5.5.2/Screenshot%202026-09-26%20223838.png)
+![Chọn đích đến là Lambda](/images/5-Workshop/5.5/5.5.2/Screenshot%202026-09-26%20223853.png)
 
-Xong! Bây giờ S3 và Lambda đã được "trói" chặt vào nhau thành một luồng Event-Driven hoàn chỉnh.
+> **Ghi chú kỹ thuật:** Khi thực hiện lưu cấu hình thông qua AWS Console, hệ thống sẽ tự động thiết lập một *Resource-based policy* trên hàm Lambda, cấp quyền `lambda:InvokeFunction` cho dịch vụ S3. Tại bước này, luồng tích hợp tự động giữa S3 và Lambda đã được thiết lập hoàn chỉnh.
