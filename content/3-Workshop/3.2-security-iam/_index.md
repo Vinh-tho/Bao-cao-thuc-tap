@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-# 3.2. Setting Up Basic Security (IAM & Security Groups)
+# 3.2. Basic Security Setup (IAM & Security Groups)
 
-In this chapter, we will configure the foundational security layers for the Web E-shop system following the AWS principle of least privilege. Specifically, we will create **IAM Roles** for EC2, ECS Tasks, and Lambda to grant them the necessary permissions to interact with other AWS services (such as S3, ECR, and CloudWatch). Additionally, we will set up **Security Groups** to act as virtual firewalls, strictly controlling the network traffic flow between the Load Balancer in the Public Subnet and the Backend Containers in the Private Subnet.
+This chapter outlines the process of configuring the foundational security layers for the E-shop Web system, strictly adhering to the AWS principle of Least Privilege. Specifically, **IAM Roles** will be provisioned for EC2, ECS Tasks, and Lambda to grant them the necessary permissions to interact with other AWS services (such as S3, ECR, and CloudWatch). Concurrently, **Security Groups** will be established to act as virtual firewalls, strictly controlling the flow of network traffic between the Load Balancer in the Public Subnets and the Backend Containers in the Private Subnets.
 
 ---
 
-### List of detailed practical exercises:
+### Detailed Lab List:
 
-- **[3.2.1. Assigning IAM Roles for EC2, ECS Tasks, and Lambda](3.2.1-iam-roles/)**
+- **[3.2.1. Configuring IAM Roles for EC2, ECS Task, and Lambda](3.2.1-iam-roles/)**
 - **[3.2.2. Creating Security Groups for ALB and ECS Backend](3.2.2-security-groups/)**

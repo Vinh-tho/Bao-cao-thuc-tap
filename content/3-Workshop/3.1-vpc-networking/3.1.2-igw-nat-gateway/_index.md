@@ -6,39 +6,39 @@ pre: " <b> 3.1.2. </b> "
 
 # 3.1.2. Configuring Internet Gateway (IGW) and NAT Gateway
 
-For our Virtual Private Cloud (VPC) to communicate with the external Internet, we need to set up an **Internet Gateway (IGW)** (allowing two-way internet access for Public Subnets) and a **NAT Gateway** (allowing the Container Backend resources in Private Subnets to have one-way outbound internet access to download updates/libraries without being directly exposed).
+This section outlines the process of configuring the Internet Gateway (IGW) and NAT Gateway to establish Internet connectivity for the Virtual Private Cloud (VPC). The Internet Gateway enables bidirectional communication between the Public Subnets and the Internet. Meanwhile, the NAT Gateway allows resources (such as Backend Containers) located in Private Subnets to establish outbound-only connections to the Internet (for downloading updates or libraries) without exposing their IP addresses to the public network.
 
-### Step 1: Create and Attach an Internet Gateway (IGW)
+### Step 1: Creating and Attaching the Internet Gateway (IGW)
 
-1. In the **VPC** service console, select **Internet gateways** from the left navigation pane.
+1. On the **VPC** service console, select **Internet gateways** from the left navigation pane.
 2. Click the **Create internet gateway** button.
-3. For the *Name tag*, enter `Eshop-IGW` and click the **Create internet gateway** button.
+3. In the *Name tag* field, enter `Eshop-IGW` for resource identification and click **Create internet gateway**.
 
-![Tạo Internet Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20185758.png)
-![Tạo Internet Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20185838.png)
-![Tạo Internet Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20185900.png)
+![Creating Internet Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20185758.png)
+![Creating Internet Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20185838.png)
+![Creating Internet Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20185900.png)
 
-4. Once created, its state will be *Detached*. Click the **Actions** button in the top right corner and choose **Attach to VPC**.
+4. Upon creation, the IGW status will be *Detached*. Click the **Actions** menu in the top right corner and select **Attach to VPC**.
 5. Select `Eshop-VPC` (created in section 3.1.1) from the dropdown list and click **Attach internet gateway**.
 
-![Gắn Internet Gateway vào VPC](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20185954.png)
-![Gắn Internet Gateway vào VPC](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190013.png)
-![Gắn Internet Gateway vào VPC](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190042.png)
+![Attaching Internet Gateway to VPC](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20185954.png)
+![Attaching Internet Gateway to VPC](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190013.png)
+![Attaching Internet Gateway to VPC](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190042.png)
 
-### Step 2: Create a NAT Gateway
+### Step 2: Creating the NAT Gateway
 
-The NAT Gateway must be placed in a **Public Subnet** and requires a static IP address (Elastic IP) to represent internal servers when they route traffic to the Internet.
+The NAT Gateway must be deployed in a **Public Subnet** and requires a static IP address (Elastic IP) to represent internal resources when routing traffic to the Internet.
 
-1. In the left menu, select **NAT gateways** and click the **Create NAT gateway** button.
-2. Fill in the following details:
+1. In the left navigation pane, select **NAT gateways** and click the **Create NAT gateway** button.
+2. Configure the following parameters:
    - **Name**: `Eshop-NAT-GW`
-   - **Subnet**: Select `Eshop-Public-Subnet-1` (You must select a Public Subnet).
+   - **Subnet**: Select `Eshop-Public-Subnet-1` (Deployment in a Public Subnet is mandatory).
    - **Connectivity type**: Select `Public`.
-3. Under **Elastic IP allocation ID**, click the **Allocate Elastic IP** button to have AWS automatically assign a static public IP address to this NAT Gateway.
-4. Scroll down to the bottom and click **Create NAT gateway**.
+3. Under the **Elastic IP allocation ID** section, click the **Allocate Elastic IP** button to prompt AWS to automatically allocate a static public IP address for this NAT Gateway.
+4. Scroll to the bottom of the page and click **Create NAT gateway** to execute.
 
-![Khởi tạo NAT Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190518.png)
-![Khởi tạo NAT Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190720.png)
-![Khởi tạo NAT Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190803.png)
+![Creating NAT Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190518.png)
+![Creating NAT Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190720.png)
+![Creating NAT Gateway](/images/3-Workshop/3.1/3.1.2/Screenshot%202026-09-25%20190803.png)
 
-*(Note: The NAT Gateway creation process may take a few minutes. Its state will change from `Pending` to `Available` when the process is complete. You can proceed to the next section while waiting).*
+*(Note: The NAT Gateway creation process may take a few minutes. The system status will transition from `Pending` to `Available` upon completion. Administrators can proceed to the next configuration steps while waiting).*

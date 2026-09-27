@@ -1,5 +1,5 @@
 ---
-title: "Building Backend Container"
+title: "Building the Backend Container"
 date: 2026-09-24
 weight: 4
 chapter: false
@@ -8,16 +8,16 @@ pre: " <b> 3.4. </b> "
 
 # 3.4. Building the Backend Container with Docker, Amazon EC2 & ECS
 
-Now that the Frontend is live on S3, we need a robust Backend to handle business logic such as adding items to the cart, processing payments, calculating discounts, and retrieving product data.
+Following the successful deployment of the Frontend on S3, the system requires a robust Backend architecture to process core business logic such as shopping cart management, payment processing, promotion calculation, and product data retrieval.
 
-Instead of running the source code directly on a traditional virtual server (EC2), we will **Containerize** the Backend using Docker and deploy it to **Amazon ECS (Elastic Container Service)**. This approach allows the E-shop to easily update to new versions without worrying about environment discrepancies (missing libraries, wrong Node/Python versions) and provides extremely flexible Auto Scaling capabilities during traffic spikes.
+Instead of executing source code directly on traditional virtual servers (EC2), this architecture will **Containerize** the Backend using Docker and deploy it onto **Amazon ECS (Elastic Container Service)**. This approach enables the E-shop system to easily deploy new software versions without the risk of environmental conflicts (missing libraries, incorrect runtime versions). Additionally, it provides highly flexible Auto Scaling capabilities to effectively handle sudden spikes in network traffic.
 
 ---
 
-### List of detailed practical exercises:
+### Detailed deployment sections:
 
-- **[3.4.1. Packaging the Backend (Dockerfile) & Pushing the Image to Amazon ECR](3.4.1-docker-ecr/)**
-- **[3.4.2. Creating an EC2 Launch Template & EC2 Auto Scaling Group](3.4.2-ec2-asg/)**
-- **[3.4.3. Initializing an ECS Cluster (EC2 Launch Type) & ECS Capacity Provider](3.4.3-ecs-cluster-cp/)**
-- **[3.4.4. Configuring the Application Load Balancer (ALB) & Target Group](3.4.4-alb-config/)**
-- **[3.4.5. Defining the ECS Task, Creating a Service, & Connecting the ALB](3.4.5-ecs-service/)**
+- **[3.4.1. Packaging Backend (Dockerfile) & Pushing Image to Amazon ECR](3.4.1-docker-ecr/)**
+- **[3.4.2. Creating EC2 Launch Template & EC2 Auto Scaling Group](3.4.2-ec2-asg/)**
+- **[3.4.3. Initializing ECS Cluster (EC2 Launch Type) & ECS Capacity Provider](3.4.3-ecs-cluster-cp/)**
+- **[3.4.4. Configuring Application Load Balancer (ALB) & Target Group](3.4.4-alb-config/)**
+- **[3.4.5. Defining ECS Task, Creating Service & Connecting ALB](3.4.5-ecs-service/)**

@@ -8,13 +8,13 @@ pre: " <b> 3.7. </b> "
 
 # 3.7. Dọn dẹp tài nguyên (Cleanup)
 
-Chúc mừng bạn đã hoàn thành trọn vẹn dự án Web E-shop trên AWS! Để tránh phát sinh chi phí không mong muốn (đặc biệt là các dịch vụ tính phí theo giờ như NAT Gateway hay Load Balancer), việc dọn dẹp hệ thống là bước bắt buộc.
+Quá trình triển khai dự án Web E-shop trên nền tảng AWS đã hoàn tất. Để ngăn ngừa việc phát sinh các khoản chi phí không mong muốn (đặc biệt đối với các dịch vụ tính phí theo thời gian chạy như NAT Gateway hoặc Application Load Balancer), quy trình dọn dẹp và thu hồi tài nguyên hệ thống là một yêu cầu bắt buộc.
 
-Hãy thực hiện xóa tài nguyên lần lượt theo đúng thứ tự các bài dưới đây để tránh gặp lỗi ràng buộc (Dependency error).
+Việc gỡ bỏ tài nguyên cần được thực hiện tuần tự theo đúng cấu trúc hướng dẫn dưới đây nhằm tránh các lỗi phát sinh do sự ràng buộc giữa các thành phần dịch vụ (Dependency error).
 
 ---
 
-### Danh sách các bài thực hành dọn dẹp:
+### Danh sách các nội dung dọn dẹp chi tiết:
 
 - **[3.7.1. Dọn dẹp Application Load Balancer & Auto Scaling Group](3.7.1-alb-asg-cleanup/)**
 - **[3.7.2. Dọn dẹp ECS Cluster, Task Definitions & Amazon ECR](3.7.2-ecs-ecr-cleanup/)**

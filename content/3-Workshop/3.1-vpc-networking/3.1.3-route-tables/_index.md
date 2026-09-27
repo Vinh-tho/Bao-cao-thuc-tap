@@ -6,68 +6,68 @@ pre: " <b> 3.1.3. </b> "
 
 # 3.1.3. Configuring Route Tables for Network Traffic
 
-A **Route Table** acts as a set of rules (like signposts) that determine where network traffic from your subnets or gateways is directed. We need to create 2 Route Tables: one for the **Public Subnets** (routing to the Internet Gateway) and one for the **Private Subnets** (routing to the NAT Gateway).
+This section outlines the configuration of Route Tables to direct network traffic within the VPC. The architecture requires the deployment of two Route Tables: one for the **Public Subnets** (routing traffic to the Internet Gateway) and one for the **Private Subnets** (routing traffic to the NAT Gateway).
 
-### Step 1: Create and Configure the Public Route Table
+### Step 1: Creating and Configuring the Public Route Table
 
-This Route Table allows resources (like the Load Balancer) to connect directly to the Internet.
+This Route Table enables resources (such as Load Balancers) to establish direct connections to the Internet.
 
-1. In the **VPC** console, select **Route tables** from the left menu.
+1. On the **VPC** service console, select **Route tables** from the left navigation pane.
 2. Click the **Create route table** button.
-3. Fill in the details:
+3. Configure the following parameters:
    - **Name**: `Eshop-Public-RT`
    - **VPC**: Select `Eshop-VPC`
-4. Click **Create route table**.
+4. Click **Create route table** to execute.
 
-![Tạo Public Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191413.png)
-![Tạo Public Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191439.png)
-![Tạo Public Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191514.png)
+![Creating Public Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191413.png)
+![Creating Public Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191439.png)
+![Creating Public Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191514.png)
 
-5. Once created, in the details page of `Eshop-Public-RT`, go to the **Routes** tab at the bottom and click **Edit routes**.
-6. Click **Add route**:
-   - **Destination**: Enter `0.0.0.0/0` (Represents all internet traffic).
-   - **Target**: Select **Internet Gateway**, then choose `Eshop-IGW` created in the previous section.
-7. Click **Save changes**.
+5. Upon successful creation, access the details page of `Eshop-Public-RT`, select the **Routes** tab in the lower section, and click **Edit routes**.
+6. Click **Add route** and enter the routing information:
+   - **Destination**: Enter `0.0.0.0/0` (Representing all Internet IP addresses).
+   - **Target**: Select **Internet Gateway**, then choose the previously created `Eshop-IGW`.
+7. Click **Save changes** to apply the configuration.
 
-![Thêm Route ra Internet Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191714.png)
-![Thêm Route ra Internet Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191812.png)
-![Thêm Route ra Internet Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191828.png)
+![Adding Route to Internet Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191714.png)
+![Adding Route to Internet Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191812.png)
+![Adding Route to Internet Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191828.png)
 
 8. Switch to the **Subnet associations** tab and click **Edit subnet associations**.
-9. Check the boxes for your 2 Public Subnets (`Eshop-Public-Subnet-1` and `Eshop-Public-Subnet-2`), then click **Save associations**.
+9. Check the boxes for the 2 Public Subnets (`Eshop-Public-Subnet-1` and `Eshop-Public-Subnet-2`), then click **Save associations** to complete the linkage.
 
-![Liên kết Public Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191854.png)
-![Liên kết Public Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191918.png)
-![Liên kết Public Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191936.png)
+![Associating Public Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191854.png)
+![Associating Public Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191918.png)
+![Associating Public Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20191936.png)
 
-### Step 2: Create and Configure the Private Route Table
+### Step 2: Creating and Configuring the Private Route Table
 
-This Route Table ensures the Backend (EC2/ECS) remains isolated from the public Internet, while still allowing outbound traffic through the NAT Gateway for necessary updates.
+This Route Table ensures that Backend services (EC2/ECS) remain securely isolated from the public Internet while allowing traffic to be routed through the NAT Gateway for downloading necessary updates or libraries.
 
-1. Similarly, click **Create route table**.
-2. Fill in the details:
+1. Following the same procedure as in Step 1, click **Create route table**.
+2. Configure the following parameters:
    - **Name**: `Eshop-Private-RT`
    - **VPC**: Select `Eshop-VPC`
-3. Click **Create route table**.
+3. Click **Create route table** to execute.
 
-![Tạo Private Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192654.png)
-![Tạo Private Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192703.png)
+![Creating Private Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192654.png)
+![Creating Private Route Table](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192703.png)
 
-4. Open the details for `Eshop-Private-RT`, go to the **Routes** tab, and click **Edit routes**.
-5. Click **Add route**:
+4. Access the details page of `Eshop-Private-RT`, select the **Routes** tab, and click **Edit routes**.
+5. Click **Add route** and enter the routing information:
    - **Destination**: Enter `0.0.0.0/0`.
    - **Target**: Select **NAT Gateway**, then choose `Eshop-NAT-GW`.
-6. Click **Save changes**.
+6. Click **Save changes** to apply the configuration.
 
-![Thêm Route ra NAT Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192718.png)
-![Thêm Route ra NAT Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192752.png)
-![Thêm Route ra NAT Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192810.png)
+![Adding Route to NAT Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192718.png)
+![Adding Route to NAT Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192752.png)
+![Adding Route to NAT Gateway](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192810.png)
 
 7. Switch to the **Subnet associations** tab and click **Edit subnet associations**.
-8. Check the boxes for your 2 Private Subnets (`Eshop-Private-Subnet-1` and `Eshop-Private-Subnet-2`), then click **Save associations**.
+8. Check the boxes for the 2 Private Subnets (`Eshop-Private-Subnet-1` and `Eshop-Private-Subnet-2`), then click **Save associations** to complete the linkage.
 
-![Liên kết Private Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192837.png)
-![Liên kết Private Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192854.png)
-![Liên kết Private Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192909.png)
+![Associating Private Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192837.png)
+![Associating Private Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192854.png)
+![Associating Private Subnets](/images/3-Workshop/3.1/3.1.3/Screenshot%202026-09-25%20192909.png)
 
-*🎉 **Congratulations!** You have successfully set up the fundamental networking infrastructure (VPC, Subnets, Gateways, Route Tables) in a highly secure and AWS Best Practice compliant manner for the E-shop project.*
+*(Note: The setup of the foundational network infrastructure, including VPC, Subnets, Gateways, and Route Tables, is now complete. This architecture ensures security and complies with AWS Best Practices for the E-shop system).*

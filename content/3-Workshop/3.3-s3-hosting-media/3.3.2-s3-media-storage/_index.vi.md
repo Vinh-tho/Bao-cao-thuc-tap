@@ -6,15 +6,15 @@ chapter: false
 pre: " <b> 3.3.2. </b> "
 ---
 
-# 3.3.2. Tạo S3 Bucket lưu trữ Media (Hình ảnh sản phẩm)
+# 3.3.2. Khởi tạo S3 Bucket lưu trữ Media (Hình ảnh sản phẩm)
 
-Trong hệ thống E-shop, hình ảnh sản phẩm cần được tải lên nhanh chóng và hiển thị mượt mà cho khách hàng. S3 là lựa chọn hoàn hảo cho việc này. Hơn nữa, chúng ta sẽ dùng Bucket này làm nguồn kích hoạt (Trigger) cho hàm AWS Lambda xử lý ảnh ở Chương 3.5.
+Trong hệ thống E-shop, hình ảnh sản phẩm yêu cầu khả năng lưu trữ và phân phối với tốc độ cao đến người dùng cuối. Amazon S3 là giải pháp lưu trữ tối ưu đáp ứng yêu cầu này. Ngoài ra, Bucket này sẽ được thiết lập làm nguồn kích hoạt (Trigger) cho hàm AWS Lambda xử lý hình ảnh tại Chương 3.5.
 
 ### Bước 1: Khởi tạo S3 Bucket cho Media
 
 1. Tại giao diện dịch vụ **S3**, nhấn nút **Create bucket**.
 2. Điền thông tin cơ bản:
-   - **Bucket name**: `eshop-media-<tên-của-bạn>` (Nhớ thay `<tên-của-bạn>` bằng tên duy nhất viết thường, không dấu, không khoảng trắng).
+   - **Bucket name**: `eshop-media-eshop-web` .
    - **AWS Region**: Chọn `ap-southeast-1 (Singapore)`.
 3. Tại mục **Object Ownership**, chọn `ACLs disabled (recommended)`.
 
@@ -22,14 +22,14 @@ Trong hệ thống E-shop, hình ảnh sản phẩm cần được tải lên nh
 ![Khởi tạo S3 Bucket cho Media](/images/3-Workshop/3.3/3.3.2/Screenshot%202026-09-25%20230015.png)
 ![Khởi tạo S3 Bucket cho Media](/images/3-Workshop/3.3/3.3.2/Screenshot%202026-09-25%20230026.png)
 
-### Bước 2: Cho phép truy cập công cộng (Public Access)
+### Bước 2: Cấu hình quyền truy cập công cộng (Public Access)
 
-Vì hình ảnh sản phẩm cần được khách hàng nhìn thấy trên trình duyệt, chúng ta phải mở quyền truy cập công cộng.
+Để hình ảnh sản phẩm có thể hiển thị trực tiếp trên trình duyệt của người dùng, Bucket cần được cấu hình mở quyền truy cập mạng công cộng.
 
-1. Cuộn xuống mục **Block Public Access settings for this bucket**.
-2. **Bỏ tick** ô `Block all public access`.
-3. Tích vào ô xác nhận *"I acknowledge that the current settings might result in this bucket and the objects within becoming public."*
-4. Cuộn xuống dưới cùng và nhấn **Create bucket**.
+1. Cuộn xuống phần **Block Public Access settings for this bucket**.
+2. **Bỏ chọn** (Uncheck) tùy chọn `Block all public access`.
+3. Đánh dấu vào ô xác nhận *"I acknowledge that the current settings might result in this bucket and the objects within becoming public."*
+4. Cuộn xuống cuối trang và nhấn **Create bucket** để thực thi.
 
 ![Mở quyền Public Access cho Media Bucket](/images/3-Workshop/3.3/3.3.2/Screenshot%202026-09-25%20230049.png)
 ![Mở quyền Public Access cho Media Bucket](/images/3-Workshop/3.3/3.3.2/Screenshot%202026-09-25%20230105.png)
@@ -37,9 +37,9 @@ Vì hình ảnh sản phẩm cần được khách hàng nhìn thấy trên trì
 
 ### Bước 3: Cấu hình Bucket Policy để cho phép xem ảnh
 
-1. Mở Bucket `eshop-media-...` bạn vừa tạo và chuyển sang tab **Permissions**.
+1. Mở Bucket `eshop-media-eshop-web` vừa tạo và chuyển sang tab **Permissions**.
 2. Kéo xuống phần **Bucket policy** và nhấn **Edit**.
-3. Dán đoạn mã JSON sau vào hộp thoại (Lưu ý: Thay thế `tên-bucket-media-của-bạn` bằng tên Bucket thực tế của bạn):
+3. Dán đoạn mã JSON sau vào hộp thoại:
 
 ```json
 {
@@ -50,7 +50,7 @@ Vì hình ảnh sản phẩm cần được khách hàng nhìn thấy trên trì
             "Effect": "Allow",
             "Principal": "*",
             "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::tên-bucket-media-của-bạn/*"
+            "Resource": "arn:aws:s3:::eshop-media-eshop-web"
         }
     ]
 }
@@ -65,7 +65,7 @@ Vì hình ảnh sản phẩm cần được khách hàng nhìn thấy trên trì
 
 ### Bước 4: Cấu hình CORS (Cross-Origin Resource Sharing)
 
-Vì giao diện Frontend (ở Bucket 3.3.1) sẽ gọi ảnh từ Bucket Media này (khác tên miền), chúng ta cần cấp quyền CORS để trình duyệt không chặn hình ảnh.
+Vì giao diện Frontend (ở Bucket 3.3.1) sẽ gọi ảnh từ Bucket Media này (khác tên miền), cần cấp quyền CORS để trình duyệt không chặn hình ảnh.
 
 1. Vẫn ở tab **Permissions**, cuộn xuống dưới cùng tìm mục **Cross-origin resource sharing (CORS)** và nhấn **Edit**.
 2. Dán đoạn mã JSON sau vào:
@@ -94,4 +94,4 @@ Vì giao diện Frontend (ở Bucket 3.3.1) sẽ gọi ảnh từ Bucket Media n
 ![Cấu hình CORS cho Media Bucket](/images/3-Workshop/3.3/3.3.2/Screenshot%202026-09-26%20004617.png)
 ![Cấu hình CORS cho Media Bucket](/images/3-Workshop/3.3/3.3.2/Screenshot%202026-09-26%20004643.png)
 
-Bây giờ, kho lưu trữ hình ảnh của bạn đã sẵn sàng phục vụ cho E-shop!
+Bây giờ, kho lưu trữ hình ảnh đã sẵn sàng phục vụ cho E-shop!

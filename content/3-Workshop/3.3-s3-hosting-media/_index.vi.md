@@ -8,14 +8,14 @@ pre: " <b> 3.3. </b> "
 
 # 3.3. Triển khai Frontend & Lưu trữ Media với Amazon S3
 
-Trong kiến trúc hiện đại, việc tách rời Frontend và Backend mang lại hiệu suất rất cao. Thay vì dùng máy chủ EC2 để trả về các file giao diện (HTML/CSS/JS) tĩnh, chúng ta sẽ tận dụng **Amazon S3 (Simple Storage Service)**. S3 không chỉ có chi phí cực rẻ mà còn có khả năng mở rộng vô hạn, chịu được lưu lượng truy cập khổng lồ mà không sợ sập máy chủ.
+Trong các kiến trúc hệ thống hiện đại, việc phân tách độc lập giữa Frontend và Backend mang lại hiệu suất vận hành tối ưu. Thay vì sử dụng máy chủ EC2 truyền thống để phân phối các tệp giao diện tĩnh (HTML/CSS/JS), kiến trúc này ứng dụng **Amazon S3 (Simple Storage Service)**. S3 là giải pháp lưu trữ tối ưu chi phí, cung cấp khả năng mở rộng linh hoạt và đảm bảo độ tin cậy cao ngay cả dưới tải lượng truy cập khổng lồ mà không gặp tình trạng quá tải máy chủ.
 
-Trong chương này, chúng ta sẽ tạo 2 Bucket (Kho lưu trữ) trên S3: một cái đóng vai trò làm máy chủ Web tĩnh (Static Website Hosting) cho giao diện người dùng, và một cái để lưu trữ hình ảnh sản phẩm.
+Chương này trình bày quy trình triển khai 2 Bucket (Kho lưu trữ) trên nền tảng S3: một Bucket đóng vai trò như máy chủ web tĩnh (Static Website Hosting) để phân phối giao diện người dùng, và một Bucket chuyên dụng cho việc lưu trữ hình ảnh sản phẩm.
 
 ---
 
-### Danh sách các bài thực hành chi tiết:
+### Danh sách các nội dung triển khai chi tiết:
 
-- **[3.3.1. Tạo S3 Bucket cho Frontend & Cấu hình Static Website Hosting](3.3.1-s3-frontend-hosting/)**
-- **[3.3.2. Tạo S3 Bucket lưu trữ Media (Hình ảnh sản phẩm)](3.3.2-s3-media-storage/)**
+- **[3.3.1. Khởi tạo S3 Bucket cho Frontend & Cấu hình Static Website Hosting](3.3.1-s3-frontend-hosting/)**
+- **[3.3.2. Khởi tạo S3 Bucket lưu trữ Media (Hình ảnh sản phẩm)](3.3.2-s3-media-storage/)**
 - **[3.3.3. Tải mã nguồn Frontend và tài nguyên tĩnh lên S3](3.3.3-deploy-frontend/)**

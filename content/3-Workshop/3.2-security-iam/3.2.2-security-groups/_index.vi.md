@@ -8,37 +8,37 @@ pre: " <b> 3.2.2. </b> "
 
 # 3.2.2. Khởi tạo Security Groups cho ALB và ECS Backend
 
-**Security Group (SG)** hoạt động như một tường lửa ảo ở cấp độ Instance để kiểm soát luồng giao thông mạng ra/vào. Để tuân thủ nguyên tắc bảo mật tối đa, chúng ta sẽ tạo 2 SG: 
-1. **ALB Security Group**: Mở cửa cho Internet truy cập vào web.
-2. **Backend Security Group**: Ẩn hoàn toàn khỏi Internet, chỉ cho phép nhận dữ liệu được chuyển tiếp từ ALB SG.
+**Security Group (SG)** hoạt động như một tường lửa ảo cấp độ Instance nhằm kiểm soát lưu lượng mạng vào/ra. Để tuân thủ nguyên tắc bảo mật, kiến trúc hệ thống yêu cầu thiết lập 2 SG: 
+1. **ALB Security Group**: Cho phép lưu lượng từ Internet truy cập vào ứng dụng web.
+2. **Backend Security Group**: Cách ly hoàn toàn khỏi Internet, chỉ cho phép tiếp nhận lưu lượng được chuyển tiếp từ ALB SG.
 
-### Bước 1: Tạo Security Group cho Application Load Balancer (ALB)
+### Bước 1: Khởi tạo Security Group cho Application Load Balancer (ALB)
 
-1. Tại AWS Console, truy cập dịch vụ **VPC** (hoặc EC2), nhìn sang menu bên trái, cuộn xuống mục *Security* và chọn **Security Groups**.
+1. Tại giao diện AWS Management Console, truy cập dịch vụ **VPC** (hoặc EC2). Tại thanh điều hướng bên trái, cuộn xuống phần *Security* và chọn **Security Groups**.
 2. Nhấn nút **Create security group**.
-3. Điền thông tin cơ bản:
+3. Cấu hình các thông tin cơ bản:
    - **Security group name**: `Eshop-ALB-SG`
    - **Description**: `Allow HTTP and HTTPS traffic from Internet to ALB`
-   - **VPC**: Nhấn dấu `X` để xóa VPC mặc định, sau đó chọn `Eshop-VPC` của chúng ta.
+   - **VPC**: Nhấn dấu `X` để xóa VPC mặc định, sau đó chọn `Eshop-VPC`.
 
 ![Cấu hình thông tin ALB Security Group](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20210249.png)
 ![Cấu hình thông tin ALB Security Group](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20210335.png)
 
-4. Tại mục **Inbound rules**, nhấn **Add rule** 2 lần để thêm các cổng kết nối web:
+4. Tại phần **Inbound rules**, nhấn **Add rule** 2 lần để cấu hình các cổng kết nối web:
    - Rule 1: Type = `HTTP`, Source = `Anywhere-IPv4` (`0.0.0.0/0`)
    - Rule 2: Type = `HTTPS`, Source = `Anywhere-IPv4` (`0.0.0.0/0`)
-5. Giữ nguyên **Outbound rules** (cho phép All traffic) và nhấn nút **Create security group** ở cuối trang.
+5. Giữ nguyên cấu hình **Outbound rules** (cho phép All traffic) và nhấn nút **Create security group** ở cuối trang để thực thi.
 
 ![Thêm Inbound rules cho ALB](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20210441.png)
 ![Thêm Inbound rules cho ALB](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20210507.png)
 ![Thêm Inbound rules cho ALB](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20210519.png)
 
-### Bước 2: Tạo Security Group cho Backend (EC2 / ECS Task)
+### Bước 2: Khởi tạo Security Group cho Backend (EC2 / ECS Task)
 
-Bây giờ chúng ta tạo SG cho Backend. Điểm quan trọng nhất ở đây là Backend sẽ KHÔNG mở IP ra ngoài Internet (`0.0.0.0/0`), mà lấy chính cái SG của ALB làm nguồn (Source).
+Tiếp theo là quá trình khởi tạo SG cho Backend. Yêu cầu bảo mật quan trọng tại bước này là Backend KHÔNG mở kết nối ra Internet (`0.0.0.0/0`), mà chỉ chấp nhận lưu lượng có nguồn (Source) xuất phát từ SG của ALB.
 
-1. Quay lại danh sách Security Groups, nhấn **Create security group** một lần nữa.
-2. Điền thông tin cơ bản:
+1. Trở lại danh sách Security Groups và nhấn **Create security group**.
+2. Cấu hình các thông tin cơ bản:
    - **Security group name**: `Eshop-Backend-SG`
    - **Description**: `Allow traffic only from ALB`
    - **VPC**: Chọn `Eshop-VPC`.
@@ -46,14 +46,14 @@ Bây giờ chúng ta tạo SG cho Backend. Điểm quan trọng nhất ở đây
 ![Cấu hình thông tin Backend Security Group](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20211010.png)
 ![Cấu hình thông tin Backend Security Group](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20211035.png)
 
-3. Tại mục **Inbound rules**, nhấn **Add rule**:
-   - Type = `All TCP` (để hỗ trợ Dynamic Port Mapping của ECS trên EC2).
-   - Source = Chọn `Custom`, sau đó gõ chữ `sg-` vào ô tìm kiếm và chọn `Eshop-ALB-SG` từ danh sách xổ xuống.
+3. Tại phần **Inbound rules**, nhấn **Add rule**:
+   - Type = `All TCP` (nhằm hỗ trợ Dynamic Port Mapping của ECS trên EC2).
+   - Source = Chọn `Custom`, sau đó nhập `sg-` vào ô tìm kiếm và chọn `Eshop-ALB-SG` từ danh sách thả xuống.
 
 ![Thêm Inbound rule cho Backend từ ALB SG](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20211159.png)
 ![Thêm Inbound rule cho Backend từ ALB SG](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20211235.png)
 ![Thêm Inbound rule cho Backend từ ALB SG](/images/3-Workshop/3.2/3.2.2/Screenshot%202026-09-25%20211250.png)
 
-4. Nhấn **Create security group**.
+4. Nhấn **Create security group** để hoàn tất.
 
-> **Lưu ý bảo mật:** Với thiết lập này, kể cả khi ai đó biết IP nội bộ của EC2/Container, họ cũng không thể truy cập trực tiếp. Yêu cầu bắt buộc phải đi qua cửa ngõ Load Balancer (ALB).
+> **Lưu ý bảo mật:** Với cấu hình này, các truy cập trực tiếp bằng IP nội bộ của EC2/Container sẽ bị chặn hoàn toàn. Mọi lưu lượng truy cập bắt buộc phải đi qua cổng Application Load Balancer (ALB).

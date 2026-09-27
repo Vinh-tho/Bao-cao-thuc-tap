@@ -18,7 +18,6 @@ Bước đầu tiên trong quá trình dọn dẹp là chặn luồng truy cập
 4. Tiếp tục chọn **Target Groups** ở menu bên trái.
 5. Chọn `Eshop-Backend-TG`, nhấn **Actions** -> **Delete**. Xác nhận xóa.
 
-![Xóa ALB và Target Group](/images/3-Workshop/3.7.1/delete_alb_tg.png)
 
 ### Bước 2: Xóa Auto Scaling Group (ASG) và Launch Template
 
@@ -27,6 +26,5 @@ Bước đầu tiên trong quá trình dọn dẹp là chặn luồng truy cập
 3. Chuyển sang phần **Launch Templates** ở menu bên trái.
 4. Chọn `Eshop-ECS-Launch-Template`, nhấn **Actions** -> **Delete template**. Xác nhận xóa.
 
-![Xóa ASG và Launch Template](/images/3-Workshop/3.7.1/delete_asg_lt.png)
 
-Sau khi ASG bị xóa, toàn bộ các máy chủ EC2 sẽ tự động bốc hơi. Tiếp theo, chúng ta sẽ dọn dẹp phần logic của Backend là cụm ECS và kho chứa Image ECR.
+Sau khi ASG bị xóa, toàn bộ các máy chủ EC2 sẽ tự động bốc hơi. Tiếp theo, dọn dẹp phần logic của Backend là cụm ECS và kho chứa Image ECR.

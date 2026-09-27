@@ -1,73 +1,72 @@
 ---
-title: "Assigning IAM Roles"
+title: "Configuring IAM Roles"
 date: 2026-09-24
 weight: 1
 chapter: false
 pre: " <b> 3.2.1. </b> "
 ---
 
-# 3.2.1. Assigning IAM Roles for EC2, ECS Tasks, and Lambda
+# 3.2.1. Configuring IAM Roles for EC2, ECS Task, and Lambda
 
-In AWS architecture, services do not automatically have permission to access one another. We need to create **IAM Roles** to authorize EC2 instances to communicate with ECS, ECS Tasks to pull Docker Images from ECR, and Lambda functions to process files on S3.
+In the AWS architecture, services are not granted access permissions to each other by default. Therefore, establishing **IAM Roles** is necessary to grant EC2 instances permission to communicate with ECS, allow ECS Tasks to pull Docker Images from ECR, and enable Lambda functions to process data on S3.
 
-### Step 1: Create a Role for EC2 Instances (ECS Container Instance)
+### Step 1: Creating a Role for EC2 Instances (ECS Container Instances)
 
-This role allows EC2 instances to automatically register to the ECS Cluster and send logs to the system.
+This Role enables EC2 instances to automatically register with the ECS Cluster and push logs to the monitoring system.
 
-1. In the search bar on the AWS Console, type **IAM** and select the **IAM** service.
-2. In the left navigation pane, choose **Roles** and click **Create role**.
-3. Under *Trusted entity type*, select **AWS service**. Under *Use case*, select **EC2** and click **Next**.
+1. In the search bar on the AWS Management Console, enter and select the **IAM** service.
+2. In the left navigation pane, select **Roles** and click the **Create role** button.
+3. Under the *Trusted entity type* section, select **AWS service**. Under the *Use case* section, select **EC2** and click **Next**.
 
-![Chọn Trusted Entity cho EC2](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20202833.png)
-![Chọn Trusted Entity cho EC2](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203141.png)
-![Chọn Trusted Entity cho EC2](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203259.png)
+![Selecting Trusted Entity for EC2](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20202833.png)
+![Selecting Trusted Entity for EC2](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203141.png)
+![Selecting Trusted Entity for EC2](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203259.png)
 
-4. In the permissions policies search box, type `AmazonEC2ContainerServiceforEC2Role`. Check the box next to this policy and click **Next**.
+4. In the *Permissions policies* search box, enter `AmazonEC2ContainerServiceforEC2Role`. Check the box for this policy and click **Next**.
 
-![Chọn Policy cho EC2 ECS](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203342.png)
+![Selecting Policy for EC2 ECS](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203342.png)
 
-5. On the *Name, review, and create* step, name the Role `Eshop-EC2-Instance-Role`. Click **Create role**.
+5. In the *Name, review, and create* step, set the Role name to `Eshop-EC2-Instance-Role`. Click **Create role** to complete.
 
-![Tạo EC2 Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203545.png)
-![Tạo EC2 Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203607.png)
-![Tạo EC2 Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203653.png)
+![Creating EC2 Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203545.png)
+![Creating EC2 Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203607.png)
+![Creating EC2 Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20203653.png)
 
-### Step 2: Create a Role for ECS Task Execution
+### Step 2: Creating a Role for ECS Task Execution
 
-This role allows the Containers (Tasks) within ECS to pull images from Amazon ECR and push logs to CloudWatch.
+This Role grants permissions for Containers (Tasks) within the ECS system to pull Images from Amazon ECR and push logs to CloudWatch.
 
-1. Similarly, click **Create role** in the IAM console.
-2. Select **AWS service**, scroll down to find and select **Elastic Container Service**. Under the detailed *Use case*, choose **Elastic Container Service Task**, then click **Next**.
+1. Following a similar procedure to Step 1, click **Create role** in the IAM interface.
+2. Select **AWS service**, search for and select **Elastic Container Service**. Under the specific *Use case* section, select **Elastic Container Service Task**, then click **Next**.
 
-![Chọn Trusted Entity cho ECS Task](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204419.png)
-![Chọn Trusted Entity cho ECS Task](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204527.png)
-![Chọn Trusted Entity cho ECS Task](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204538.png)
+![Selecting Trusted Entity for ECS Task](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204419.png)
+![Selecting Trusted Entity for ECS Task](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204527.png)
+![Selecting Trusted Entity for ECS Task](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204538.png)
 
-3. Search for and check the policy `AmazonECSTaskExecutionRolePolicy`. Click **Next**.
-4. Name the Role `Eshop-ECS-Task-Execution-Role`. Click **Create role**.
+3. Search for and check the `AmazonECSTaskExecutionRolePolicy` policy. Click **Next**.
+4. Set the Role name to `Eshop-ECS-Task-Execution-Role` and click **Create role** to execute.
 
-![Tạo ECS Task Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204602.png)
-![Tạo ECS Task Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204623.png)
-![Tạo ECS Task Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204636.png)
-![Tạo ECS Task Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204645.png)
+![Creating ECS Task Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204602.png)
+![Creating ECS Task Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204623.png)
+![Creating ECS Task Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204636.png)
+![Creating ECS Task Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20204645.png)
 
+### Step 3: Creating a Role for AWS Lambda Functions
 
-### Step 3: Create a Role for the AWS Lambda Function
+This Role provides the necessary access for the Lambda function to read/write product images from Amazon S3 and log execution metrics.
 
-This role grants the Lambda function permissions to read/write product images from S3 and write execution logs.
-
-1. Click **Create role**.
-2. Select **AWS service**, under *Use case* select **Lambda** and click **Next**.
+1. Click the **Create role** button.
+2. Select **AWS service**, under *Use case* select **Lambda**, and click **Next**.
 3. Search for and check the following 2 policies:
-   - `AWSLambdaBasicExecutionRole` (to write CloudWatch logs).
-   - `AmazonS3FullAccess` (to retrieve and save resized images).
-4. Click **Next**, name the Role `Eshop-Lambda-Image-Role`, and click **Create role**.
+   - `AWSLambdaBasicExecutionRole` (Supports pushing logs to CloudWatch).
+   - `AmazonS3FullAccess` (Grants access to retrieve and store data on S3).
+4. Click **Next**, set the Role name to `Eshop-Lambda-Image-Role`, and click **Create role** to finalize.
 
-![Tạo Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205059.png)
-![Tạo Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205202.png)
-![Tạo Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205207.png)
-![Tạo Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205253.png)
-![Tạo Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205308.png)
-![Tạo Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205328.png)
-![Tạo Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205338.png)
-![Tạo Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205348.png)
+![Creating Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205059.png)
+![Creating Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205202.png)
+![Creating Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205207.png)
+![Creating Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205253.png)
+![Creating Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205308.png)
+![Creating Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205328.png)
+![Creating Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205338.png)
+![Creating Lambda Role](/images/3-Workshop/3.2/3.2.1/Screenshot%202026-09-25%20205348.png)

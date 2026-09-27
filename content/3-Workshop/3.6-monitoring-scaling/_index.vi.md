@@ -8,13 +8,13 @@ pre: " <b> 3.6. </b> "
 
 # 3.6. Giám sát & Tự động mở rộng (Monitoring & Auto Scaling)
 
-Trong vận hành thực tế, việc thiết lập xong hệ thống mới chỉ là bước khởi đầu. Khi sự kiện Flash Sale diễn ra, E-shop của bạn sẽ phải đối mặt với lượng truy cập khổng lồ. 
+Trong quá trình vận hành thực tế, việc hoàn tất thiết lập hạ tầng mới chỉ là bước khởi đầu. Trong các sự kiện có lưu lượng truy cập đột biến (như Flash Sale), hệ thống E-shop phải có khả năng xử lý khối lượng kết nối khổng lồ. 
 
-Trong chương này, chúng ta sẽ thiết lập **ECS Service Auto Scaling** để hệ thống tự động nhân bản thêm các Container Backend khi tải lượng CPU tăng cao, đồng thời thu nhỏ lại khi hết khách để tiết kiệm tiền. Ngoài ra, chúng ta sẽ dùng **Amazon CloudWatch** để theo dõi sức khỏe hệ thống, cài đặt cảnh báo (Alarm) qua email, và dùng **AWS CloudTrail** để ghi lại nhật ký (Audit) mọi thao tác thay đổi hạ tầng nhằm đảm bảo bảo mật.
+Chương này trình bày quy trình thiết lập **ECS Service Auto Scaling** nhằm cho phép hệ thống tự động nhân bản (scale out) thêm các Container Backend khi tải trọng CPU hoặc lưu lượng mạng tăng cao, đồng thời tự động thu hẹp quy mô (scale in) khi lưu lượng giảm để tối ưu hóa chi phí vận hành. Bên cạnh đó, **Amazon CloudWatch** được cấu hình để giám sát trạng thái sức khỏe toàn hệ thống và thiết lập các cảnh báo (Alarm) qua hệ thống email. Cuối cùng, **AWS CloudTrail** được kích hoạt để lưu trữ nhật ký kiểm tra (Audit log) đối với mọi thao tác thay đổi cấu hình hạ tầng, nhằm đảm bảo tuân thủ nghiêm ngặt các tiêu chuẩn bảo mật.
 
 ---
 
-### Danh sách các bài thực hành chi tiết:
+### Danh sách các nội dung triển khai chi tiết:
 
 - **[3.6.1. Thiết lập CloudWatch Logs & Cảnh báo Alarms](3.6.1-cloudwatch-alarms/)**
 - **[3.6.2. Cấu hình ECS Service Auto Scaling theo tải (Traffic/CPU)](3.6.2-service-autoscaling/)**
