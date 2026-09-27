@@ -13,9 +13,9 @@ pre: " <b> 3. </b> "
 The Workshop content is structured into main chapters from **3.1** to **3.7**, along with detailed practical exercises **3.x.y** below. It adheres to a hybrid architecture that combines **Static Hosting (S3)**, **Container Backend (EC2/ECS)**, and **Event-Driven Serverless (Lambda)**:
 
 > [!NOTE]
->
-> - **Web Demo Link**: [http://eshop-frontend-hosting-demo.s3-website-ap-southeast-1.amazonaws.com/](#) _(Example Link)_
-> - **Source Code Link**: [https://github.com/YourOrganization/aws-eshop-workshop](#) _(Example Link)_
+
+- **Link Web Demo**: [http://eshop-frontend-eshop-web.s3-website-ap-southeast-1.amazonaws.com](http://eshop-frontend-eshop-web.s3-website-ap-southeast-1.amazonaws.com)
+- **Link Source Code**: [https://github.com/Vinh-tho/Eshop.git](https://github.com/Vinh-tho/Eshop.git)
 
 ---
 
