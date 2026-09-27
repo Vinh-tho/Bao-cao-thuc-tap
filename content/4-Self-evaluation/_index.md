@@ -6,29 +6,29 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship at **Amazon Web Services Viet Nam Company Limited (AWS Viet Nam)** from **01/08/2026** to **27/09/2026**, I had the opportunity to learn, practice, and apply my Cybersecurity academic knowledge from Ho Chi Minh City University of Technology (HUTECH) to a real-world cloud computing environment.
+During my internship at **Amazon Web Services Vietnam Co., Ltd. (AWS Vietnam)** from **August 1, 2026** to **September 27, 2026**, I had the opportunity to learn, practice, and apply the Computer Science knowledge I gained at Hanoi University of Civil Engineering (HUCE) in a real-world environment.
 
-In this internship, I participated in the **Workforce Bootcamp - First Cloud AI Journey** program, successfully completing theoretical and hands-on lab challenges (including EC2, S3, IAM, VPC, RDS, Lambda, CloudWatch, Auto Scaling, CloudFormation, Docker/ECS, and CI/CD). Through these activities, I consolidated my ability to configure secure environments, manage cloud resources, and improved my teamwork and technical reporting skills.
+During this internship, I took part in the **Workforce Bootcamp - First Cloud AI Journey** program, completing a series of lessons and hands-on labs on AWS cloud infrastructure (such as EC2, S3, IAM, VPC, RDS, Lambda, CloudWatch, Auto Scaling, Docker/ECS). Through this, I significantly strengthened my ability to configure systems securely, manage cloud resources, and improve my teamwork and technical report writing skills.
 
-To objectively reflect on my internship progress, I evaluate myself based on the following criteria:
+To objectively reflect on my own learning and development process, I would like to self-assess based on the criteria below:
 
-| No. | Criteria                            | Description                                                                      | Good | Fair | Average |
-| --- | ----------------------------------- | -------------------------------------------------------------------------------- | ---- | ---- | ------- |
-| 1   | **Professional knowledge & skills** | Understanding of AWS services, setting up secure configurations, and lab quality | ☐    | ✅   | ☐       |
-| 2   | **Ability to learn**                | Learning speed of new cloud concepts, architectures, and tech tools              | ✅   | ☐    | ☐       |
-| 3   | **Proactiveness**                   | Taking initiative to search docs and completing assignments without reminders    | ☐    | ✅   | ☐       |
-| 4   | **Sense of responsibility**         | Ensuring lab works and worklogs are completed on schedule                        | ✅   | ☐    | ☐       |
-| 5   | **Discipline**                      | Compliance with attendance, workshop hours, and bootcamp rules                   | ✅   | ☐    | ☐       |
-| 6   | **Progressive mindset**             | Receptiveness to feedback from mentors and instructors to improve work           | ✅   | ☐    | ☐       |
-| 7   | **Communication**                   | Expressing technical queries and reporting progress clearly                      | ☐    | ✅   | ☐       |
-| 8   | **Teamwork**                        | Sharing knowledge, collaborating, and supporting study group peers during labs   | ✅   | ☐    | ☐       |
-| 9   | **Professional conduct**            | Respecting mentors, peers, and maintaining workplace ethics                      | ✅   | ☐    | ☐       |
-| 10  | **Problem-solving skills**          | Diagnosing environment setup issues and troubleshooting errors                   | ☐    | ✅   | ☐       |
-| 11  | **Contribution to project/team**    | Overall performance and contribution to the final capstone project               | ☐    | ✅   | ☐       |
-| 12  | **Overall**                         | General assessment of progress and achievements during the internship            | ☐    | ✅   | ☐       |
+| No. | Criteria                            | Description                                                                     | Good | Fair | Average |
+| --- | ------------------------------------ | -------------------------------------------------------------------------------- | ---- | ---- | ------- |
+| 1   | **Professional Knowledge & Skills** | Understanding of AWS services, secure system setup, quality of hands-on labs    | ☐    | ✅   | ☐       |
+| 2   | **Learning Ability**                | Speed of picking up new knowledge on Cloud and technology tools                 | ✅   | ☐    | ☐       |
+| 3   | **Initiative**                      | Self-directed research and completing assignments without needing reminders     | ☐    | ✅   | ☐       |
+| 4   | **Sense of Responsibility**         | Ensuring tasks and worklogs are completed on the set deadlines                   | ✅   | ☐    | ☐       |
+| 5   | **Discipline**                      | Compliance with workshop schedules and program rules                            | ✅   | ☐    | ☐       |
+| 6   | **Growth Mindset**                  | Accepting feedback from mentors to improve results                              | ✅   | ☐    | ☐       |
+| 7   | **Communication**                   | Ability to discuss technical matters and express ideas clearly                  | ☐    | ✅   | ☐       |
+| 8   | **Teamwork**                        | Working, sharing materials, and supporting other members of the study group     | ✅   | ☐    | ☐       |
+| 9   | **Professional Conduct**            | Respectful attitude toward mentors and peers, maintaining a serious demeanor    | ✅   | ☐    | ☐       |
+| 10  | **Problem-Solving Skills**          | Identifying configuration errors and finding solutions (troubleshooting)        | ☐    | ✅   | ☐       |
+| 11  | **Contribution to the Project/Organization** | Level of contribution to and completion of the end-of-program capstone project goals | ☐    | ✅   | ☐       |
+| 12  | **Overall**                         | General assessment of performance and development throughout the internship     | ☐    | ✅   | ☐       |
 
 ### Areas for Self-Improvement
 
-- **Technical knowledge**: Gain more hands-on experience in advanced security best practices and complex cloud network troubleshooting.
-- **Troubleshooting skills**: Develop more patience when debugging configurations via CloudWatch Logs to identify root causes independently before requesting support.
-- **Communication & Presentation**: Focus on presenting technical reports and ideas in a more concise, structured, and clear manner.
+- **Professional Knowledge**: Gain more practical experience in advanced security configuration (Security Best Practices) and handling complex network incidents on AWS.
+- **Troubleshooting Skills**: Practice patience when analyzing system logs (CloudWatch logs) in order to proactively identify the root cause of an issue before seeking outside support.
+- **Communication & Presentation Skills**: Focus on presenting technical reports in a more concise, coherent, and to-the-point manner.

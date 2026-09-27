@@ -14,10 +14,10 @@ Trải qua kỳ thực tập **First Cloud AI Journey** đầy ý nghĩa, tôi x
 Chương trình được tổ chức rất chuyên nghiệp và bài bản. Hệ thống tài liệu hướng dẫn học tập rõ ràng, sơ đồ lộ trình (roadmap) chi tiết giúp thực tập sinh dễ dàng theo dõi tiến độ của bản thân qua từng tuần. Sự kết hợp giữa tự học và các buổi workshop giúp tăng tính linh hoạt tối đa.
 
 **2. Sự hỗ trợ từ Mentor & Đội ngũ Admin**  
-Đội ngũ Mentor rất giàu kinh nghiệm và nhiệt huyết. Khi tôi gặp khó khăn trong việc cấu hình mạng bảo mật hoặc gỡ lỗi CI/CD, các Mentor luôn hướng dẫn phương pháp tư duy kiểm tra log hệ thống thay vì đưa ra đáp án có sẵn, giúp tôi cải thiện kỹ năng giải quyết vấn đề. Ban Admin cũng hỗ trợ kỹ thuật và cấp phát tài khoản thực hành AWS Free Tier rất nhanh chóng.
+Đội ngũ Mentor rất giàu kinh nghiệm và nhiệt huyết. Khi tôi gặp khó khăn, các Mentor luôn hướng dẫn phương pháp tư duy kiểm tra log hệ thống thay vì đưa ra đáp án có sẵn, giúp tôi cải thiện kỹ năng giải quyết vấn đề. Ban Admin cũng hỗ trợ kỹ thuật và cấp phát tài khoản thực hành AWS Free Tier rất nhanh chóng.
 
 **3. Sự phù hợp với chuyên ngành học**  
-Là sinh viên chuyên ngành **An Ninh Mạng** của Đại học HUTECH, tôi thấy các nội dung thực hành rất sát với thực tế ngành. Việc tự tay cấu hình VPC Isolation, Public/Private Subnets, thiết lập Security Groups, Network ACLs và kiểm soát quyền hạn tối thiểu (Least Privilege) với IAM Policy giúp tôi hiểu sâu sắc cách bảo mật hạ tầng đám mây.
+Là sinh viên chuyên ngành **Khoa học máy tính** của Đại học HUCE, tôi thấy các nội dung thực hành rất sát với thực tế ngành. Việc tự tay cấu hình VPC Isolation, Public/Private Subnets, thiết lập Security Groups, Network ACLs và kiểm soát quyền hạn tối thiểu (Least Privilege) với IAM Policy giúp tôi hiểu sâu sắc cách bảo mật hạ tầng đám mây.
 
 **4. Cơ hội học hỏi & Phát triển kỹ năng**  
 Chương trình là cơ hội lớn để tôi tiếp cận với các công nghệ đám mây hiện đại như Serverless (Lambda, API Gateway), Container (Docker, ECS) và hạ tầng dưới dạng mã (Terraform, CloudFormation). Ngoài kỹ năng chuyên môn, tôi còn cải thiện kỹ năng viết báo cáo kỹ thuật và quản lý thời gian.
