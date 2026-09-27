@@ -5,14 +5,13 @@ weight: 1
 chapter: false
 ---
 
-    
 # Internship Report
 
-
 ### Student Information:
+
 &emsp; **Full Name:** Nguyễn Quang Vinh
 
-&emsp; **Phone Number:** 0867265091 
+&emsp; **Phone Number:** 0867265091
 
 &emsp; **Email:** nguyenvinh1242004@gmail.com
 
@@ -34,8 +33,6 @@ chapter: false
 
 1.  [Worklog](1-Worklog/)
 2.  [Proposal](2-Proposal/)
-3.  [BlogsPosted](3-BlogsPosted/)
-4.  [Events Participated](4-EventParticipated/)
-5.  [Workshop](5-Workshop/)
-6.  [Self-evaluation](6-Self-evaluation/)
-7.  [Sharing and Feedback](7-Feedback/)
+3.  [Workshop](3-Workshop/)
+4.  [Self-evaluation](4-Self-evaluation/)
+5.  [Sharing and Feedback](5-Feedback/)
