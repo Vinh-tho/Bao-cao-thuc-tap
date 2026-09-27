@@ -1,27 +1,27 @@
 ---
 title: "Worklog Tuần 6"
-date: 2026-08-31
+date: 2026-09-05
 weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
 ### Mục tiêu tuần 6:
-* Tìm hiểu kiến trúc Serverless trên AWS thông qua dịch vụ AWS Lambda.
-* Thực hành viết mã nguồn Python để tạo Lambda Function.
-* Tích hợp Lambda Function với lưu trữ S3 và cổng API Gateway.
-* Theo dõi và giám sát logs của Lambda bằng CloudWatch.
+
+- Tìm hiểu Elastic Load Balancer (ELB) và Auto Scaling.
+- Thực hành phân phối lưu lượng và tự động co giãn các EC2 instance.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| --- | --- | --- | --- | --- |
-| 2 | Tìm hiểu AWS Lambda và mô hình Serverless | 27/08/2026 | 29/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Thực hành viết mã và tạo Lambda Function bằng Python | 29/08/2026 | 30/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Cấu hình kết nối Lambda với S3 (triggers) và API Gateway (endpoints) | 31/08/2026 | 01/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Kiểm tra hoạt động hệ thống và xem giám sát log bằng CloudWatch | 01/09/2026 | 01/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+
+| Thứ | Công việc                                                  | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | ---------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 2   | Tìm hiểu ELB và Auto Scaling                               | 05/09/2026   | 06/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | Tạo Application Load Balancer cho các EC2 instance         | 07/09/2026   | 08/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | Cấu hình Launch Template và Auto Scaling Group             | 09/09/2026   | 10/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | Mô phỏng tải và kiểm tra cân bằng tải, khả năng tự co giãn | 11/09/2026   | 11/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 6:
-* Hiểu cơ chế hoạt động, thanh toán và lợi ích của mô hình Serverless trên AWS.
-* Phát triển thành công mã nguồn Python chạy trực tiếp trên Lambda không cần máy chủ.
-* Cấu hình thành công trigger từ S3 và tạo API endpoints để kích hoạt Lambda qua HTTP.
-* Thành thạo kỹ năng tìm lỗi bằng cách tra cứu logs trên AWS CloudWatch.
+
+- Hiểu nguyên lý hoạt động của ELB và Auto Scaling Group.
+- Phân phối thành công lưu lượng web qua Application Load Balancer.
+- Thiết lập chính sách tự động tăng giảm EC2 và xác minh khả năng chịu tải.

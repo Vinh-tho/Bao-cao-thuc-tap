@@ -6,25 +6,20 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
+Below is my detailed worklog for the eight-week First Cloud AI Journey internship program, from 01/08/2026 to 27/09/2026:
 
-Below is my detailed worklog across the 10 weeks of the First Cloud AI Journey internship program:
+**Week 1 (01/08–07/08):** [AWS architecture overview and practice account setup](1.1-week1/)
 
-**Week 1:** [Looking for an internship place](1.1-week1/)
+**Week 2 (08/08–14/08):** [AWS Core Services: EC2, S3, and IAM](1.2-week2/)
 
-**Week 2:** [Overview of AWS architecture and create a practice account](1.2-week2/)
+**Week 3 (15/08–21/08):** [AWS Networking: VPC, Subnet, and Internet Gateway](1.3-week3/)
 
-**Week 3:** [Learn about AWS Core Services: EC2, S3, IAM](1.3-week3/)
+**Week 4 (22/08–28/08):** [AWS Lambda and the Serverless model](1.4-week4/)
 
-**Week 4:** [Learn about AWS Networking: VPC, Subnet, Internet Gateway](1.4-week4/)
+**Week 5 (29/08–04/09):** [AWS CloudWatch and CloudTrail](1.5-week5/)
 
-**Week 5:** [Learn about AWS RDS and DynamoDB](1.5-week5/)
+**Week 6 (05/09–11/09):** [Elastic Load Balancer (ELB) and Auto Scaling](1.6-week6/)
 
-**Week 6:** [Learn about AWS Lambda and Serverless](1.6-week6/)
+**Week 7 (12/09–18/09):** [AWS ECS and basic Docker knowledge](1.7-week7/)
 
-**Week 7:** [Learn about AWS CloudWatch and CloudTrail](1.7-week7/)
-
-**Week 8:** [Learn about Elastic Load Balancer (ELB) and Auto Scaling](1.8-week8/)
-
-**Week 9:** [Learn about AWS ECS and Docker basics](1.9-week9/)
-
-**Week 10:** [Implement a comprehensive project on AWS and evaluation](1.10-week10/)
+**Week 8 (19/09–27/09):** [Comprehensive AWS project](1.8-week8/)

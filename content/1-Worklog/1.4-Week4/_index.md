@@ -1,27 +1,27 @@
 ---
 title: "Week 4 Worklog"
-date: 2026-05-16
+date: 2026-08-22
 weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
 ### Week 4 Objectives:
-* Study network components on AWS (VPC, Subnet, Internet Gateway).
-* Practice configuring VPC, Public/Private Subnets, Security Groups, and Network ACLs.
-* Test network connectivity of EC2 instances within the VPC.
+
+- Learn about AWS Lambda and the Serverless model.
+- Practice building Lambda Functions and integrating AWS services.
 
 ### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | --- | --- | --- | --- |
-| 2 | Learn about AWS Networking: VPC, Subnet, Internet Gateway | 12/08/2026 | 14/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Practice creating VPC and configuring Public/Private Subnets | 14/08/2026 | 15/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Configure Security Groups and Network ACLs for EC2 | 15/08/2026 | 16/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Practice connecting EC2 within VPC and testing Internet access | 17/08/2026 | 17/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 6 | Learn about Elastic IP and Route Tables on AWS | 18/08/2026 | 18/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+
+| Day | Task                                                | Start Date | Completion Date | Reference Material                        |
+| --- | --------------------------------------------------- | ---------- | --------------- | ----------------------------------------- |
+| 2   | Learn about AWS Lambda and the Serverless model     | 22/08/2026 | 23/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | Write and deploy a Python-based Lambda Function     | 24/08/2026 | 25/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | Integrate Lambda with an S3 trigger and API Gateway | 26/08/2026 | 27/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | Test the function and inspect CloudWatch logs       | 28/08/2026 | 28/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 4 Achievements:
-* Mastered basic networking concepts on AWS (VPC, Subnets, Route Tables, IGW).
-* Successfully created a custom VPC containing secure Public and Private subnets.
-* Configured firewall rules using Security Groups and Network ACLs to control EC2 traffic.
-* Gained clear understanding of Elastic IP and routing configurations on AWS.
+
+- Understood the operating model and benefits of Serverless architecture.
+- Built a Python Lambda Function and triggered it from S3 and API Gateway.
+- Learned to troubleshoot and monitor functions using CloudWatch.

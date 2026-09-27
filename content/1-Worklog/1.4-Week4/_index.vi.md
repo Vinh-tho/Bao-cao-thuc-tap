@@ -1,27 +1,27 @@
 ---
 title: "Worklog Tuần 4"
-date: 2026-08-16
+date: 2026-08-22
 weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
 ### Mục tiêu tuần 4:
-* Tìm hiểu cơ chế mạng trên AWS (Networking) bao gồm VPC, Subnet và Internet Gateway.
-* Thực hành thiết lập VPC, Public/Private Subnet, Security Groups và Network ACLs.
-* Kiểm tra khả năng kết nối mạng của các EC2 instance trong VPC.
+
+- Tìm hiểu AWS Lambda và mô hình Serverless.
+- Thực hành xây dựng Lambda Function và tích hợp với các dịch vụ AWS.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| --- | --- | --- | --- | --- |
-| 2 | Tìm hiểu AWS Networking: VPC, Subnet, Internet Gateway | 12/08/2026 | 14/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Thực hành tạo VPC và cấu hình Public/Private Subnet | 14/08/2026 | 15/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Cấu hình Security Group và Network ACL cho EC2 | 15/08/2026 | 16/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Thực hành kết nối EC2 trong VPC và kiểm tra truy cập Internet | 17/08/2026 | 17/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 6 | Tìm hiểu Elastic IP và Route Table trên AWS | 18/08/2026 | 18/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+
+| Thứ | Công việc                                      | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | ---------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 2   | Tìm hiểu AWS Lambda và mô hình Serverless      | 22/08/2026   | 23/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | Viết và triển khai Lambda Function bằng Python | 24/08/2026   | 25/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | Tích hợp Lambda với S3 trigger và API Gateway  | 26/08/2026   | 27/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | Kiểm tra function và đọc log trên CloudWatch   | 28/08/2026   | 28/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 4:
-* Nắm vững kiến thức mạng cơ bản trên AWS (VPC, Subnet, Route Table, IGW).
-* Thiết lập thành công hệ thống VPC với các phân vùng Public và Private Subnet bảo mật.
-* Cấu hình tường lửa Security Group và Network ACL để kiểm soát lưu lượng truy cập EC2.
-* Hiểu cách thức hoạt động của Elastic IP và định tuyến trong AWS.
+
+- Hiểu cơ chế hoạt động và lợi ích của kiến trúc Serverless.
+- Tạo được Lambda Function bằng Python và kích hoạt function từ S3, API Gateway.
+- Biết cách kiểm tra lỗi và theo dõi hoạt động của function qua CloudWatch.

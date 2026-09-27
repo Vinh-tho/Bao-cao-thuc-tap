@@ -1,27 +1,27 @@
 ---
 title: "Worklog Tuần 8"
-date: 2026-09-14
+date: 2026-09-19
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
 ### Mục tiêu tuần 8:
-* Nghiên cứu dịch vụ cân bằng tải Elastic Load Balancer (ELB) và tự động co giãn Auto Scaling.
-* Thực hành tạo Application Load Balancer để định tuyến lưu lượng đến các máy ảo EC2.
-* Cấu hình Auto Scaling Group để tự động tăng/giảm số lượng EC2.
-* Thực hiện tải ảo để kiểm tra khả năng co giãn và cân bằng tải.
+
+- Thực hiện dự án tổng hợp trên AWS và tổng kết quá trình thực tập.
+- Kết hợp các kiến thức về EC2, S3, IAM, VPC, Lambda, ECS, ELB và giám sát.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| --- | --- | --- | --- | --- |
-| 2 | Tìm hiểu Elastic Load Balancer (ELB) và Auto Scaling | 10/09/2026 | 12/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Thực hành tạo Load Balancer (ALB) cho các máy ảo EC2 | 12/09/2026 | 13/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Cấu hình Launch Template và Auto Scaling Group | 14/09/2026 | 15/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Chạy thử nghiệm giả lập tải, kiểm tra khả năng tự co giãn và cân bằng tải | 15/09/2026 | 15/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+
+| Thứ | Công việc                                                          | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | ------------------------------------------------------------------ | ------------ | --------------- | ----------------------------------------- |
+| 2   | Thiết kế kiến trúc và xác định các dịch vụ AWS cho dự án           | 19/09/2026   | 20/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | Triển khai ứng dụng, cấu hình VPC, IAM và các dịch vụ cần thiết    | 21/09/2026   | 23/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | Kiểm thử, giám sát, đánh giá khả năng hoạt động và tối ưu hệ thống | 24/09/2026   | 26/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | Hoàn thiện báo cáo và tự đánh giá kết quả thực tập                 | 27/09/2026   | 27/09/2026      |                                           |
 
 ### Kết quả đạt được tuần 8:
-* Hiểu nguyên lý hoạt động của ELB (ALB, NLB) và Auto Scaling Group.
-* Phân phối thành công lưu lượng truy cập web qua Application Load Balancer.
-* Thiết lập chính sách co giãn (Scaling Policy) hoạt động tự động khi lượng truy cập tăng đột biến.
-* Xác minh tính sẵn sàng cao (High Availability) và khả năng chịu lỗi (Fault Tolerance) của hệ thống.
+
+- Hoàn thành dự án tổng hợp trên AWS với kiến trúc và dịch vụ phù hợp.
+- Áp dụng được kiến thức về mạng, bảo mật, triển khai và giám sát hệ thống.
+- Hoàn thiện báo cáo, tổng kết và tự đánh giá kết quả trong giai đoạn 01/08–27/09/2026.

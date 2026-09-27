@@ -1,27 +1,27 @@
 ---
 title: "Week 8 Worklog"
-date: 2026-06-14
+date: 2026-09-19
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
 ### Week 8 Objectives:
-* Research Elastic Load Balancing (ELB) and Auto Scaling concepts on AWS.
-* Practice creating an Application Load Balancer to route traffic to backend EC2 instances.
-* Configure Auto Scaling Groups to scale EC2 instances dynamically.
-* Run load tests to verify scalability and load distribution.
+
+- Implement a comprehensive AWS project and summarize the internship.
+- Combine knowledge of EC2, S3, IAM, VPC, Lambda, ECS, ELB, and monitoring.
 
 ### Tasks to be carried out this week:
-| Day | Task | Start Date | Completion Date | Reference Material |
-| --- | --- | --- | --- | --- |
-| 2 | Learn about Elastic Load Balancer (ELB) and Auto Scaling | 10/09/2026 | 12/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Practice creating an Application Load Balancer (ALB) for EC2 instances | 12/09/2026 | 13/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Configure Launch Templates and Auto Scaling Groups (ASG) | 14/09/2026 | 15/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Perform load simulation tests to verify auto-scaling and traffic balancing | 15/09/2026 | 15/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+
+| Day | Task                                                                 | Start Date | Completion Date | Reference Material                        |
+| --- | -------------------------------------------------------------------- | ---------- | --------------- | ----------------------------------------- |
+| 2   | Design the architecture and select AWS services for the project      | 19/09/2026 | 20/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | Deploy the application and configure VPC, IAM, and required services | 21/09/2026 | 23/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | Test, monitor, evaluate, and optimize the system                     | 24/09/2026 | 26/09/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | Complete the report and evaluate the internship results              | 27/09/2026 | 27/09/2026      |                                           |
 
 ### Week 8 Achievements:
-* Gained solid understanding of ELB architectures and Auto Scaling mechanisms.
-* Successfully distributed user requests across EC2 instances using an ALB.
-* Set up dynamic scaling policies based on metric thresholds (CPU usage).
-* Verified High Availability and Fault Tolerance behavior during mock traffic surges.
+
+- Completed a comprehensive AWS project with an appropriate architecture and service set.
+- Applied networking, security, deployment, and monitoring knowledge in practice.
+- Completed the report and evaluation for the 01/08/2026–27/09/2026 internship period.

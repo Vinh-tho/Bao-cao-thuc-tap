@@ -1,25 +1,27 @@
 ---
 title: "Worklog Tuần 3"
-date: 2026-05-09
+date: 2026-08-15
 weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
 
 ### Mục tiêu tuần 3:
-* Nghiên cứu các dịch vụ cốt lõi của AWS bao gồm EC2, S3, và IAM.
-* Thực hành tạo máy ảo EC2 và kết nối SSH, quản lý tệp trên S3.
-* Tìm hiểu sâu về phân quyền với IAM.
+
+- Tìm hiểu AWS Networking: VPC, Subnet và Internet Gateway.
+- Thực hành thiết lập mạng, định tuyến và kiểm soát lưu lượng cho EC2.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| --- | --- | --- | --- | --- |
-| 2 | Tìm hiểu AWS Core Services: EC2, S3, IAM | 05/08/2026 | 07/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | Thực hành tạo EC2 instance, kết nối SSH | 07/08/2026 | 08/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | Upload & quản lý file trên S3 | 09/08/2026 | 10/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | Tìm hiểu IAM User, Role, Policy và cách phân quyền | 10/08/2026 | 11/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+
+| Thứ | Công việc                                                | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| --- | -------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 2   | Tìm hiểu VPC, Subnet và Internet Gateway                 | 15/08/2026   | 16/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | Tạo VPC, Public/Private Subnet và Route Table            | 17/08/2026   | 18/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | Cấu hình Internet Gateway, Security Group và Network ACL | 19/08/2026   | 20/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | Kết nối EC2 trong VPC và kiểm tra truy cập Internet      | 21/08/2026   | 21/08/2026      | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 3:
-* Nắm vững kiến thức về EC2, S3 và IAM.
-* Tạo thành công EC2 instance, kết nối SSH và quản lý lưu trữ với S3.
-* Biết cách thiết lập và cấu hình người dùng, vai trò, chính sách bảo mật trong IAM.
+
+- Hiểu được cấu trúc VPC, Subnet, Route Table và Internet Gateway.
+- Thiết lập được mạng Public/Private và kiểm soát lưu lượng bằng Security Group, Network ACL.
+- Kiểm tra thành công kết nối của EC2 trong VPC.
