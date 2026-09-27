@@ -13,9 +13,8 @@ pre: " <b> 5. </b> "
 Nội dung phần Workshop được cấu trúc thành các chương chính từ **5.1** đến **5.7** và các bài thực hành chi tiết **5.x.y** dưới đây, bám sát kiến trúc kết hợp giữa **Static Hosting (S3)**, **Container Backend (EC2/ECS)**, và **Event-Driven Serverless (Lambda)**:
 
 > [!NOTE]
-> * **Link Web Demo**: [http://eshop-frontend-hosting-demo.s3-website-ap-southeast-1.amazonaws.com/](#) *(Link minh họa)*
-> * **Link Source Code**: [https://github.com/YourOrganization/aws-eshop-workshop](#) *(Link minh họa)*
-
+- **Link Web Demo**: [http://eshop-frontend-eshop-web.s3-website-ap-southeast-1.amazonaws.com](http://eshop-frontend-eshop-web.s3-website-ap-southeast-1.amazonaws.com)
+- **Link Source Code**: [https://github.com/Vinh-tho/Eshop.git](https://github.com/Vinh-tho/Eshop.git)
 ---
 
 #### Danh sách các chương thực hành:
