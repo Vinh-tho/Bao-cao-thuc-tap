@@ -16,7 +16,7 @@ The Workshop content is structured into main chapters from **3.1** to **3.7**, a
 
 - **Link Web Demo**: [http://eshop-frontend-eshop-web.s3-website-ap-southeast-1.amazonaws.com](http://eshop-frontend-eshop-web.s3-website-ap-southeast-1.amazonaws.com)
 - **Link Source Code**: [https://github.com/Vinh-tho/Eshop.git](https://github.com/Vinh-tho/Eshop.git)
-- **Link Internship Report**: [https://drive.google.com/file/d/1ruX8bMRgny0R4zI2cm051vuGI6jlASI8/view?usp=sharing](https://drive.google.com/file/d/1ruX8bMRgny0R4zI2cm051vuGI6jlASI8/view?usp=sharing)
+- **Link Internship Report**: [https://drive.google.com/file/d/1ruX8bMRgny0R4zI2cm051vuGI6jlASI8/view?usp=sharing](https://drive.google.com/file/d/1F2i5YcoLi2HEVL6kbtZOXSyMmQ5lJFjn/view?usp=sharing)
 
 ---
 
