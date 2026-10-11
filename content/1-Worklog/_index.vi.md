@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-Dưới đây là nhật ký công việc chi tiết của tôi trong 8 tuần thực hiện chương trình thực tập First Cloud AI Journey, từ ngày 01/08/2026 đến ngày 27/09/2026:
+Dưới đây là nhật ký công việc chi tiết của tôi trong 8 tuần thực hiện chương trình thực tập First Cloud AI Journey, từ ngày 01/08/2026 đến ngày 27/09/2026. Mỗi tuần gồm mục tiêu, bảng công việc theo ngày, kết quả đạt được, khó khăn kèm cách giải quyết và kế hoạch tuần sau. Các tuần 1–7 xây dựng kiến thức nền tảng; tuần 8 tổng hợp thành dự án E-shop hoàn chỉnh.
 
 **Tuần 1 (01/08–07/08):** [Tìm hiểu tổng quan kiến trúc AWS và lập tài khoản thực hành](1.1-week1/)
 
@@ -22,4 +22,5 @@ Dưới đây là nhật ký công việc chi tiết của tôi trong 8 tuần t
 
 **Tuần 7 (12/09–18/09):** [Tìm hiểu AWS ECS và kiến thức Docker cơ bản](1.7-week7/)
 
-**Tuần 8 (19/09–27/09):** [Thực hiện dự án tổng hợp trên AWS](1.8-week8/)
+**Tuần 8 (19/09–27/09):** [Dự án tổng hợp: triển khai Web E-shop với ECS và Serverless](1.8-week8/)
+

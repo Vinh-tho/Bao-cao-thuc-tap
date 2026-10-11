@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-Below is my detailed worklog for the eight-week First Cloud AI Journey internship program, from 01/08/2026 to 27/09/2026:
+Below is my detailed worklog for the eight-week First Cloud AI Journey internship program, from 01/08/2026 to 27/09/2026. Each week lists objectives, a day-by-day task table, achievements, difficulties with solutions, and the plan for the next week. Weeks 1–7 build the foundation; week 8 combines everything into the complete E-shop project.
 
 **Week 1 (01/08–07/08):** [AWS architecture overview and practice account setup](1.1-week1/)
 
@@ -22,4 +22,5 @@ Below is my detailed worklog for the eight-week First Cloud AI Journey internshi
 
 **Week 7 (12/09–18/09):** [AWS ECS and basic Docker knowledge](1.7-week7/)
 
-**Week 8 (19/09–27/09):** [Comprehensive AWS project](1.8-week8/)
+**Week 8 (19/09–27/09):** [Comprehensive AWS project: deploying the E-shop with ECS and Serverless](1.8-week8/)
+

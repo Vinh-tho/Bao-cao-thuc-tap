@@ -33,6 +33,8 @@ chapter: false
 
 1.  [Worklog](1-Worklog/)
 2.  [Proposal](2-Proposal/)
-3.  [Workshop](3-Workshop/)
-4.  [Self-evaluation](4-Self-evaluation/)
-5.  [Sharing and Feedback](5-Feedback/)
+3.  [Blogs Posted](3-BlogsPosted/)
+4.  [Events Participated](4-eventparticipated/)
+5.  [Workshop](5-Workshop/)
+6.  [Self-Assessment](6-Self-evaluation/)
+7.  [Sharing and Feedback](7-Feedback/)

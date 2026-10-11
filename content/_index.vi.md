@@ -33,6 +33,8 @@ chapter: false
 
 1.  [Worklog](1-Worklog/)
 2.  [Proposal](2-Proposal/)
-3.  [Workshop](3-Workshop/)
-4.  [Tự đánh giá](4-Self-evaluation/)
-5.  [Chia sẻ, đóng góp ý kiến](5-Feedback/)
+3.  [Các bài blogs đã đăng](3-BlogsPosted/)
+4.  [Các sự kiện đã tham gia](4-eventparticipated/)
+5.  [Workshop](5-Workshop/)
+6.  [Tự đánh giá](6-Self-evaluation/)
+7.  [Chia sẻ, đóng góp ý kiến](7-Feedback/)
