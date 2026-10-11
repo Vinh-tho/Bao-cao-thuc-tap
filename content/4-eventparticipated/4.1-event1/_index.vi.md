@@ -81,3 +81,5 @@ aliases:
 ![[Phần chia sẻ của diễn giả]](/images/4-eventparticipated/event1/1791715404517_270292857352598692_1565792035291257054_c1546f20867740800a504bf2fb429261.jpg)
 
 ![[Phần chia sẻ của diễn giả]](/images/4-eventparticipated/event1/1791715405909_270292857352598692_1565792035291257054_e540d80012da4d78819cf4b5c021f0ee.jpg)
+
+![[Phần chia sẻ của diễn giả]](/images/4-eventparticipated/event1/IMG_5480.JPG)

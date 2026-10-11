@@ -11,95 +11,75 @@ aliases:
   - /4-EventParticipated/4.1-event1/
 ---
 
-# Event Summary: “FCAJ Community”
+# Event Report: "ITDE-DEVCHAMPION2027 Competition Launch Ceremony"
 
-### Event Overview
-*   **Event Title**: FCAJ Community
-*   **Date**: Academic Conference (Co-organized with HUTECH University and Swinburne University of Technology)
-*   **Location**: Bitexco Financial Tower (AWS Vietnam Office)
-*   **Organizer**: AWS G3 Team in collaboration with First Cloud Journey Community
-*   **Role**: Participant
+### General Event Information
 
----
-
-### Objectives & Goals
-*   Share practical path insights to become professional Cloud, Security, and DevOps Engineers.
-*   Introduce emerging technologies: Machine Learning (ML), Docker Containerization, and AI GraphRAG.
-*   Provide career orientation and key soft skills required for effective teamwork in IT projects.
+- **Event name**: ITDE-DEVCHAMPION2027 Competition Launch Ceremony (DEVCHAMPION)
+- **Date**: 26/09/2026
+- **Venue**: 7th Floor, Grand Tera Building, 36 Cat Linh, Dong Da Ward, Hanoi
+- **Organizer**: AWS Team in cooperation with the First Cloud Journey community
+- **Role**: Attendee
 
 ---
 
-### Speakers
-*   **Le Hoang Gia Dai**: Senior at HUTECH University, Core Member of Team AWS G3.
-*   **Bao Huynh**: Junior Cloud Native Developer at Endava Vietnam, Founder/Head Lab of ITea Lab.
-*   **Tran Trung Vinh**: System Administrator at Central Retail Group.
-*   **Nguyen Quoc Bao**: Multiplayer & Cloud Technical Specialist.
-*   **Truong Huy Phuoc**: Team Collaboration and Soft Skills Trainer.
-*   **Viet Phat**: AI Student at Swinburne University of Technology.
+### Purpose & Objectives
+
+- Introduce the ITDE-DEVCHAMPION2027 competition: its goals, eligible participants, rules, round structure, and benefits for contestants.
+- Encourage Information Technology students to develop their programming skills and problem-solving mindset through a real-world arena.
+- Create opportunities for students to network and learn from the organizers, speakers, and peers who share a passion for technology.
 
 ---
 
-### Key Highlights
+### What I Learned
 
-#### 1. Machine Learning (ML) in Cyber Attack Detection
-*   **Topic**: WAF + ML for Cyber Attack Detection - Machine Learning-based Network Intrusion Detection System (NIDS) on AWS.
-*   **Speaker**: Le Hoang Gia Dai.
-*   **Content**: Introduced a Network Intrusion Detection System (NIDS) utilizing ML algorithms in conjunction with AWS WAF to bypass static rules limitations. Trained on CSE-CIC-IDS2018 benchmark datasets for real-world cyber threat mitigation.
+#### 1. Mindset and Methods
 
-#### 2. Containerization with Docker
-*   **Topic**: Docker – A containerization technology.
-*   **Speaker**: Bao Huynh.
-*   **Content**: Comprehensive guide to Docker, comparing Virtual Machine and Container architectures. Explored its lightweight execution profile, resource optimization, and the "Build once, run anywhere" philosophy.
+- **A competitive and proactive learning mindset**: A programming contest tests not only knowledge but also the ability to analyze a problem statement, break problems down, and optimize solutions within a limited time.
+- **Learning from the community**: Through the ceremony, I realized that taking part in tech competitions is an effective way to compare my abilities with those of my peers and identify what I need to improve.
 
-#### 3. Sysadmin & Systems Engineering Career Pathways
-*   **Speaker**: Tran Trung Vinh.
-*   **Content**: Real-world journey from IT Helpdesk to Senior Sysadmin. Stressed Linux systems mastery and networking foundations as prerequisites for DevOps and Cloud Architecture roles.
+#### 2. Practical Knowledge
 
-#### 4. Multiplayer Game Development on Cloud
-*   **Topic**: Multiplayer in the Cloud - Connecting Godot Clients with AWS WebSockets.
-*   **Speaker**: Nguyen Quoc Bao.
-*   **Content**: Real-time multiplayer connection connecting Godot clients using AWS WebSockets, AWS Lambda, and DynamoDB for low-latency messaging.
+- Gained an overview of how a technology competition is organized: clear rules, multiple rounds, and key deadlines to keep track of.
+- Recognized that a solid programming foundation (data structures, algorithms, object-oriented programming, debugging) is a core requirement of this kind of competition, similar to what I applied when troubleshooting issues in the E-shop project.
 
-#### 5. Next-Gen AI Applications (GraphRAG)
-*   **Topic**: Build GraphRAG applications using Amazon Bedrock and Amazon Neptune.
-*   **Speaker**: Viet Phat.
-*   **Content**: Building Graph Retrieval-Augmented Generation (GraphRAG) systems with Amazon Bedrock and Amazon Neptune to enhance Large Language Model (LLM) contextual search.
+#### 3. Work Attitude
 
-#### 6. Team Collaboration and Management
-*   **Speaker**: Truong Huy Phuoc.
-*   **Content**: 4 golden rules of teamwork and managing agile tasks using tools like Trello and Slack to optimize sprint delivery.
+- Practicing regularly, reading the rules carefully, and preparing early help reduce pressure during the competition.
+- Proactively seeking official information from the organizers rather than relying on word of mouth.
 
 ---
 
-### Key Learnings
+### Application to Work
 
-#### 1. Technical Mindset & Methodology
-*   **Cloud Mindset**: Cloud is not just renting compute; it's designing automated, horizontally scalable systems backed by pay-as-you-go financial models.
-*   **Data Security**: Raw data preparation determines ML accuracy and detection performance.
-
-#### 2. Practical Expertise
-*   Understood how to handle imbalanced datasets when training ML classifiers.
-*   Learned basic Docker CLI syntax and real-time WebSockets integration on serverless AWS architectures.
-
-#### 3. Best Practices in Operations
-*   **Golden Rule**: Never patch or test system configurations directly on the Production environment.
-*   Always automate repetitive operational tasks and maintain clear technical documentation.
+- **Connection to my internship**: In the E-shop project, I directly handled integration issues, such as migrating from SQL Server to PostgreSQL when the ECS Task failed to reach a Healthy state. These error analysis and debugging skills are exactly the foundation that programming competitions require.
+- **Personal plan**: Keep practicing programming and algorithms regularly, while strengthening my knowledge of cloud computing and containers (Docker, ECS).
+- **Improving my learning process**: Break goals down week by week and keep notes on the errors I have encountered to avoid repeating them.
 
 ---
 
-### Workplace Application
-*   **Current Project Application**: Dockerize the AI Resume Matching application to synchronize local developer environments with EC2 deployments. Configure AWS WAF rules to protect the Load Balancer against SQL injection and XSS threats.
-*   **Next Technologies to Test**: Integrate Amazon Bedrock API for CV parsing and automated interview questions generation on Resume Fit.
-*   **Workflow Improvement**: Implement real-time network threat monitoring dashboards.
+### Experience at the Event
+
+- **Atmosphere**: The ceremony was lively, with many students interested in technology and programming, which inspired attendees to keep improving.
+- **Networking**: I had the chance to meet and chat briefly with other students attending, and learned how they prepare and plan their studies.
+- **Most impressive**: I was impressed by the community's eagerness to learn and passion for technology, especially how many students were ready to try new challenges.
 
 ---
 
-### Event Impressions & Photos
+### Lessons Learned
 
-![Machine Learning (ML) Cyber Attack Detection by Le Hoang Gia Dai](/images/4-eventparticipated/event1/waf_ml_intrusion_detection.png?v=2)
+- **Competitions are a fast way to learn**: Competing forces you to organize your knowledge and see where you are weak.
+- **Prepare thoroughly**: Understanding the rules and scope of the contest from the start helps you allocate study time sensibly.
+- **Perseverance**: Progress comes from consistent practice and not being afraid of making mistakes. The problems I encountered while deploying E-shop, such as the Service-Linked Role issue and Tasks not reaching Healthy, were only resolved by staying calm and tracing the cause step by step.
 
-![Docker Containerization by Bao Huynh](/images/4-eventparticipated/event1/docker_containerization.png?v=2)
+---
 
-![Multiplayer Godot WebSockets by Nguyen Quoc Bao](/images/4-eventparticipated/event1/multiplayer_websockets_godot.png?v=2)
+### Photos from the Event
 
-![GraphRAG with Amazon Bedrock by Viet Phat](/images/4-eventparticipated/event1/graphrag_amazon_bedrock.png?v=2)
+![[Overview of the launch ceremony]](/images/4-eventparticipated/event1/1791715403286_270292857352598692_1565792035291257054_e9daac633d4b455c44fe79b24a37d1d5.jpg)
+
+![[Speaker's presentation]](/images/4-eventparticipated/event1/1791715404517_270292857352598692_1565792035291257054_c1546f20867740800a504bf2fb429261.jpg)
+
+![[Speaker's presentation]](/images/4-eventparticipated/event1/1791715405909_270292857352598692_1565792035291257054_e540d80012da4d78819cf4b5c021f0ee.jpg)
+
+![[Speaker's presentation]](/images/4-eventparticipated/event1/IMG_5480.JPG)
