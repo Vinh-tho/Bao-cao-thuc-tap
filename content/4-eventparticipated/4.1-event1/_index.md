@@ -4,11 +4,6 @@ date: 2026-07-21
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
-aliases:
-  - /4-eventparticipated/4.1-Event1/
-  - /4-eventparticipated/4.1-event1/
-  - /4-EventParticipated/4.1-Event1/
-  - /4-EventParticipated/4.1-event1/
 ---
 
 # Event Report: "ITDE-DEVCHAMPION2027 Competition Launch Ceremony"
