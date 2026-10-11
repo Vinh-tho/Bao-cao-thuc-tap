@@ -1,31 +1,20 @@
 ---
-title: "Events Participated"
+title: "Events Attended"
 date: 2026-07-21
 weight: 4
 chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship, I participated in events that provided valuable insights into modern cloud solutions and artificial intelligence:
+During my internship, I attended several events. Each one was a memorable experience that gave me new, interesting and useful knowledge, along with some wonderful moments.
 
 ### [Event 1](4.1-event1/)
-&emsp;**Event Title:** FCAJ Community
+&emsp;**Event name:** Kickoff event for the FCAJ Buildrathon program
 
-&emsp;**Date:** Academic Conference (Co-organized with HUTECH University and Swinburne University of Technology)
+&emsp;**Date:** 26/09/2026
 
-&emsp;**Location:** Bitexco Financial Tower (AWS Vietnam Office)
+&emsp;**Location:** 7th Floor, Grand Tera Building, 36 Cat Linh Street, Dong Da Ward, Hanoi
 
-&emsp;**Organizer:** AWS G3 Team in collaboration with First Cloud Journey Community
+&emsp;**Organizer:** AWS Team in collaboration with the First Cloud Journey community
 
-&emsp;**Role:** Participant
-
-### [Event 2](4.2-event2/)
-&emsp;**Event Title:** FCAJ Community Day
-
-&emsp;**Date:** June 27, 2026
-
-&emsp;**Location:** 26th Floor, Bitexco Financial Tower, 02 Hai Trieu, Saigon Ward, Ho Chi Minh City
-
-&emsp;**Organizer:** AWS Study Group in collaboration with FCAJ Community
-
-&emsp;**Role:** Participant
+&emsp;**Role in the event:** Attendee
